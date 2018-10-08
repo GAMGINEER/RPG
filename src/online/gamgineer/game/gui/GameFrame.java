@@ -64,7 +64,13 @@ class GamePanel extends JPanel {
 	}
 
 	public void movePC(int dx, int dy) {
-		this.playableCharacter.move(dx, dy);
+		if (this.playableCharacter.getX() + this.playableCharacter.getW() + dx <= frame_width_size
+				&& this.playableCharacter.getX() + dx >= 0) {
+			if (this.playableCharacter.getY() + this.playableCharacter.getH() + dy <= frame_height_size
+					&& this.playableCharacter.getY() + dy >= 0) {
+				this.playableCharacter.move(dx, dy);
+			}
+		}
 		this.repaint();
 	}
 
@@ -94,6 +100,22 @@ class GameObject {
 	public void move(int dx, int dy) {
 		this.obj_pos_x = this.obj_pos_x + dx;
 		this.obj_pos_y = this.obj_pos_y + dy;
+	}
+
+	public int getX() {
+		return this.obj_pos_x;
+	}
+
+	public int getY() {
+		return this.obj_pos_y;
+	}
+
+	public int getW() {
+		return this.obj_width;
+	}
+
+	public int getH() {
+		return this.obj_height;
 	}
 
 }
