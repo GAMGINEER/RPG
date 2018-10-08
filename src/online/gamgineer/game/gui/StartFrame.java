@@ -30,6 +30,7 @@ public class StartFrame extends JFrame {
 		});
 		this.add(startGameButton);
 		this.pack();
+		System.out.println("!!\tDEBUGGING...");
 	}
 
 	public void ChangeFrame() {
