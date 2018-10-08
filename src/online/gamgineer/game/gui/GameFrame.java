@@ -26,7 +26,6 @@ public class GameFrame extends JFrame {
 		addKeyListener(new GameControl(gp));
 
 		add(gp);
-
 	}
 
 }
@@ -34,8 +33,6 @@ public class GameFrame extends JFrame {
 class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	private Graphics g;
 
 	private int frame_width_size;
 	private int frame_height_size;
@@ -45,14 +42,13 @@ class GamePanel extends JPanel {
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
 		this.frame_height_size = frame_height_size;
+		createObject();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		createObject();
 		drawObject(g);
-		this.g = g;
 	}
 
 	public void createObject() {
@@ -67,9 +63,8 @@ class GamePanel extends JPanel {
 		return this.playableCharacter;
 	}
 
-	public void updatePC(int dx, int dy) {
+	public void movePC(int dx, int dy) {
 		this.playableCharacter.move(dx, dy);
-//		this.drawObject(g);
 		this.repaint();
 	}
 
@@ -77,7 +72,6 @@ class GamePanel extends JPanel {
 
 class GameObject {
 
-	private Graphics g;
 	private int obj_pos_x; // 게임 객체 X 좌표값
 	private int obj_pos_y; // 게임 객체 Y 좌표값
 	private int obj_width; // 게임 객체 가로 길이
@@ -95,7 +89,6 @@ class GameObject {
 	public void draw(Graphics g) {
 		g.setColor(this.obj_color);
 		g.fillRect(obj_pos_x, obj_pos_y, obj_width, obj_height);
-		this.g = g;
 	}
 
 	public void move(int dx, int dy) {
