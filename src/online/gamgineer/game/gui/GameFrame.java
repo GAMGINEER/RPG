@@ -3,13 +3,14 @@ package online.gamgineer.game.gui;
 import javax.swing.JFrame;
 
 import online.gamgineer.game.control.KeyMapping;
+import online.gamgineer.game.main.MainClass;
 
 public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int FRAME_WIDTH_SIZE = 600; // (상수) GameFrame 가로 길이
-	private static final int FRAME_HEIGHT_SIZE = 600; // (상수) GameFrame 세로 길이
+	private static final int FRAME_WIDTH_SIZE = MainClass.GAME_FRAME_WIDTH; // (상수) GameFrame 가로 길이
+	private static final int FRAME_HEIGHT_SIZE = MainClass.GAME_FRAME_HEIGHT; // (상수) GameFrame 세로 길이
 
 	public GameFrame() {
 
