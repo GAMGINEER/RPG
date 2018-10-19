@@ -1,6 +1,7 @@
 package online.gamgineer.game.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -16,18 +17,18 @@ public class GameFrame extends JFrame {
 	private static final int FRAME_HEIGHT_SIZE = 600; // (상수) GameFrame 세로 길이
 
 	public GameFrame() {
-		setTitle("GameFrame");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setVisible(true);
+		this.setTitle("GameFrame");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setVisible(true);
 
 		GamePanel gp = new GamePanel(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
+		this.addKeyListener(new GameControl(gp));
 
-		addKeyListener(new GameControl(gp));
-
-		add(gp);
+		this.add(gp);
+		this.pack();
 	}
 
 }
@@ -44,6 +45,7 @@ class GamePanel extends JPanel {
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
 		this.frame_height_size = frame_height_size;
+		this.setPreferredSize(frame_width_size, frame_height_size);
 		createObject();
 	}
 
@@ -74,6 +76,10 @@ class GamePanel extends JPanel {
 			}
 		}
 		this.repaint();
+	}
+
+	private void setPreferredSize(int frameWidthSize, int frameHeightSize) {
+		super.setPreferredSize(new Dimension(frameWidthSize, frameHeightSize));
 	}
 
 }
