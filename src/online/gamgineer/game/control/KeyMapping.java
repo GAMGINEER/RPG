@@ -3,9 +3,12 @@ package online.gamgineer.game.control;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import online.gamgineer.game.gui.GamePanel;
+import online.gamgineer.game.main.MainClass;
+
 public class KeyMapping implements KeyListener {
 
-	private static final int SPEED = 10;
+	private static final int SPEED = MainClass.PLAYER_SPEED;
 
 	private GamePanel gamePanel;
 
