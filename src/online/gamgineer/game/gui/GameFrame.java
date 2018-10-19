@@ -1,10 +1,13 @@
 package online.gamgineer.game.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import online.gamgineer.game.object.GameCharacter;
 
 public class GameFrame extends JFrame {
 
@@ -14,18 +17,26 @@ public class GameFrame extends JFrame {
 	private static final int FRAME_HEIGHT_SIZE = 600; // (상수) GameFrame 세로 길이
 
 	public GameFrame() {
-		setTitle("GameFrame");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setVisible(true);
 
-		GamePanel gp = new GamePanel(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
+		// 게임창 제목
+		this.setTitle("GameFrame");
 
-		addKeyListener(new GameControl(gp));
+		// 게임창 설정
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 창을 닫을 때 프로그램 종료가 아니라 창만 사라지게 함
+		this.setLocationRelativeTo(null); // 창 위치 초기화
+		this.setResizable(false); // 창 크기 조절기능 해제
+		this.setVisible(true); // 창 보이기
+		// this.setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
 
-		add(gp);
+		// 게임 패널 설정
+		GamePanel gp = new GamePanel(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE); // 게임 패널 추가
+		this.addKeyListener(new GameControl(gp)); // 게임 패널에 입력키 리스너 추가
+		this.add(gp); // 게임 창에 게임 패널 추가
+
+		// Container gameFrameContentPane = this.getContentPane();
+		// gameFrameContentPane.setBackground(Color.BLACK);
+
+		this.pack(); // 게임창 크기 조정
 	}
 
 }
@@ -37,11 +48,13 @@ class GamePanel extends JPanel {
 	private int frame_width_size;
 	private int frame_height_size;
 
-	private GameObject playableCharacter;
+	private GameCharacter playableCharacter;
 
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
 		this.frame_height_size = frame_height_size;
+		this.setPreferredSize(new Dimension(frame_width_size, frame_height_size));
+		this.setBackground(Color.WHITE);
 		createObject();
 	}
 
@@ -52,14 +65,14 @@ class GamePanel extends JPanel {
 	}
 
 	public void createObject() {
-		this.playableCharacter = new GameObject(frame_width_size / 2, frame_height_size / 2, 8, 16, Color.RED);
+		this.playableCharacter = new GameCharacter(frame_width_size / 2, frame_height_size / 2, 8, 16, Color.RED);
 	}
 
 	public void drawObject(Graphics g) {
 		this.playableCharacter.draw(g);
 	}
 
-	public GameObject getPC() {
+	public GameCharacter getPC() {
 		return this.playableCharacter;
 	}
 
@@ -72,50 +85,6 @@ class GamePanel extends JPanel {
 			}
 		}
 		this.repaint();
-	}
-
-}
-
-class GameObject {
-
-	private int obj_pos_x; // 게임 객체 X 좌표값
-	private int obj_pos_y; // 게임 객체 Y 좌표값
-	private int obj_width; // 게임 객체 가로 길이
-	private int obj_height; // 게임 객체 세로 길이
-	private Color obj_color;
-
-	public GameObject(int obj_pos_x, int obj_pos_y, int obj_width, int obj_height, Color obj_color) {
-		this.obj_pos_x = obj_pos_x;
-		this.obj_pos_y = obj_pos_y;
-		this.obj_width = obj_width;
-		this.obj_height = obj_height;
-		this.obj_color = obj_color;
-	}
-
-	public void draw(Graphics g) {
-		g.setColor(this.obj_color);
-		g.fillRect(obj_pos_x, obj_pos_y, obj_width, obj_height);
-	}
-
-	public void move(int dx, int dy) {
-		this.obj_pos_x = this.obj_pos_x + dx;
-		this.obj_pos_y = this.obj_pos_y + dy;
-	}
-
-	public int getX() {
-		return this.obj_pos_x;
-	}
-
-	public int getY() {
-		return this.obj_pos_y;
-	}
-
-	public int getW() {
-		return this.obj_width;
-	}
-
-	public int getH() {
-		return this.obj_height;
 	}
 
 }
