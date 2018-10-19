@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import online.gamgineer.game.object.GameCharacter;
+import online.gamgineer.game.object.Player;
 
 public class GameFrame extends JFrame {
 
@@ -48,7 +48,7 @@ class GamePanel extends JPanel {
 	private int frame_width_size;
 	private int frame_height_size;
 
-	private GameCharacter playableCharacter;
+	private Player playableCharacter;
 
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
@@ -65,22 +65,22 @@ class GamePanel extends JPanel {
 	}
 
 	public void createObject() {
-		this.playableCharacter = new GameCharacter(frame_width_size / 2, frame_height_size / 2, 8, 16, Color.RED);
+		this.playableCharacter = new Player(frame_width_size / 2, frame_height_size / 2, 8, 16);
 	}
 
 	public void drawObject(Graphics g) {
 		this.playableCharacter.draw(g);
 	}
 
-	public GameCharacter getPC() {
+	public Player getPC() {
 		return this.playableCharacter;
 	}
 
 	public void movePC(int dx, int dy) {
-		if (this.playableCharacter.getX() + this.playableCharacter.getW() + dx <= frame_width_size
-				&& this.playableCharacter.getX() + dx >= 0) {
-			if (this.playableCharacter.getY() + this.playableCharacter.getH() + dy <= frame_height_size
-					&& this.playableCharacter.getY() + dy >= 0) {
+		if (this.playableCharacter.getPosX() + this.playableCharacter.getWidth() + dx <= frame_width_size
+				&& this.playableCharacter.getPosX() + dx >= 0) {
+			if (this.playableCharacter.getPosY() + this.playableCharacter.getHeight() + dy <= frame_height_size
+					&& this.playableCharacter.getPosY() + dy >= 0) {
 				this.playableCharacter.move(dx, dy);
 			}
 		}
