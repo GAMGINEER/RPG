@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import online.gamgineer.game.object.Enemy;
 import online.gamgineer.game.object.Player;
 
 public class GamePanel extends JPanel {
@@ -16,6 +17,7 @@ public class GamePanel extends JPanel {
 	private int frame_height_size;
 
 	private Player playableCharacter;
+	private Enemy enemyObject;
 
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
@@ -33,10 +35,12 @@ public class GamePanel extends JPanel {
 
 	public void createObject() {
 		this.playableCharacter = new Player(frame_width_size / 2, frame_height_size / 2, 8, 16);
+		this.enemyObject = new Enemy(0, 0, 8, 16, Color.GREEN);
 	}
 
 	public void drawObject(Graphics g) {
 		this.playableCharacter.draw(g);
+		this.enemyObject.draw(g);
 	}
 
 	public Player getPC() {
