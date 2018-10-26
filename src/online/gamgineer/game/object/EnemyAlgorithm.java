@@ -1,8 +1,12 @@
 package online.gamgineer.game.object;
 
-public class EnemyAlgorithm {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-	public EnemyAlgorithm() {
+public class EnemyAlgorithm implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		
 	}
 
