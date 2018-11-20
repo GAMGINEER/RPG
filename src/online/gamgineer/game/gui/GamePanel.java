@@ -3,18 +3,16 @@ package online.gamgineer.game.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import online.gamgineer.game.object.Enemy;
 import online.gamgineer.game.object.Player;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private static Timer TIMER;
 
 	private int frame_width_size;
 	private int frame_height_size;
@@ -61,7 +59,7 @@ public class GamePanel extends JPanel {
 		}
 		this.repaint();
 	}
-	
+
 	public void moveEnemy(int dx, int dy) {
 		if (this.enemyObject.getPosX() + this.enemyObject.getWidth() + dx <= frame_width_size
 				&& this.enemyObject.getPosX() + dx >= 0) {

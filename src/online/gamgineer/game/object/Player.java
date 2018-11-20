@@ -2,8 +2,11 @@ package online.gamgineer.game.object;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public Player(int posX, int posY, int width, int height) {
 		super(posX, posY, width, height, Color.RED);
