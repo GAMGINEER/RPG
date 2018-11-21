@@ -10,23 +10,31 @@ import java.util.Scanner;
 import online.gamgineer.game.gui.GamePanel;
 import online.gamgineer.game.io.*;
 
+/**
+ * 게임 창 닫을 때 이벤트 처리기
+ */
 public class GameWindowAction extends WindowAdapter {
 
-	private GamePanel gp;
+	private GamePanel gp; // 해당하는 게임 창 (GamePanel) 변수
 
+	// 생성자
 	public GameWindowAction(GamePanel gp) {
 		this.gp = gp;
 	}
 
+	// 창이 닫히고 나서 실행되는 메소드
 	@Override
 	public void windowClosed(WindowEvent e) {
 		System.out.println("!!\tCLOSED");
 	}
 
+	// 창이 닫힐 때 실행되는 메소드
 	@Override
 	public void windowClosing(WindowEvent we) {
 		Scanner inputStreamScanner = new Scanner(System.in);
 		System.out.println("!!\tCLOSING");
+
+		// 세이브 데이터 처리
 		try {
 			@SuppressWarnings("unused")
 			GamePanel saveData = (GamePanel) DatabaseIO.Input("SaveData");
@@ -55,6 +63,7 @@ public class GameWindowAction extends WindowAdapter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		inputStreamScanner.close();
 	}
 
