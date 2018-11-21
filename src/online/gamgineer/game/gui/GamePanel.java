@@ -52,6 +52,11 @@ public class GamePanel extends JPanel implements Serializable {
 	public Player getPC() {
 		return this.playableCharacter;
 	}
+	
+	public boolean isColide(Object a, Object b) {
+		return false;
+		
+	}
 
 	public void movePC(int dx, int dy) {
 		if (this.playableCharacter.getPosX() + this.playableCharacter.getWidth() + dx <= frame_width_size

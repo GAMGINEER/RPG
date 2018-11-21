@@ -29,13 +29,11 @@ public class GameObject extends Object {
 		this.setColor(color); // 색상 초기값 설정
 	}
 	
-	// draw 추상 메소드
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
 		g.fillRect(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
 	}
 
-	// move 추상 메소드
 	public void move(int dx, int dy) {
 		this.setPosX(this.getPosX() + dx);
 		this.setPosY(this.getPosY() + dy);
