@@ -1,9 +1,14 @@
 package online.gamgineer.game.gui;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -20,42 +25,29 @@ public class StartFrame extends JFrame {
 		this.setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
 		this.setUndecorated(true);// 타이틀 바가 사라진다.
 
-		/*
-		 * JButton startGameButton = new JButton("START GAME"); //버튼 생성
-		 * startGameButton.addActionListener(new ActionListener() { //버튼을 누르면 발생하는 이벤트
-		 * 
-		 * @Override public void actionPerformed(ActionEvent arg0) { ChangeFrame(); }
-		 * });
-		 * 
-		 * this.add(startGameButton); this.pack();
-		 */
+		JButton startGameButton = new JButton("START NGD!"); // 버튼 생성
+		startGameButton.addActionListener(new ActionListener() { // 버튼을 누르면 발생하는 이벤트
 
-		ImageIcon ic = new ImageIcon("res/overactionRabbit.png");
-		System.out.println("토끼를 클릭하세요!");
-		JLabel lbImage1 = new JLabel(ic);
-		lbImage1.addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent arg0) {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 				ChangeFrame();
 			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			} // 이미지를 누르면 발생하는 이벤트
 		});
 
-		this.add(lbImage1);
+		this.add(startGameButton, BorderLayout.SOUTH);
+		this.pack();
+		
+		//애니메이션이 있는 gif 삽입
+		URL url = null;
+		try {
+			url = new URL("http://smashinghub.com/wp-content/uploads/2014/08/cool-loading-animated-gif-1.gif");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		Icon icon = new ImageIcon(url);
+		JLabel label = new JLabel(icon);
+		
+		this.getContentPane().add(label);
 		this.setVisible(true);
 		this.pack();
 

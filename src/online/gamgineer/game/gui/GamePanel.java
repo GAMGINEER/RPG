@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
+import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Player;
 
 public class GamePanel extends JPanel implements Serializable {
@@ -19,6 +20,7 @@ public class GamePanel extends JPanel implements Serializable {
 
 	private Player playableCharacter;
 	private Enemy enemyObject;
+	private GameObject item1;
 
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
@@ -38,11 +40,13 @@ public class GamePanel extends JPanel implements Serializable {
 	public void createObject() {
 		this.playableCharacter = new Player(frame_width_size / 2, frame_height_size / 2, 8, 16);
 		this.enemyObject = new Enemy(0, 0, 8, 16, Color.GREEN);
+		this.item1 = new GameObject(100, 100, 8, 16, Color.CYAN);
 	}
 
 	public void drawObject(Graphics g) {
-		this.playableCharacter.draw(g);
 		this.enemyObject.draw(g);
+		this.item1.draw(g);
+		this.playableCharacter.draw(g);
 	}
 
 	public Player getPC() {
