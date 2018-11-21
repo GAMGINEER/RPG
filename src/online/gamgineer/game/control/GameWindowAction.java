@@ -37,11 +37,11 @@ public class GameWindowAction extends WindowAdapter {
 		// 세이브 데이터 처리
 		try {
 			@SuppressWarnings("unused")
-			GamePanel saveData = (GamePanel) DatabaseIO.Input("SaveData");
+			GamePanel saveData = (GamePanel) DatabaseSave.Input("SaveData");
 			System.out.println("!!\t세이브 데이터가 존재합니다.");
 			System.out.print("!!\t덮어쓰기 하시겠습니까?\n>> ");
 			if (inputStreamScanner.next().toLowerCase().equals("y")) {
-				DatabaseIO.Output(gp, "SaveData");
+				DatabaseSave.Output(gp, "SaveData");
 			} else {
 				System.out.println("!!\t저장되지 않았습니다.");
 			}
@@ -49,7 +49,7 @@ public class GameWindowAction extends WindowAdapter {
 			System.out.print("!!\t저장하시겠습니까?\n>> ");
 			if (inputStreamScanner.next().toLowerCase().equals("y")) {
 				try {
-					DatabaseIO.Output((Object) gp, "SaveData");
+					DatabaseSave.Output((Object) gp, "SaveData");
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

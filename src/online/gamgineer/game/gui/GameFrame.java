@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import online.gamgineer.game.control.KeyMapping;
-import online.gamgineer.game.io.DatabaseIO;
+import online.gamgineer.game.io.DatabaseSave;
 import online.gamgineer.game.control.GameWindowAction;
 import online.gamgineer.game.main.MainClass;
 
@@ -29,7 +29,7 @@ public class GameFrame extends JFrame {
 		// 기존 세이브 (게임 패널) 불러오기
 		GamePanel gp = null;
 		try {
-			gp = (GamePanel) DatabaseIO.Input("SaveData");
+			gp = (GamePanel) DatabaseSave.Input("SaveData");
 			System.out.println("!!\t세이브 데이터가 존재합니다.");
 			gp.getPC().test();
 			System.out.println(gp.getPC().getPosX() + ", " + gp.getPC().getPosY());
