@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class DatabaseIO {
+public class DatabaseSave {
 
 	private static String DefaultPath = "db/";
 	private static FileInputStream fis = null;
