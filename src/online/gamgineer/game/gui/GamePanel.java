@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Serializable {
 		super.paintComponent(g);
 		drawObject(g);
 	}
+	
 
 	public void createObject() {
 		this.playableCharacter = new Player(frame_width_size / 2, frame_height_size / 2, 8, 16);
