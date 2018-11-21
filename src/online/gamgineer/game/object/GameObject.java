@@ -2,9 +2,11 @@ package online.gamgineer.game.object;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class GameObject extends Object {
+public class GameObject extends Object implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int posX; // X 좌표값
 	private int posY; // Y 좌표값
 	private int width; // 가로 길이값

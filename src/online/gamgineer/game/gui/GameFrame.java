@@ -7,12 +7,7 @@ import javax.swing.JFrame;
 
 import online.gamgineer.game.control.GameWindowAction;
 import online.gamgineer.game.control.KeyMapping;
-<<<<<<< HEAD
-import online.gamgineer.game.io.DatabaseIO;
-=======
 import online.gamgineer.game.io.DatabaseSave;
-import online.gamgineer.game.control.GameWindowAction;
->>>>>>> branch 'client' of https://github.com/GAMGINEER/RPG.git
 import online.gamgineer.game.main.MainClass;
 
 public class GameFrame extends JFrame {
