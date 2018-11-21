@@ -24,4 +24,7 @@ public class Player extends GameObject implements Serializable {
 		this.setPosY(this.getPosY() + dy);
 	}
 
+	public void test() {
+		System.out.println("!!\tTEST");
+	}
 }

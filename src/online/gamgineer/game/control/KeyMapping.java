@@ -27,15 +27,19 @@ public class KeyMapping implements KeyListener {
 		System.out.println(e);
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			gamePanel.movePC(0, -(SPEED));
+			gamePanel.getPC().test();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamePanel.movePC(0, SPEED);
+			gamePanel.getPC().test();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			gamePanel.movePC(-(SPEED), 0);
+			gamePanel.getPC().test();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			gamePanel.movePC(SPEED, 0);
+			gamePanel.getPC().test();
 		}
 	}
 

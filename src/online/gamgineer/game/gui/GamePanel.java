@@ -40,6 +40,12 @@ public class GamePanel extends JPanel implements Serializable {
 		this.enemyObject = new Enemy(0, 0, 8, 16, Color.GREEN);
 	}
 
+	public void recreateObject() {
+		this.playableCharacter = new Player(this.playableCharacter.getWidth(), this.playableCharacter.getHeight(), 8,
+				16);
+		this.enemyObject = new Enemy(this.enemyObject.getWidth(), this.enemyObject.getHeight(), 8, 16, Color.GREEN);
+	}
+
 	public void drawObject(Graphics g) {
 		this.playableCharacter.draw(g);
 		this.enemyObject.draw(g);
@@ -50,6 +56,7 @@ public class GamePanel extends JPanel implements Serializable {
 	}
 
 	public void movePC(int dx, int dy) {
+		this.playableCharacter.test();
 		if (this.playableCharacter.getPosX() + this.playableCharacter.getWidth() + dx <= frame_width_size
 				&& this.playableCharacter.getPosX() + dx >= 0) {
 			if (this.playableCharacter.getPosY() + this.playableCharacter.getHeight() + dy <= frame_height_size
