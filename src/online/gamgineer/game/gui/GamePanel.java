@@ -3,24 +3,24 @@ package online.gamgineer.game.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import online.gamgineer.game.object.Enemy;
+import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Player;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private static Timer TIMER;
 
 	private int frame_width_size;
 	private int frame_height_size;
 
 	private Player playableCharacter;
 	private Enemy enemyObject;
+	private GameObject item1;
 
 	public GamePanel(int frame_width_size, int frame_height_size) {
 		this.frame_width_size = frame_width_size;
@@ -36,22 +36,37 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 		drawObject(g);
 	}
+	
 
 	public void createObject() {
 		this.playableCharacter = new Player(frame_width_size / 2, frame_height_size / 2, 8, 16);
 		this.enemyObject = new Enemy(0, 0, 8, 16, Color.GREEN);
+		this.item1 = new GameObject(100, 100, 8, 16, Color.CYAN);
+	}
+
+	public void recreateObject() {
+		this.playableCharacter = new Player(this.playableCharacter.getWidth(), this.playableCharacter.getHeight(), 8,
+				16);
+		this.enemyObject = new Enemy(this.enemyObject.getWidth(), this.enemyObject.getHeight(), 8, 16, Color.GREEN);
 	}
 
 	public void drawObject(Graphics g) {
-		this.playableCharacter.draw(g);
 		this.enemyObject.draw(g);
+		this.item1.draw(g);
+		this.playableCharacter.draw(g);
 	}
 
 	public Player getPC() {
 		return this.playableCharacter;
 	}
+	
+	public boolean isColide(Object a, Object b) {
+		return false;
+		
+	}
 
 	public void movePC(int dx, int dy) {
+		this.playableCharacter.test();
 		if (this.playableCharacter.getPosX() + this.playableCharacter.getWidth() + dx <= frame_width_size
 				&& this.playableCharacter.getPosX() + dx >= 0) {
 			if (this.playableCharacter.getPosY() + this.playableCharacter.getHeight() + dy <= frame_height_size
@@ -61,7 +76,7 @@ public class GamePanel extends JPanel {
 		}
 		this.repaint();
 	}
-	
+
 	public void moveEnemy(int dx, int dy) {
 		if (this.enemyObject.getPosX() + this.enemyObject.getWidth() + dx <= frame_width_size
 				&& this.enemyObject.getPosX() + dx >= 0) {
