@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import online.gamgineer.game.control.GameWindowAction;
 import online.gamgineer.game.control.KeyMapping;
 import online.gamgineer.game.io.DatabaseIO;
-import online.gamgineer.game.control.GameWindowAction;
 import online.gamgineer.game.main.MainClass;
 
 public class GameFrame extends JFrame {

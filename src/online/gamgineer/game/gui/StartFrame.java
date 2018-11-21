@@ -20,7 +20,6 @@ public class StartFrame extends JFrame {
 	private static final int FRAME_HEIGHT_SIZE = 100; // (상수) GameFrame 세로 길이
 
 	public StartFrame() {
-		this.setTitle("StartFrame");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE);
 		this.setUndecorated(true);// 타이틀 바가 사라진다.
@@ -56,6 +55,7 @@ public class StartFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
+		//안넘어가지는데왜임?\//전이랑 변한거없음
 	}
 
 	public void ChangeFrame() {
