@@ -1,4 +1,4 @@
-package Client;
+package template.client;
 
 import java.awt.event.*;
 

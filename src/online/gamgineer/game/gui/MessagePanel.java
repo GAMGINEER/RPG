@@ -1,16 +1,14 @@
-package online.gamgineer.game.gui.deprecated;
+package online.gamgineer.game.gui;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/**
- * @deprecated
- * @author JiMyoungHa
- *
- */
 public class MessagePanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
 	public MessagePanel() {
 		this.setSize(450, 120);
 

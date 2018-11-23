@@ -10,11 +10,12 @@ import online.gamgineer.game.gui.GamePanel;
  */
 public class GameWindowAction extends WindowAdapter {
 
-	private GamePanel gp; // 해당하는 게임 창 (GamePanel) 변수
+	@SuppressWarnings("unused")
+	private GamePanel gamePanel; // 해당하는 게임 창 (GamePanel) 변수
 
 	// 생성자
-	public GameWindowAction(GamePanel gp) {
-		this.gp = gp;
+	public GameWindowAction(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 	}
 
 	// 창이 닫히고 나서 실행되는 메소드
@@ -27,7 +28,7 @@ public class GameWindowAction extends WindowAdapter {
 	@Override
 	public void windowClosing(WindowEvent we) {
 //		Scanner inputStreamScanner = new Scanner(System.in);
-//		System.out.println("!!\tCLOSING");
+		System.out.println("!!\tCLOSING");
 //
 //		// 세이브 데이터 처리
 //		try {

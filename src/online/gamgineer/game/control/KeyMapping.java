@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import online.gamgineer.game.gui.GamePanel;
-import online.gamgineer.game.main.MainClass;
 
 /**
  * 게임 창 키 맵핑용 클래스
@@ -36,22 +35,26 @@ public class KeyMapping implements KeyListener {
 
 		// 방향키 (↑) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			gamePanel.movePC(0, -(DEFAULT_SPEED));
+			gamePanel.getPlayerObject().move(0, -(DEFAULT_SPEED));
+			gamePanel.repaint();
 		}
 
-		// 방향키 () 이벤트
+		// 방향키 (↓) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			gamePanel.movePC(0, DEFAULT_SPEED);
+			gamePanel.getPlayerObject().move(0, DEFAULT_SPEED);
+			gamePanel.repaint();
 		}
 
-		// 방향키 () 이벤트
+		// 방향키 (←) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			gamePanel.movePC(-(DEFAULT_SPEED), 0);
+			gamePanel.getPlayerObject().move(-(DEFAULT_SPEED), 0);
+			gamePanel.repaint();
 		}
 
-		// 방향키 () 이벤트
+		// 방향키 (→) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			gamePanel.movePC(DEFAULT_SPEED, 0);
+			gamePanel.getPlayerObject().move(DEFAULT_SPEED, 0);
+			gamePanel.repaint();
 		}
 	}
 

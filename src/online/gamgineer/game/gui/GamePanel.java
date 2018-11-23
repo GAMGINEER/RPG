@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
-import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Item;
 import online.gamgineer.game.object.Player;
 
@@ -73,10 +72,6 @@ public class GamePanel extends JPanel {
 
 	public Item getItemObject() {
 		return this.itemObject;
-	}
-
-	public void move(GameObject gameObject) {
-		gameObject.move(dx, dy);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package Object;
+package template.object;
 
 public class PlayerObject extends GameObject {
 
