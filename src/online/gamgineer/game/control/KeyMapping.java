@@ -12,7 +12,7 @@ import online.gamgineer.game.main.MainClass;
 public class KeyMapping implements KeyListener {
 
 	// 기본 속도 정수 설정
-	private static final int SPEED = MainClass.PLAYER_SPEED;
+	private static final int DEFAULT_SPEED = 10;
 
 	// 해당 게임 창 (GamePanel) 변수
 	private GamePanel gamePanel;
@@ -36,22 +36,22 @@ public class KeyMapping implements KeyListener {
 
 		// 방향키 (↑) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			gamePanel.movePC(0, -(SPEED));
+			gamePanel.movePC(0, -(DEFAULT_SPEED));
 		}
 
 		// 방향키 () 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			gamePanel.movePC(0, SPEED);
+			gamePanel.movePC(0, DEFAULT_SPEED);
 		}
 
 		// 방향키 () 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			gamePanel.movePC(-(SPEED), 0);
+			gamePanel.movePC(-(DEFAULT_SPEED), 0);
 		}
 
 		// 방향키 () 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			gamePanel.movePC(SPEED, 0);
+			gamePanel.movePC(DEFAULT_SPEED, 0);
 		}
 	}
 

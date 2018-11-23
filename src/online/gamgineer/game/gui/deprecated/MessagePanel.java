@@ -1,10 +1,15 @@
-package online.gamgineer.game.gui;
+package online.gamgineer.game.gui.deprecated;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * @deprecated
+ * @author JiMyoungHa
+ *
+ */
 public class MessagePanel extends JPanel {
 	public MessagePanel() {
 		this.setSize(450, 120);
@@ -14,7 +19,8 @@ public class MessagePanel extends JPanel {
 
 		JTextArea chatting = new JTextArea();
 		chatting.setText("Hello World!");
-		JScrollPane scrollPane = new JScrollPane(chatting, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPane = new JScrollPane(chatting, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(4, 4, 340, 330);
 		this.add(scrollPane);
 
