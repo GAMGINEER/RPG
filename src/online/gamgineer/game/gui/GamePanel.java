@@ -81,9 +81,9 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawObject(Graphics g) {
-		this.playerObject.draw(g);
 		this.enemyObject.draw(g);
 		this.itemObject.draw(g);
+		this.playerObject.draw(g);
 	}
 
 }
