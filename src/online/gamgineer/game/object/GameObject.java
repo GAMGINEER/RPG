@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 
-public class GameObject extends Object implements Serializable {
+public abstract class GameObject extends Object implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	private int posX; // X 좌표값
 	private int posY; // Y 좌표값
 	private int width; // 가로 길이값
@@ -30,16 +31,21 @@ public class GameObject extends Object implements Serializable {
 		this.setHeight(height); // 세로 길이 초기값 설정
 		this.setColor(color); // 색상 초기값 설정
 	}
-	
-	public void draw(Graphics g) {
-		g.setColor(this.getColor());
-		g.fillRect(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
-	}
 
-	public void move(int dx, int dy) {
-		this.setPosX(this.getPosX() + dx);
-		this.setPosY(this.getPosY() + dy);
-	}
+	/**
+	 * 객체 draw 메소드
+	 * 
+	 * @param g
+	 */
+	public abstract void draw(Graphics g);
+
+	/**
+	 * 객체 move 메소드
+	 * 
+	 * @param dx
+	 * @param dy
+	 */
+	public abstract void move(int dx, int dy);
 
 	public int getPosX() {
 		return posX;
