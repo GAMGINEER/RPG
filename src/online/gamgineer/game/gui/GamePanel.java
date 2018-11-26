@@ -3,11 +3,14 @@ package online.gamgineer.game.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
-import online.gamgineer.game.object.Item;
+import online.gamgineer.game.object.EnemyAlgorithm;
+import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Player;
 
 public class GamePanel extends JPanel {
@@ -18,11 +21,9 @@ public class GamePanel extends JPanel {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
+	private HashMap<String, GameObject> gameObject;
 	private int frameWidthSize;
 	private int frameHeightSize;
-	private Player playerObject;
-	private Enemy enemyObject;
-	private Item itemObject;
 
 	public GamePanel() {
 		this.frameWidthSize = GamePanel.DEFAULT_FRAME_WIDTH_SIZE;
@@ -49,9 +50,13 @@ public class GamePanel extends JPanel {
 	}
 
 	private void initial() {
-		this.playerObject = new Player(frameWidthSize / 2, frameHeightSize / 2, 8, 16);
-		this.enemyObject = new Enemy(0, 0, 8, 16, Color.GREEN);
-		this.itemObject = new Item(100, 100, 8, 16, Color.CYAN);
+		this.gameObject = new HashMap<String, GameObject>();
+		this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
+		this.gameObject.put("enemy", new Enemy());
+		Enemy enemy = (Enemy) this.gameObject.get("enemy");
+		enemy.setAlgorithm(new EnemyAlgorithm(this));
+		Thread t = new Thread(enemy.getAlgorithm());
+		t.start();
 	}
 
 	public int getFrameWidthSize() {
@@ -62,16 +67,8 @@ public class GamePanel extends JPanel {
 		return this.frameHeightSize;
 	}
 
-	public Player getPlayerObject() {
-		return this.playerObject;
-	}
-
-	public Enemy getEnemyObject() {
-		return this.enemyObject;
-	}
-
-	public Item getItemObject() {
-		return this.itemObject;
+	public GameObject getGameObject(Object key) {
+		return this.gameObject.get(key);
 	}
 
 	@Override
@@ -81,9 +78,11 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawObject(Graphics g) {
-		this.enemyObject.draw(g);
-		this.itemObject.draw(g);
-		this.playerObject.draw(g);
+		Iterator<String> it = this.gameObject.keySet().iterator();
+		while (it.hasNext()) {
+			String key = (String) it.next();
+			this.gameObject.get(key).draw(g);
+		}
 	}
 
 }
