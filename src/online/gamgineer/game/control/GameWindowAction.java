@@ -21,14 +21,14 @@ public class GameWindowAction extends WindowAdapter {
 	// 창이 닫히고 나서 실행되는 메소드
 	@Override
 	public void windowClosed(WindowEvent e) {
-		System.out.println("!!\tCLOSED");
+		System.out.println("DEBUGGING\tCLOSED");
 	}
 
 	// 창이 닫힐 때 실행되는 메소드
 	@Override
 	public void windowClosing(WindowEvent we) {
 //		Scanner inputStreamScanner = new Scanner(System.in);
-		System.out.println("!!\tCLOSING");
+		System.out.println("DEBUGGING\tCLOSING");
 //
 //		// 세이브 데이터 처리
 //		try {

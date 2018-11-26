@@ -25,13 +25,15 @@ public class KeyMapping implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e);
+		System.out.printf("DEBUGGING\tTYPED\t\tID: %s\tKeyText: %s\tKeyChar: %s\n", e.getID(),
+				KeyEvent.getKeyText(e.getKeyCode()), e.getKeyChar());
 	}
 
 	// 키가 눌렸을 경우 실행되는 메소드
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(e);
+		System.out.printf("DEBUGGING\tPRESSED\t\tID: %s\tKeyText: %s\tKeyChar: %s\n", e.getID(),
+				KeyEvent.getKeyText(e.getKeyCode()), e.getKeyChar());
 
 		// 방향키 (↑) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -62,7 +64,8 @@ public class KeyMapping implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		System.out.printf("DEBUGGING\tRELEASED\tID: %s\tKeyText: %s\tKeyChar: %s\n\n", e.getID(),
+				KeyEvent.getKeyText(e.getKeyCode()), e.getKeyChar());
 	}
 
 }
