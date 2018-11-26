@@ -38,17 +38,16 @@ public class StartFrame extends JFrame {
 		// 애니메이션이 있는 gif 삽입
 		URL url = null;
 		try {
-		url = new
-		URL("http://smashinghub.com/wp-content/uploads/2014/08/cool-loading-animated-gif-1.gif");
+			url = new URL("res/loadingCat.gif");
 		} catch (MalformedURLException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 		Icon icon = new ImageIcon(url);
 		JLabel label = new JLabel(icon);
 		this.getContentPane().add(label);
 
 		this.pack();
-		
+
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
