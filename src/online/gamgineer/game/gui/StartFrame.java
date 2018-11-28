@@ -1,16 +1,17 @@
 package online.gamgineer.game.gui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-import java.net.URL;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class StartFrame extends JFrame {
 
@@ -25,28 +26,53 @@ public class StartFrame extends JFrame {
 		this.setSize(FRAME_WIDTH_SIZE, FRAME_HEIGHT_SIZE); // 기본 크기 설정
 		this.setUndecorated(true); // 타이틀 바가 사라진다.
 		this.setResizable(false);
+		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-		JButton startGameButton = new JButton("START NGD!"); // 버튼 생성
+		JButton startGameButton = new JButton("GAME START!"); // 시작 버튼 생성
 		startGameButton.addActionListener(new ActionListener() { // 버튼을 누르면 발생하는 이벤트
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ChangeFrame();
 			}
 		});
-		this.add(startGameButton, BorderLayout.SOUTH); // 버튼 추가
 
-		// 애니메이션이 있는 gif 삽입
-		URL url = null;
+		JButton exitGameButton = new JButton("EXIT!"); // 종료 버튼 생성
+		exitGameButton.addActionListener(new ActionListener() { // 버튼을 누르면 발생하는 이벤트
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+
+		class MyPanel extends JPanel {
+			Image image;
+			MyPanel() throws MalformedURLException {
+				image = Toolkit.getDefaultToolkit().createImage("res/loadingCat.gif");
+			}
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if(image!=null)
+					g.drawImage(image, 0, 0, this);
+			}
+		}
+		
+		//
+		
 		try {
-			url = new URL("res/loadingCat.gif");
+			MyPanel p = new MyPanel();
+			add(p);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		Icon icon = new ImageIcon(url);
-		JLabel label = new JLabel(icon);
-		this.getContentPane().add(label);
+		
+		add(startGameButton); // 시작 버튼 추가
+		startGameButton.setAlignmentX(CENTER_ALIGNMENT);
+		add(exitGameButton); // 종료 버튼 추가
+		exitGameButton.setAlignmentX(CENTER_ALIGNMENT);
 
-		this.pack();
+		setBackground(new Color(0, 0, 0, 30));// Frame을 반투명하게 만들어준다.
+
+		this.setSize(500,300);
 
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
