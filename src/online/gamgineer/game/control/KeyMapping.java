@@ -21,7 +21,7 @@ public class KeyMapping implements KeyListener {
 	// 생성자
 	public KeyMapping(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-		player = (Player) gamePanel.getGameObject("player");
+		player = (Player) gamePanel.getMap().get("map0").getGameObject().get("player");
 	}
 
 	// 키의 Char 값이 존재하는 키를 눌렀을 경우 실행되는 메소드

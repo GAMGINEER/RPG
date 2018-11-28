@@ -14,6 +14,7 @@ public class Map implements Serializable {
 
 	public Map(String name) {
 		mapName = name;
+		gameObject = new HashMap<>();
 	}
 
 	public void addObject(String category, GameObject obj) {
@@ -31,8 +32,12 @@ public class Map implements Serializable {
 		this.gameObject.put(category, obj);
 	}
 
-	public GameObject getGameObject(Object key) {
-		return this.gameObject.get(key);
+	public HashMap<String, GameObject> getGameObject() {
+		return this.gameObject;
+	}
+	
+	public void setGameObject(HashMap<String, GameObject> gameObject) {
+		this.gameObject = gameObject;
 	}
 
 	public void drawObject(Graphics g) {
@@ -43,8 +48,8 @@ public class Map implements Serializable {
 		}
 	}
 
-	public String nameGetter() {
-		return mapName;
+	public String getMapName() {
+		return this.mapName;
 	}
 
 }

@@ -8,8 +8,10 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
+import online.gamgineer.game.object.Enemy;
 import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Map;
+import online.gamgineer.game.object.Player;
 
 public class GamePanel extends JPanel {
 
@@ -58,6 +60,14 @@ public class GamePanel extends JPanel {
 //		t.start();
 		
 		//this.gameObject 대신 Map객체의 gameObject를 써야함
+		map = new HashMap<>();
+		HashMap <String,GameObject> tempHashMap= new HashMap<>();
+		Map tempMap = new Map("map0");
+		tempHashMap = tempMap.getGameObject();
+		tempHashMap.put("enemy", new Enemy());
+		tempHashMap.put("player", new Player());
+		tempMap.setGameObject(tempHashMap);
+		map.put(tempMap.getMapName(), tempMap);
 	}
 
 	public int getFrameWidthSize() {
@@ -68,9 +78,12 @@ public class GamePanel extends JPanel {
 		return this.frameHeightSize;
 	}
 
-	public GameObject getGameObject(Object key) {
-		return this.gameObject.get(key);
+	public HashMap<String, Map> getMap(){
+		return this.map;
 	}
+//	public GameObject getGameObject(Object key) {
+//		return this.gameObject.get(key);
+//	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -79,10 +92,10 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawObject(Graphics g) {
-		Iterator<String> it = this.gameObject.keySet().iterator();
+		Iterator<String> it = this.map.get("map0").getGameObject().keySet().iterator();
 		while (it.hasNext()) {
 			String key = (String) it.next();
-			this.gameObject.get(key).draw(g);
+			this.map.get("map0").getGameObject().get(key).draw(g);
 		}
 	}
 

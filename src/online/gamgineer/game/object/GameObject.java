@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 
-public abstract class GameObject extends Object implements Serializable {
+public class GameObject extends Object implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,9 @@ public abstract class GameObject extends Object implements Serializable {
 	 * 
 	 * @param g
 	 */
-	public abstract void draw(Graphics g);
+	public void draw(Graphics g) {
+		
+	}
 
 	/**
 	 * 객체 move 메소드
@@ -45,7 +47,9 @@ public abstract class GameObject extends Object implements Serializable {
 	 * @param dx
 	 * @param dy
 	 */
-	public abstract void move(int dx, int dy);
+	public void move(int dx, int dy) {
+		
+	}
 
 	public int getPosX() {
 		return posX;
