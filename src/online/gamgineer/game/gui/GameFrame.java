@@ -20,16 +20,16 @@ public class GameFrame extends JFrame {
 
 		// 게임창 설정
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 창을 닫을 때 프로그램 종료가 아니라 창만 사라지게 함
-		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setResizable(false); // 창 크기 조절기능 해제
-		this.setVisible(true); // 창 보이기
 
 		// 게임 패널 설정
 		GamePanel gp = new GamePanel(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE); // 게임 패널 추가
 		this.addKeyListener(new KeyMapping(gp)); // 게임 패널에 입력키 리스너 추가
 		this.add(gp); // 게임 창에 게임 패널 추가
-
 		this.pack(); // 게임창 크기 조정
+
+		this.setLocationRelativeTo(null); // 창 위치 초기화
+		this.setVisible(true); // 창 보이기
 	}
 
 }

@@ -8,10 +8,8 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
-import online.gamgineer.game.object.Enemy;
-import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.GameObject;
-import online.gamgineer.game.object.Player;
+import online.gamgineer.game.object.Map;
 
 public class GamePanel extends JPanel {
 
@@ -21,7 +19,7 @@ public class GamePanel extends JPanel {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
-	private HashMap<String, GameObject> gameObject;
+	private HashMap<String, Map> map;
 	private int frameWidthSize;
 	private int frameHeightSize;
 
@@ -50,13 +48,16 @@ public class GamePanel extends JPanel {
 	}
 
 	private void initial() {
-		this.gameObject = new HashMap<String, GameObject>();
-		this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
-		this.gameObject.put("enemy", new Enemy());
-		Enemy enemy = (Enemy) this.gameObject.get("enemy");
-		enemy.setAlgorithm(new EnemyAlgorithm(this));
-		Thread t = new Thread(enemy.getAlgorithm());
-		t.start();
+//		this.gameObject = new HashMap<String, GameObject>();
+//		this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
+//		this.gameObject.put("enemy", new Enemy());
+//		this.gameObject.put("enemy", new Enemy());
+//		Enemy enemy = (Enemy) this.gameObject.get("enemy");
+//		enemy.setAlgorithm(new EnemyAlgorithm(this));
+//		Thread t = new Thread(enemy.getAlgorithm());
+//		t.start();
+		
+		//this.gameObject 대신 Map객체의 gameObject를 써야함
 	}
 
 	public int getFrameWidthSize() {
