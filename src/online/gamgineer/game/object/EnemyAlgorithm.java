@@ -36,6 +36,7 @@ public class EnemyAlgorithm extends Thread {
 				Thread.sleep(DELAY);
 			} catch (InterruptedException e) {
 				System.out.println(e);
+				return;
 			}
 		} while (FLAG != 0);
 		if (FLAG == 0) {

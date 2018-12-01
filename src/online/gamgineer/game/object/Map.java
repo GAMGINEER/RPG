@@ -11,7 +11,7 @@ public class Map implements Serializable {
 	private String mapName;
 
 	private HashMap<String, GameObject> gameObject;
-
+	
 	public Map(String name) {
 		mapName = name;
 		gameObject = new HashMap<>();

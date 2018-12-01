@@ -9,6 +9,7 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
+import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Map;
 import online.gamgineer.game.object.Player;
@@ -22,7 +23,8 @@ public class GamePanel extends JPanel {
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
 	private HashMap<String, Map> map;
-	private String currentMap;
+	private String currentMapName;
+	private EnemyAlgorithm enemyAlgo;
 	private int frameWidthSize;
 	private int frameHeightSize;
 
@@ -66,7 +68,7 @@ public class GamePanel extends JPanel {
 		HashMap<String, GameObject> tempHashMap = new HashMap<>();
 		String defaultMapName = "map0";
 		Map tempMap = new Map(defaultMapName);
-		this.currentMap = defaultMapName;
+		this.currentMapName = defaultMapName;
 		tempHashMap = tempMap.getGameObject();
 		tempHashMap.put("enemy", new Enemy());
 		tempHashMap.put("player", new Player(150, 150));
@@ -84,6 +86,8 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
+		this.enemyAlgo = new EnemyAlgorithm(this);
+		this.enemyAlgo.start();
 	}
 
 	public int getFrameWidthSize() {
@@ -95,7 +99,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public Map getCurrentMap() {
-		return this.getMap().get(this.currentMap);
+		return this.getMap().get(this.currentMapName);
 	}
 
 	public HashMap<String, Map> getMap() {
@@ -103,7 +107,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void setCurrentMap(String newMapName) {
-		this.currentMap = newMapName;
+		this.currentMapName = newMapName;
 
 	}
 
@@ -123,8 +127,12 @@ public class GamePanel extends JPanel {
 
 	public void changeMap() {
 		// String currentMapName = this.getCurrentMap().getMapName();
+		this.enemyAlgo.interrupt();
+		this.enemyAlgo = null;
 		String newMapName = "map1";
 		this.setCurrentMap(newMapName);
+		this.enemyAlgo = new EnemyAlgorithm(this);
+		this.enemyAlgo.start();
 		this.repaint();
 	}
 
