@@ -2,7 +2,7 @@ package online.gamgineer.game.object;
 
 import online.gamgineer.game.gui.GamePanel;
 
-public class EnemyAlgorithm implements Runnable {
+public class EnemyAlgorithm extends Thread {
 
 	private static final int DELAY = 200;
 	private static final int SPEED = 15;
@@ -13,7 +13,8 @@ public class EnemyAlgorithm implements Runnable {
 
 	public EnemyAlgorithm(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-		this.player = (Player) this.gamePanel.getGameObject("player");
+		this.player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
+		this.enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
 	}
 
 	public void setEnemy(Enemy enemy) {

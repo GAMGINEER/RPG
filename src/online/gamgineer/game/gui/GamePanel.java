@@ -9,6 +9,7 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
+import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Map;
 import online.gamgineer.game.object.Player;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel {
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
 	private HashMap<String, Map> map;
+	private String currentMap;
 	private int frameWidthSize;
 	private int frameHeightSize;
 
@@ -58,16 +60,19 @@ public class GamePanel extends JPanel {
 //		enemy.setAlgorithm(new EnemyAlgorithm(this));
 //		Thread t = new Thread(enemy.getAlgorithm());
 //		t.start();
-		
-		//this.gameObject 대신 Map객체의 gameObject를 써야함
+
+		// this.gameObject 대신 Map객체의 gameObject를 써야함
 		map = new HashMap<>();
-		HashMap <String,GameObject> tempHashMap= new HashMap<>();
-		Map tempMap = new Map("map0");
+		HashMap<String, GameObject> tempHashMap = new HashMap<>();
+		String defaultMapName = "map0";
+		Map tempMap = new Map(defaultMapName);
+		this.currentMap = defaultMapName;
 		tempHashMap = tempMap.getGameObject();
 		tempHashMap.put("enemy", new Enemy());
-		tempHashMap.put("player", new Player());
+		tempHashMap.put("player", new Player(150, 150));
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
+		new EnemyAlgorithm(this).start();
 	}
 
 	public int getFrameWidthSize() {
@@ -78,12 +83,13 @@ public class GamePanel extends JPanel {
 		return this.frameHeightSize;
 	}
 
-	public HashMap<String, Map> getMap(){
+	public Map getCurrentMap() {
+		return this.getMap().get(this.currentMap);
+	}
+
+	public HashMap<String, Map> getMap() {
 		return this.map;
 	}
-//	public GameObject getGameObject(Object key) {
-//		return this.gameObject.get(key);
-//	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -92,10 +98,10 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawObject(Graphics g) {
-		Iterator<String> it = this.map.get("map0").getGameObject().keySet().iterator();
+		Iterator<String> it = this.getCurrentMap().getGameObject().keySet().iterator();
 		while (it.hasNext()) {
 			String key = (String) it.next();
-			this.map.get("map0").getGameObject().get(key).draw(g);
+			this.getCurrentMap().getGameObject().get(key).draw(g);
 		}
 	}
 
