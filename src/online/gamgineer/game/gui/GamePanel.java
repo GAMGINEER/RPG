@@ -9,7 +9,6 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
-import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Map;
 import online.gamgineer.game.object.Player;
@@ -63,6 +62,8 @@ public class GamePanel extends JPanel {
 
 		// this.gameObject 대신 Map객체의 gameObject를 써야함
 		map = new HashMap<>();
+		
+		
 		HashMap<String, GameObject> tempHashMap = new HashMap<>();
 		String defaultMapName = "map0";
 		Map tempMap = new Map(defaultMapName);
@@ -72,8 +73,19 @@ public class GamePanel extends JPanel {
 		tempHashMap.put("player", new Player(150, 150));
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
+		
+		tempHashMap = new HashMap<>();
+		defaultMapName = "map1";
+		tempMap = new Map(defaultMapName);
+		tempHashMap = tempMap.getGameObject();
+		tempHashMap.put("enemy", new Enemy());
+		tempHashMap.put("player", new Player(300, 300));
+		tempMap.setGameObject(tempHashMap);
+		map.put(tempMap.getMapName(), tempMap);
+		
 //		new EnemyAlgorithm(this).start();
 	}
+
 
 	public int getFrameWidthSize() {
 		return this.frameWidthSize;
@@ -90,6 +102,11 @@ public class GamePanel extends JPanel {
 	public HashMap<String, Map> getMap() {
 		return this.map;
 	}
+	
+	public void setCurrentMap(String newMapName) {
+		this.currentMap = newMapName;
+		
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -104,5 +121,13 @@ public class GamePanel extends JPanel {
 			this.getCurrentMap().getGameObject().get(key).draw(g);
 		}
 	}
+	
+	public void changeMap() {
+		//String currentMapName = this.getCurrentMap().getMapName();
+		String newMapName = "map1";
+		this.setCurrentMap(newMapName);
+		this.repaint();
+	}
+		
 
 }

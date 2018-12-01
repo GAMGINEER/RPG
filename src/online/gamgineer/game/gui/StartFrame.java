@@ -79,7 +79,8 @@ public class StartFrame extends JFrame {
 	}
 
 	protected void ChangeFrame() {
-		new GameFrame();
+		GameFrame gf = new GameFrame();
+		new DebugFrame(gf);
 		this.dispose();
 	}
 

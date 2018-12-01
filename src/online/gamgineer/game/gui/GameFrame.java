@@ -12,6 +12,8 @@ public class GameFrame extends JFrame {
 	// 기본 상수 설정
 	private static final int DEFAULT_FRAME_WIDTH_SIZE = 600;
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
+	
+	GamePanel gp;
 
 	public GameFrame() {
 
@@ -23,7 +25,7 @@ public class GameFrame extends JFrame {
 		this.setResizable(false); // 창 크기 조절기능 해제
 
 		// 게임 패널 설정
-		GamePanel gp = new GamePanel(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE); // 게임 패널 추가
+		gp = new GamePanel(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE); // 게임 패널 추가
 		this.addKeyListener(new KeyMapping(gp)); // 게임 패널에 입력키 리스너 추가
 		this.add(gp); // 게임 창에 게임 패널 추가
 		this.pack(); // 게임창 크기 조정
@@ -31,5 +33,11 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
 	}
+
+	
+	public GamePanel getpanel() {
+		return gp;
+	}
+	
 
 }
