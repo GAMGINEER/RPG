@@ -12,7 +12,7 @@ import online.gamgineer.game.object.Player;
 public class KeyMapping extends KeyAdapter {
 
 	// 기본 속도 정수 설정
-	private static final int SPEED = 10;
+	private static final int SPEED = 15;
 
 	// 변수
 	private GamePanel gamePanel;

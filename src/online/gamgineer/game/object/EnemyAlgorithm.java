@@ -24,12 +24,15 @@ public class EnemyAlgorithm extends Thread {
 	@Override
 	public void run() {
 		int FLAG = 0;
-		do {
-			if ((this.player.getPosX() == this.enemy.getPosX()) && (this.player.getPosY() == this.enemy.getPosY())) {
-				FLAG = 0;
-			} else {
-				FLAG = 1;
-			}
+		while (true) {
+			int dx = this.enemy.getPosX() - this.player.getPosX();
+			int dy = this.enemy.getPosY() - this.player.getPosY();
+//			System.out.println("적의 위치 : (" + this.enemy.getPosX() + ", " + this.enemy.getPosY() + ")");
+//			System.out.println("내 위치 : (" + this.player.getPosX() + ", " + this.player.getPosY() + ")");
+//			System.out.println("dx : " + dx);
+//			System.out.println("dy : " + dy);
+			
+
 			try {
 				this.follow();
 				gamePanel.repaint();
@@ -37,15 +40,41 @@ public class EnemyAlgorithm extends Thread {
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}
-		} while (FLAG != 0);
-		if (FLAG == 0) {
-			System.exit(0);
+
+			if (Math.abs(dx) < 15 && Math.abs(dy) < 15) {
+				System.out.println("적과 부딪힙니다!");
+				FLAG = 0;
+			} else {
+				System.out.println("적과의 거리가 아직 있습니다!");
+				FLAG = 1;
+			}
+			
+			if (FLAG == 0) {//부딪힘
+				
+				if (this.gamePanel.getPlayerHP() != 10) {
+					//아직 안죽음
+
+					System.out.println("부딪혔다!");
+					System.out.printf(this.gamePanel.getPlayerHP()+"-10 -> "+gamePanel.getPlayerHP()+"\n");
+					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
+					
+					// TODO KnockBack 구현
+					knockBack();
+
+				} else {
+					//죽었다
+					System.out.printf("부딪혔다!\nHP : 0!\n");
+					System.out.println("YOU DIE");
+					System.exit(0);
+				}
+			}
 		}
 	}
 
 	private void follow() {
 		int dx = 0;
 		int dy = 0;
+		
 		if (this.player.getPosX() > this.enemy.getPosX()) {
 			dx = SPEED;
 		} else if (this.player.getPosX() < this.enemy.getPosX()) {
@@ -63,4 +92,30 @@ public class EnemyAlgorithm extends Thread {
 		this.enemy.move(dx, dy);
 	}
 
+	// TODO 넉백수정
+	private void knockBack() {
+		
+		int dx = 0;
+		int dy = 0;
+		
+		if (this.player.getPosX() >= this.enemy.getPosX()) {
+			//player이 enemy보다 오른쪽에 있을 때
+			dx =+ 5;
+		} else {
+			//player이 enemy보다 왼쪽에 있을 때
+			dx =- 5;
+		}
+		
+		if (this.player.getPosY() >= this.enemy.getPosY()) {
+			//player이 enemy보다 아래에 있을 때
+			dy = -5;
+		} else {
+			//player이 enemy보다 위에 있을 때
+			dy = +5;
+		}
+		
+		this.player.move(player.getPosX()+dx,player.getPosY()+dy);
+		
+		System.out.println("넉백되었다.");
+	}
 }

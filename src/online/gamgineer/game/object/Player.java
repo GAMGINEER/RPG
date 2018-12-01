@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Player extends GameObject {
-
 	// 직렬화에 따른 시리얼 버전 적용
 	private static final long serialVersionUID = 1L;
 

@@ -9,6 +9,7 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 import online.gamgineer.game.object.Enemy;
+import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.GameObject;
 import online.gamgineer.game.object.Map;
 import online.gamgineer.game.object.Player;
@@ -25,6 +26,8 @@ public class GamePanel extends JPanel {
 	private String currentMap;
 	private int frameWidthSize;
 	private int frameHeightSize;
+	
+	private int playerHP;
 
 	public GamePanel() {
 		this.frameWidthSize = GamePanel.DEFAULT_FRAME_WIDTH_SIZE;
@@ -73,7 +76,7 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
-//		new EnemyAlgorithm(this).start();
+		new EnemyAlgorithm(this).start();
 
 		tempHashMap = new HashMap<>();
 		defaultMapName = "map1";
@@ -84,6 +87,7 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
+		this.playerHP = 100;
 	}
 
 	public int getFrameWidthSize() {
@@ -100,6 +104,14 @@ public class GamePanel extends JPanel {
 
 	public HashMap<String, Map> getMap() {
 		return this.map;
+	}
+	
+	public int getPlayerHP() {
+		return this.playerHP;
+	}
+	
+	public void setPlayerHP(int health) {
+		this.playerHP = health;
 	}
 
 	public void setCurrentMap(String newMapName) {
