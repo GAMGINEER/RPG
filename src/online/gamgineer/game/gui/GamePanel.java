@@ -72,7 +72,7 @@ public class GamePanel extends JPanel {
 		tempHashMap.put("player", new Player(150, 150));
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
-		new EnemyAlgorithm(this).start();
+//		new EnemyAlgorithm(this).start();
 	}
 
 	public int getFrameWidthSize() {
