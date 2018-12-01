@@ -1,7 +1,7 @@
 package online.gamgineer.game.control;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import online.gamgineer.game.gui.GamePanel;
 import online.gamgineer.game.object.Player;
@@ -9,7 +9,7 @@ import online.gamgineer.game.object.Player;
 /**
  * 게임 창 키 맵핑용 클래스
  */
-public class KeyMapping implements KeyListener {
+public class KeyMapping extends KeyAdapter {
 
 	// 기본 속도 정수 설정
 	private static final int SPEED = 10;
@@ -21,7 +21,9 @@ public class KeyMapping implements KeyListener {
 	// 생성자
 	public KeyMapping(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-		player = (Player) gamePanel.getMap().get("map0").getGameObject().get("player");
+		// player = (Player)
+		// gamePanel.getMap().get("map0").getGameObject().get("player");
+		player = (Player) gamePanel.getCurrentMap().getGameObject().get("player");
 	}
 
 	// 키의 Char 값이 존재하는 키를 눌렀을 경우 실행되는 메소드

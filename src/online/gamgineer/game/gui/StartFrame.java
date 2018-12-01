@@ -44,27 +44,30 @@ public class StartFrame extends JFrame {
 			}
 		});
 
-		class MyPanel extends JPanel {
-			Image image;
-			MyPanel() throws MalformedURLException {
+		class StartPanel extends JPanel {
+			private static final long serialVersionUID = 1L;
+			private Image image;
+
+			public StartPanel() throws MalformedURLException {
 				image = Toolkit.getDefaultToolkit().createImage("res/loadingCat.gif");
 			}
+
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				if(image!=null)
+				if (image != null)
 					g.drawImage(image, 0, 0, this);
 			}
 		}
-		
+
 		//
-		
+
 		try {
-			MyPanel p = new MyPanel();
+			StartPanel p = new StartPanel();
 			add(p);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		
+
 		add(startGameButton); // 시작 버튼 추가
 		startGameButton.setAlignmentX(CENTER_ALIGNMENT);
 		add(exitGameButton); // 종료 버튼 추가
@@ -72,7 +75,7 @@ public class StartFrame extends JFrame {
 
 		setBackground(new Color(0, 0, 0, 30));// Frame을 반투명하게 만들어준다.
 
-		this.setSize(500,300);
+		this.setSize(500, 300);
 
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
