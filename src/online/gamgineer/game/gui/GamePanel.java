@@ -27,6 +27,8 @@ public class GamePanel extends JPanel {
 	private EnemyAlgorithm enemyAlgo;
 	private int frameWidthSize;
 	private int frameHeightSize;
+	
+	private int playerHP;
 
 	public GamePanel() {
 		this.frameWidthSize = GamePanel.DEFAULT_FRAME_WIDTH_SIZE;
@@ -75,7 +77,7 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
-//		new EnemyAlgorithm(this).start();
+		new EnemyAlgorithm(this).start();
 
 		tempHashMap = new HashMap<>();
 		defaultMapName = "map1";
@@ -86,8 +88,12 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
+<<<<<<< HEAD
 		this.enemyAlgo = new EnemyAlgorithm(this);
 		this.enemyAlgo.start();
+=======
+		this.playerHP = 100;
+>>>>>>> branch 'client' of https://github.com/GAMGINEER/RPG.git
 	}
 
 	public int getFrameWidthSize() {
@@ -104,6 +110,14 @@ public class GamePanel extends JPanel {
 
 	public HashMap<String, Map> getMap() {
 		return this.map;
+	}
+	
+	public int getPlayerHP() {
+		return this.playerHP;
+	}
+	
+	public void setPlayerHP(int health) {
+		this.playerHP = health;
 	}
 
 	public void setCurrentMap(String newMapName) {
