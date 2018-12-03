@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 	private EnemyAlgorithm enemyAlgo;
 	private int frameWidthSize;
 	private int frameHeightSize;
-	
+
 	private int playerHP;
 
 	public GamePanel() {
@@ -55,14 +55,14 @@ public class GamePanel extends JPanel {
 	}
 
 	private void initial() {
-//		this.gameObject = new HashMap<String, GameObject>();
-//		this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
-//		this.gameObject.put("enemy", new Enemy());
-//		this.gameObject.put("enemy", new Enemy());
-//		Enemy enemy = (Enemy) this.gameObject.get("enemy");
-//		enemy.setAlgorithm(new EnemyAlgorithm(this));
-//		Thread t = new Thread(enemy.getAlgorithm());
-//		t.start();
+//	      this.gameObject = new HashMap<String, GameObject>();
+//	      this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
+//	      this.gameObject.put("enemy", new Enemy());
+//	      this.gameObject.put("enemy", new Enemy());
+//	      Enemy enemy = (Enemy) this.gameObject.get("enemy");
+//	      enemy.setAlgorithm(new EnemyAlgorithm(this));
+//	      Thread t = new Thread(enemy.getAlgorithm());
+//	      t.start();
 
 		// this.gameObject 대신 Map객체의 gameObject를 써야함
 		map = new HashMap<>();
@@ -88,12 +88,7 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
-<<<<<<< HEAD
-		this.enemyAlgo = new EnemyAlgorithm(this);
-		this.enemyAlgo.start();
-=======
 		this.playerHP = 100;
->>>>>>> branch 'client' of https://github.com/GAMGINEER/RPG.git
 	}
 
 	public int getFrameWidthSize() {
@@ -111,11 +106,11 @@ public class GamePanel extends JPanel {
 	public HashMap<String, Map> getMap() {
 		return this.map;
 	}
-	
+
 	public int getPlayerHP() {
 		return this.playerHP;
 	}
-	
+
 	public void setPlayerHP(int health) {
 		this.playerHP = health;
 	}
