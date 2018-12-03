@@ -25,23 +25,26 @@ public class EnemyAlgorithm extends Thread {
 	public void run() {
 		int FLAG = 0;
 		while (true) {
-			int dx = this.enemy.getPosX() - this.player.getPosX();
-			int dy = this.enemy.getPosY() - this.player.getPosY();
+			int dx = this.enemy.getPosX() - this.player.getPosX(); //적이 오른쪽에 있으면 양수, 내가 오른쪽에 있으면 음수
+			int dy = this.enemy.getPosY() - this.player.getPosY(); //적이 위에 있으면 양수, 내가 위에 있으면 음수
 //			System.out.println("적의 위치 : (" + this.enemy.getPosX() + ", " + this.enemy.getPosY() + ")");
-			System.out.println("내 위치 : (" + this.player.getPosX() + ", " + this.player.getPosY() + ")");
+//			System.out.println("내 위치 : (" + this.player.getPosX() + ", " + this.player.getPosY() + ")");
 //			System.out.println("dx : " + dx);
 //			System.out.println("dy : " + dy);
 			
 
 			try {
 				this.follow();
+				System.out.println("dx, dy : "+dx+", "+dy);
+				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}
+			
 
-			if (Math.abs(dx) < 15 && Math.abs(dy) < 15) {
+			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {
 				System.out.println("적과 부딪힙니다!");
 				FLAG = 0;
 			} else {
@@ -59,7 +62,8 @@ public class EnemyAlgorithm extends Thread {
 					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
 					
 					// TODO KnockBack 구현
-					knockBack();
+					knockBack(dx, dy);
+					FLAG = 1;
 
 				} else {
 					//죽었다
@@ -93,30 +97,31 @@ public class EnemyAlgorithm extends Thread {
 	}
 
 	// TODO 넉백수정
-	private void knockBack() {
+	private void knockBack(int dx, int dy) {
+		System.out.println("dx, dy : "+dx+", "+dy);
+		int x = 0;
+		int y = 0;
 		
-//		int dx = 0;
-//		int dy = 0;
-//		
-//		if (this.player.getPosX() >= this.enemy.getPosX()) {
-//			//player이 enemy보다 오른쪽에 있을 때
-//			dx =+ 5;
-//		} else {
-//			//player이 enemy보다 왼쪽에 있을 때
-//			dx =- 5;
-//		}
-//		
-//		if (this.player.getPosY() >= this.enemy.getPosY()) {
-//			//player이 enemy보다 아래에 있을 때
-//			dy = -5;
-//		} else {
-//			//player이 enemy보다 위에 있을 때
-//			dy = +5;
-//		}
-//		
-//		this.player.move(player.getPosX()+dx,player.getPosY()+dy);
+		if (dx<0) {
+			//player이 enemy보다 오른쪽에 있을 때
+			System.out.println("내가 적보다 오른쪽에 있음");
+			x =+ SPEED*2;
+		} if(dx>0) {
+			//player이 enemy보다 왼쪽에 있을 때
+			System.out.println("내가 적보다 왼쪽에 있음");
+			x =- SPEED*2;
+		}
 		
-		this.player.move(player.getPosX()+1, player.getPosY()+1);
+		if (dy>0) {
+			//player이 enemy보다 아래에 있을 때
+			y = -SPEED*2;
+		} if(dy<0) {
+			//player이 enemy보다 위에 있을 때
+			y = +SPEED*2;
+		}
+		
+		this.player.move(x, y);
+		
 		System.out.println("getposx : "+player.getPosX());
 		System.out.println("getposy : "+player.getPosY());
 		
