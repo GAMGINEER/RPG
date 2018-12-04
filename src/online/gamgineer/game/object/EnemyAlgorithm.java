@@ -45,6 +45,13 @@ public class EnemyAlgorithm extends Thread {
 				if(gamePanel.getEnemyHP()<0) {
 					System.out.println("적이 죽었습니다.");
 					enemy.setColor(Color.gray);
+	 				player.setColor(Color.RED);
+					player.setHeight(15);
+					player.setWidth(15);
+					
+					//TODO 아이템, 맵 꼬임 해결(gamePanel에서 쓰고있는 map이랑 Map의 메소드에서 구현하는 map이랑 다름)
+					this.gamePanel.getCurrentMap().addObject("item", new Item(this.enemy.getPosX()+5, this.enemy.getPosY()+5));
+					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item");
 					gamePanel.repaint();
 					
 					return;
@@ -58,6 +65,7 @@ public class EnemyAlgorithm extends Thread {
 				player.setWidth(15);
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
+				
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}

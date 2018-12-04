@@ -8,6 +8,9 @@ public class Item extends GameObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public Item(int posX, int posY) {
+		super(posX, posY, 15, 15, Color.blue);
+	}
 	public Item(int posX, int posY, int width, int height, Color color) {
 		super(posX, posY, width, height, color);
 	}

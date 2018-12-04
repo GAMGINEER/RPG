@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 	private int frameWidthSize;
 	private int frameHeightSize;
 	private EnemyAlgorithm ea;
-	
+
 	private int playerHP;
 	private int enemyHP;
 
@@ -93,7 +93,7 @@ public class GamePanel extends JPanel {
 		this.playerHP = 100;
 		this.enemyHP = 100;
 	}
-	
+
 	public EnemyAlgorithm getEA() {
 		return this.ea;
 	}
@@ -113,15 +113,15 @@ public class GamePanel extends JPanel {
 	public HashMap<String, Map> getMap() {
 		return this.map;
 	}
-	
+
 	public int getPlayerHP() {
 		return this.playerHP;
 	}
-	
+
 	public int getEnemyHP() {
 		return this.enemyHP;
 	}
-	
+
 	public void setPlayerHP(int health) {
 		this.playerHP = health;
 	}
@@ -129,7 +129,7 @@ public class GamePanel extends JPanel {
 	public void setEnemyHP(int health) {
 		this.enemyHP = health;
 	}
-	
+
 	public void setCurrentMap(String newMapName) {
 		this.currentMap = newMapName;
 

@@ -30,6 +30,7 @@ public class Map implements Serializable {
 		category += cnt; //category의 이름 뒤에 cnt를 붙여준다.
 
 		this.gameObject.put(category, obj);
+		
 	}
 
 	public HashMap<String, GameObject> getGameObject() {
