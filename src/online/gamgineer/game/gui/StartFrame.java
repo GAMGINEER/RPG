@@ -49,7 +49,7 @@ public class StartFrame extends JFrame {
 			private Image image;
 
 			public StartPanel() throws MalformedURLException {
-				image = Toolkit.getDefaultToolkit().createImage("res/loadingCat.gif");
+				image = Toolkit.getDefaultToolkit().createImage("res/img/loadingCat.gif");
 			}
 
 			public void paintComponent(Graphics g) {
