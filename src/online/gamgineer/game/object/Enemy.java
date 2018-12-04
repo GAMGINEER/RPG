@@ -21,7 +21,7 @@ public class Enemy extends GameObject {
 	public Enemy() {
 		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 	}
-
+	
 	/**
 	 * X, Y 좌표 지정 생성자
 	 * 
@@ -69,9 +69,10 @@ public class Enemy extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
+		g.drawString("enemy", this.getPosX()-10, this.getPosY()-6);
 		g.fillRect(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
 	}
-
+	
 	@Override
 	public void move(int dx, int dy) {
 		this.setPosX(this.getPosX() + dx);

@@ -44,17 +44,17 @@ public class EnemyAlgorithm extends Thread {
 
 				if (gamePanel.getEnemyHP() < 0) {
 					System.out.println("적이 죽었습니다.");
-					enemy.setColor(Color.gray);
-
+					this.gamePanel.getCurrentMap().addObject("item",
+							new Item(this.enemy.getPosX(), this.enemy.getPosY()));
+					
+					enemy.move(1000, 1000);//맵 밖으로 퇴출
+					this.gamePanel.getCurrentMap().getGameObject().remove("enemy0");//존재를 지운다
+					
 					player.setColor(Color.RED);
 					player.setHeight(15);
 					player.setWidth(15);
 
-					this.gamePanel.getCurrentMap().addObject("item",
-							new Item(this.enemy.getPosX(), this.enemy.getPosY()));
-					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
-					item.setColor(Color.pink);
-					/// item이 null임
+//					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
 					gamePanel.repaint();
 
 					return;

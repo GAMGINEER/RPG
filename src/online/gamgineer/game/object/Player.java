@@ -57,6 +57,7 @@ public class Player extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
+		g.drawString("me", this.getPosX()-1, this.getPosY()-6);
 		g.fillRect(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
 	}
 

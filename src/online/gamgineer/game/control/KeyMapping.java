@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import online.gamgineer.game.gui.GamePanel;
 import online.gamgineer.game.object.Enemy;
 import online.gamgineer.game.object.EnemyAlgorithm;
+import online.gamgineer.game.object.Item;
 import online.gamgineer.game.object.Player;
 
 /**
@@ -81,13 +82,12 @@ public class KeyMapping extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			System.out.println("공격을 시도한다!!");
 
-			Player player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
 			Enemy enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
 
 			int dx = enemy.getPosX() - player.getPosX();
 			int dy = enemy.getPosY() - player.getPosY();
 			
-			if ((Math.abs(dx) <= 30 && Math.abs(dy) <= 30) && enemy.getColor()!=Color.gray) {
+			if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) {
 				gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 34);
 				player.setColor(Color.CYAN);
 				player.setHeight(30);
@@ -97,6 +97,21 @@ public class KeyMapping extends KeyAdapter {
 				this.gamePanel.getEA().knockBack(enemy, dx, dy);
 				System.out.println("적을 공격했다! 적의 체력 : " + gamePanel.getEnemyHP());
 			}
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_Z) {
+			System.out.println("아이템 줍기를 시도한다!!");
+			
+			Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
+			int dx = item.getPosX() - player.getPosX();
+			int dy = item.getPosY() - player.getPosY();
+			
+			if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) {
+				item.move(1000,1000);//item을 맵에서 사라지게 한다
+				System.out.println("아이템을 먹었습니다.");
+				this.gamePanel.repaint();
+			}
+			
 		}
 	}
 

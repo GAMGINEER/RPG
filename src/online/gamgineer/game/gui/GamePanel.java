@@ -86,7 +86,7 @@ public class GamePanel extends JPanel {
 		tempMap = new Map(defaultMapName);
 		tempHashMap = tempMap.getGameObject();
 		tempHashMap.put("enemy", new Enemy());
-		tempHashMap.put("player", new Player(300, 300));
+		tempHashMap.put("player", new Player(500, 500));
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
@@ -141,7 +141,7 @@ public class GamePanel extends JPanel {
 		drawObject(g);
 	}
 
-	private void drawObject(Graphics g) {
+	public void drawObject(Graphics g) {
 		Iterator<String> it = this.getCurrentMap().getGameObject().keySet().iterator();
 		while (it.hasNext()) {
 			String key = (String) it.next();
