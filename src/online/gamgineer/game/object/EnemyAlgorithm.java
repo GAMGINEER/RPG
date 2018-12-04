@@ -41,31 +41,34 @@ public class EnemyAlgorithm extends Thread {
 			int dy = this.enemy.getPosY() - this.player.getPosY(); // 적이 위에 있으면 양수, 내가 위에 있으면 음수
 
 			try {// 적이 따라감
-				
-				if(gamePanel.getEnemyHP()<0) {
+
+				if (gamePanel.getEnemyHP() < 0) {
 					System.out.println("적이 죽었습니다.");
 					enemy.setColor(Color.gray);
-	 				player.setColor(Color.RED);
+
+					player.setColor(Color.RED);
 					player.setHeight(15);
 					player.setWidth(15);
-					
-					//TODO 아이템, 맵 꼬임 해결(gamePanel에서 쓰고있는 map이랑 Map의 메소드에서 구현하는 map이랑 다름)
-					this.gamePanel.getCurrentMap().addObject("item", new Item(this.enemy.getPosX()+5, this.enemy.getPosY()+5));
-					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item");
+
+					this.gamePanel.getCurrentMap().addObject("item",
+							new Item(this.enemy.getPosX(), this.enemy.getPosY()));
+					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
+					item.setColor(Color.pink);
+					/// item이 null임
 					gamePanel.repaint();
-					
+
 					return;
 				}
-				
+
 				this.follow();
 //				System.out.println("dx, dy : "+dx+", "+dy);
 //				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
- 				player.setColor(Color.RED);
+				player.setColor(Color.RED);
 				player.setHeight(15);
 				player.setWidth(15);
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
-				
+
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}
@@ -147,11 +150,10 @@ public class EnemyAlgorithm extends Thread {
 			y = +KeyMapping.SPEED * 2;
 		}
 
-		if(dx==0 && dy==0) {
+		if (dx == 0 && dy == 0) {
 			System.out.println("내가 넉백되었다.");
-			this.player.move(KeyMapping.SPEED*2, KeyMapping.SPEED*2);
-		}
-		else if (obj.equals(this.player)) {
+			this.player.move(KeyMapping.SPEED * 2, KeyMapping.SPEED * 2);
+		} else if (obj.equals(this.player)) {
 			System.out.println("내가 넉백되었다.");
 			this.player.move(x, y);
 		} else if (obj.equals(this.enemy)) {
