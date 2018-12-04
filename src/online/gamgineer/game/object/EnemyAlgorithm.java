@@ -41,6 +41,15 @@ public class EnemyAlgorithm extends Thread {
 			int dy = this.enemy.getPosY() - this.player.getPosY(); // 적이 위에 있으면 양수, 내가 위에 있으면 음수
 
 			try {// 적이 따라감
+				
+				if(gamePanel.getEnemyHP()<0) {
+					System.out.println("적이 죽었습니다.");
+					enemy.setColor(Color.gray);
+					gamePanel.repaint();
+					
+					return;
+				}
+				
 				this.follow();
 //				System.out.println("dx, dy : "+dx+", "+dy);
 //				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
@@ -111,13 +120,13 @@ public class EnemyAlgorithm extends Thread {
 
 		if (dx < 0) {
 			// player이 enemy보다 오른쪽에 있을 때
-			System.out.println("내가 적보다 오른쪽에 있음");
+//			System.out.println("내가 적보다 오른쪽에 있음");
 			x = +KeyMapping.SPEED * 2;
 			x = +KeyMapping.SPEED * 2;
 		}
 		if (dx > 0) {
 			// player이 enemy보다 왼쪽에 있을 때
-			System.out.println("내가 적보다 왼쪽에 있음");
+//			System.out.println("내가 적보다 왼쪽에 있음");
 			x = -KeyMapping.SPEED * 2;
 		}
 

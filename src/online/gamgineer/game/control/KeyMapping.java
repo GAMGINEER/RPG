@@ -78,7 +78,6 @@ public class KeyMapping extends KeyAdapter {
 			}
 		}
 
-		// TODO 스페이스바를 눌렀을 때 dx, dy를 계산하고 거리가 가까울 시 enemy의 HP가 50줄어들고 공격 메세지를 출력
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			System.out.println("공격을 시도한다!!");
 
@@ -88,7 +87,7 @@ public class KeyMapping extends KeyAdapter {
 			int dx = enemy.getPosX() - player.getPosX();
 			int dy = enemy.getPosY() - player.getPosY();
 			
-			if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) {
+			if ((Math.abs(dx) <= 30 && Math.abs(dy) <= 30) && enemy.getColor()!=Color.gray) {
 				gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 34);
 				player.setColor(Color.CYAN);
 				player.setHeight(30);
