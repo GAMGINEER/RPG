@@ -23,9 +23,11 @@ public class GamePanel extends JPanel {
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
 	private HashMap<String, Map> map;
-	private String currentMap;
+	private String currentMapName;
+	private EnemyAlgorithm enemyAlgo;
 	private int frameWidthSize;
 	private int frameHeightSize;
+
 	private EnemyAlgorithm ea;
 
 	private int playerHP;
@@ -56,14 +58,14 @@ public class GamePanel extends JPanel {
 	}
 
 	private void initial() {
-//		this.gameObject = new HashMap<String, GameObject>();
-//		this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
-//		this.gameObject.put("enemy", new Enemy());
-//		this.gameObject.put("enemy", new Enemy());
-//		Enemy enemy = (Enemy) this.gameObject.get("enemy");
-//		enemy.setAlgorithm(new EnemyAlgorithm(this));
-//		Thread t = new Thread(enemy.getAlgorithm());
-//		t.start();
+//	      this.gameObject = new HashMap<String, GameObject>();
+//	      this.gameObject.put("player", new Player(frameWidthSize / 2, frameHeightSize / 2));
+//	      this.gameObject.put("enemy", new Enemy());
+//	      this.gameObject.put("enemy", new Enemy());
+//	      Enemy enemy = (Enemy) this.gameObject.get("enemy");
+//	      enemy.setAlgorithm(new EnemyAlgorithm(this));
+//	      Thread t = new Thread(enemy.getAlgorithm());
+//	      t.start();
 
 		// this.gameObject 대신 Map객체의 gameObject를 써야함
 		map = new HashMap<>();
@@ -71,7 +73,7 @@ public class GamePanel extends JPanel {
 		HashMap<String, GameObject> tempHashMap = new HashMap<>();
 		String defaultMapName = "map0";
 		Map tempMap = new Map(defaultMapName);
-		this.currentMap = defaultMapName;
+		this.currentMapName = defaultMapName;
 		tempHashMap = tempMap.getGameObject();
 		tempHashMap.put("enemy", new Enemy());
 		tempHashMap.put("player", new Player(150, 150));
@@ -107,7 +109,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public Map getCurrentMap() {
-		return this.getMap().get(this.currentMap);
+		return this.getMap().get(this.currentMapName);
 	}
 
 	public HashMap<String, Map> getMap() {
@@ -131,7 +133,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void setCurrentMap(String newMapName) {
-		this.currentMap = newMapName;
+		this.currentMapName = newMapName;
 
 	}
 
@@ -151,8 +153,12 @@ public class GamePanel extends JPanel {
 
 	public void changeMap() {
 		// String currentMapName = this.getCurrentMap().getMapName();
+		this.enemyAlgo.interrupt();
+		this.enemyAlgo = null;
 		String newMapName = "map1";
 		this.setCurrentMap(newMapName);
+		this.enemyAlgo = new EnemyAlgorithm(this);
+		this.enemyAlgo.start();
 		this.repaint();
 	}
 

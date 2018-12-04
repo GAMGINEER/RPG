@@ -72,6 +72,7 @@ public class EnemyAlgorithm extends Thread {
 
 			} catch (InterruptedException e) {
 				System.out.println(e);
+				return;
 			}
 
 			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {// 적과 부딪힘 검사
