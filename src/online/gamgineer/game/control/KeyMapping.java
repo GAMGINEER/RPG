@@ -13,7 +13,7 @@ import online.gamgineer.game.object.Player;
 public class KeyMapping extends KeyAdapter {
 
 	// 기본 속도 정수 설정
-	private static final int SPEED = 15;
+	public static final int SPEED = 15;
 
 	// 변수
 	private GamePanel gamePanel;
@@ -74,7 +74,16 @@ public class KeyMapping extends KeyAdapter {
 				gamePanel.repaint();
 			}
 		}
-
+		
+		//TODO 스페이스바를 눌렀을 때 dx, dy를 계산하고 거리가 가까울 시 enemy의 HP가 50줄어들고 공격 메세지를 출력
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+//			System.out.println("공격을 시도한다!!");
+//			int dx = this.enemy.getPosX() - this.player.getPosX();
+//			int dy = this.enemy.getPosY() - this.player.getPosY();
+//			gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 50);
+//			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {
+//				System.out.println("적을 공격했다! 적의 체력 : " + gamePanel.getEnemyHP());
+			}
 	}
 
 	// 키가 떼어졌을 때 실행되는 메소드

@@ -1,33 +1,21 @@
 package online.gamgineer.game.object;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
+import online.gamgineer.game.control.KeyMapping;
 import online.gamgineer.game.gui.GamePanel;
 
 public class EnemyAlgorithm extends Thread {
 
-	private static final int DELAY = 200;
-	private static final int SPEED = 15;
+	private static final int DELAY = 100;
+	private static final int SPEED = 5;
 
 	private GamePanel gamePanel;
 	private Player player;
 	private Enemy enemy;
 
-	public EnemyAlgorithm(GamePanel gamePanel)  {
+	public EnemyAlgorithm(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 		this.player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
 		this.enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
-
-		//gamePanel에 keyListener 등록
-		this.gamePanel.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					attack();
-				}
-			}
-		});
-
 	}
 
 	public void setEnemy(Enemy enemy) {
@@ -110,34 +98,35 @@ public class EnemyAlgorithm extends Thread {
 	}
 
 	private void knockBack(int dx, int dy) {
-		System.out.println("dx, dy : " + dx + ", " + dy);
+//		System.out.println("dx, dy : " + dx + ", " + dy);
 		int x = 0;
 		int y = 0;
 
 		if (dx < 0) {
 			// player이 enemy보다 오른쪽에 있을 때
 			System.out.println("내가 적보다 오른쪽에 있음");
-			x = +SPEED * 2;
+			x = +KeyMapping.SPEED * 2;
+			x = +KeyMapping.SPEED * 2;
 		}
 		if (dx > 0) {
 			// player이 enemy보다 왼쪽에 있을 때
 			System.out.println("내가 적보다 왼쪽에 있음");
-			x = -SPEED * 2;
+			x = -KeyMapping.SPEED * 2;
 		}
 
 		if (dy > 0) {
 			// player이 enemy보다 아래에 있을 때
-			y = -SPEED * 2;
+			y = -KeyMapping.SPEED * 2;
 		}
 		if (dy < 0) {
 			// player이 enemy보다 위에 있을 때
-			y = +SPEED * 2;
+			y = +KeyMapping.SPEED * 2;
 		}
 
 		this.player.move(x, y);
 
-		System.out.println("getposx : " + player.getPosX());
-		System.out.println("getposy : " + player.getPosY());
+//		System.out.println("getposx : " + player.getPosX());
+//		System.out.println("getposy : " + player.getPosY());
 
 		System.out.println("넉백되었다.");
 	}
