@@ -28,6 +28,7 @@ public class GamePanel extends JPanel {
 	private int frameHeightSize;
 	
 	private int playerHP;
+	private int enemyHP;
 
 	public GamePanel() {
 		this.frameWidthSize = GamePanel.DEFAULT_FRAME_WIDTH_SIZE;
@@ -88,6 +89,7 @@ public class GamePanel extends JPanel {
 		map.put(tempMap.getMapName(), tempMap);
 
 		this.playerHP = 100;
+		this.enemyHP = 100;
 	}
 
 	public int getFrameWidthSize() {
@@ -110,10 +112,18 @@ public class GamePanel extends JPanel {
 		return this.playerHP;
 	}
 	
+	public int getEnemyHP() {
+		return this.enemyHP;
+	}
+	
 	public void setPlayerHP(int health) {
 		this.playerHP = health;
 	}
 
+	public void setEnemyHP(int health) {
+		this.enemyHP = health;
+	}
+	
 	public void setCurrentMap(String newMapName) {
 		this.currentMap = newMapName;
 
