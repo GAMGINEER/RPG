@@ -8,6 +8,9 @@ public class Item extends GameObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public Item(int posX, int posY) {
+		super(posX, posY, 15, 15, Color.blue);
+	}
 	public Item(int posX, int posY, int width, int height, Color color) {
 		super(posX, posY, width, height, color);
 	}
@@ -15,7 +18,8 @@ public class Item extends GameObject implements Serializable {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.fillRect(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
+		g.drawString("item", this.getPosX()-(this.getWidth()/2), this.getPosY()-((this.getHeight()/2))-2);
+		g.fillOval(this.getPosX()-(this.getWidth()/2), this.getPosY()-(this.getHeight()/2), this.getWidth(), this.getHeight());
 	}
 
 	@Override

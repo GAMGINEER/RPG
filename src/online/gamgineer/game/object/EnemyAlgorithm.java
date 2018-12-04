@@ -1,11 +1,14 @@
 package online.gamgineer.game.object;
 
+import java.awt.Color;
+
+import online.gamgineer.game.control.KeyMapping;
 import online.gamgineer.game.gui.GamePanel;
 
 public class EnemyAlgorithm extends Thread {
 
-	private static final int DELAY = 200;
-	private static final int SPEED = 15;
+	private static final int DELAY = 100;
+	private static final int SPEED = 5;
 
 	private GamePanel gamePanel;
 	private Player player;
@@ -15,71 +18,97 @@ public class EnemyAlgorithm extends Thread {
 		this.gamePanel = gamePanel;
 		this.player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
 		this.enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
+		
 	}
 
 	public void setEnemy(Enemy enemy) {
 		this.enemy = enemy;
 	}
 
+	// KeyMapping에 써져있는 이유로 만듦
+	public Player getPlayer() {
+		return player;
+	}
+
+	public Enemy getEnemy() {
+		return enemy;
+	}
+
 	@Override
 	public void run() {
 		int FLAG = 0;
 		while (true) {
-			int dx = this.enemy.getPosX() - this.player.getPosX(); //적이 오른쪽에 있으면 양수, 내가 오른쪽에 있으면 음수
-			int dy = this.enemy.getPosY() - this.player.getPosY(); //적이 위에 있으면 양수, 내가 위에 있으면 음수
-//			System.out.println("적의 위치 : (" + this.enemy.getPosX() + ", " + this.enemy.getPosY() + ")");
-//			System.out.println("내 위치 : (" + this.player.getPosX() + ", " + this.player.getPosY() + ")");
-//			System.out.println("dx : " + dx);
-//			System.out.println("dy : " + dy);
-			
+			int dx = this.enemy.getPosX() - this.player.getPosX(); // 적이 오른쪽에 있으면 양수, 내가 오른쪽에 있으면 음수
+			int dy = this.enemy.getPosY() - this.player.getPosY(); // 적이 위에 있으면 양수, 내가 위에 있으면 음수
 
-			try {
+			try {// 적이 따라감
+
+				if (gamePanel.getEnemyHP() < 0) {
+					System.out.println("적이 죽었습니다.");
+					this.gamePanel.getCurrentMap().addObject("item",
+							new Item(this.enemy.getPosX(), this.enemy.getPosY()));
+
+					enemy.move(1000, 1000);// 맵 밖으로 퇴출
+					this.gamePanel.getCurrentMap().getGameObject().remove("enemy0");// 존재를 지운다
+
+					player.setColor(Color.RED);
+					player.setHeight(15);
+					player.setWidth(15);
+
+//					Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
+					gamePanel.repaint();
+
+					return;
+				}
+
 				this.follow();
-				System.out.println("dx, dy : "+dx+", "+dy);
-				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
+//				System.out.println("dx, dy : "+dx+", "+dy);
+//				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
+				player.setColor(Color.RED);
+				player.setHeight(15);
+				player.setWidth(15);
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
+
 			} catch (InterruptedException e) {
 				System.out.println(e);
 				return;
 			}
-			
 
-			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {
+			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {// 적과 부딪힘 검사
 				System.out.println("적과 부딪힙니다!");
 				FLAG = 0;
 			} else {
-//				System.out.println("적과의 거리가 아직 있습니다!");
 				FLAG = 1;
 			}
-			
-			if (FLAG == 0) {//부딪힘
-				
-				if (this.gamePanel.getPlayerHP() != 10) {
-					//아직 안죽음
+
+			if (FLAG == 0) {// 부딪혔을 경우
+
+				if (this.gamePanel.getPlayerHP() > 10) { // 체력이 10보다 클 경우
 
 					System.out.println("부딪혔다!");
-					System.out.printf(this.gamePanel.getPlayerHP()+"-10 -> "+gamePanel.getPlayerHP()+"\n");
+					System.out.printf(this.gamePanel.getPlayerHP() + "-10 -> " + (gamePanel.getPlayerHP() - 10) + "\n");
 					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
-					
-					// TODO KnockBack 구현
-					knockBack(dx, dy);
+
+					knockBack(player, dx, dy);
 					FLAG = 1;
 
 				} else {
-					//죽었다
-					System.out.printf("부딪혔다!\nHP : 0!\n");
+					System.out.println("부딪혔다!");
+					System.out.printf(this.gamePanel.getPlayerHP() + "-10 -> " + (gamePanel.getPlayerHP() - 10) + "\n");
+					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
 					System.out.println("YOU DIE");
 					System.exit(0);
 				}
 			}
+
 		}
 	}
 
 	private void follow() {
 		int dx = 0;
 		int dy = 0;
-		
+
 		if (this.player.getPosX() > this.enemy.getPosX()) {
 			dx = SPEED;
 		} else if (this.player.getPosX() < this.enemy.getPosX()) {
@@ -97,35 +126,50 @@ public class EnemyAlgorithm extends Thread {
 		this.enemy.move(dx, dy);
 	}
 
-	// TODO 넉백수정
-	private void knockBack(int dx, int dy) {
-		System.out.println("dx, dy : "+dx+", "+dy);
+	public void knockBack(Object obj, int dx, int dy) {
+//		System.out.println("dx, dy : " + dx + ", " + dy);
 		int x = 0;
 		int y = 0;
-		
-		if (dx<0) {
-			//player이 enemy보다 오른쪽에 있을 때
-			System.out.println("내가 적보다 오른쪽에 있음");
-			x =+ SPEED*2;
-		} if(dx>0) {
-			//player이 enemy보다 왼쪽에 있을 때
-			System.out.println("내가 적보다 왼쪽에 있음");
-			x =- SPEED*2;
+
+		if (dx < 0) {
+			// player이 enemy보다 오른쪽에 있을 때
+//			System.out.println("내가 적보다 오른쪽에 있음");
+			x = +KeyMapping.SPEED * 2;
+			x = +KeyMapping.SPEED * 2;
 		}
-		
-		if (dy>0) {
-			//player이 enemy보다 아래에 있을 때
-			y = -SPEED*2;
-		} if(dy<0) {
-			//player이 enemy보다 위에 있을 때
-			y = +SPEED*2;
+		if (dx > 0) {
+			// player이 enemy보다 왼쪽에 있을 때
+//			System.out.println("내가 적보다 왼쪽에 있음");
+			x = -KeyMapping.SPEED * 2;
 		}
-		
-		this.player.move(x, y);
-		
-		System.out.println("getposx : "+player.getPosX());
-		System.out.println("getposy : "+player.getPosY());
-		
-		System.out.println("넉백되었다.");
+
+		if (dy > 0) {
+			// player이 enemy보다 아래에 있을 때
+			y = -KeyMapping.SPEED * 2;
+		}
+		if (dy < 0) {
+			// player이 enemy보다 위에 있을 때
+			y = +KeyMapping.SPEED * 2;
+		}
+
+		if(player.getPosX() + x < 0 || player.getPosX()+x>600 || player.getPosY()+y<0.5 || player.getPosY()>600) {
+			System.out.println("벽쿵당함");
+			this.player.move(-x, -y);
+		} else {
+			if (dx == 0 && dy == 0) {
+				System.out.println("내가 넉백되었다.");
+				this.player.move(KeyMapping.SPEED * 2, KeyMapping.SPEED * 2);
+			} else if (obj.equals(this.player)) {
+				System.out.println("내가 넉백되었다.");
+				this.player.move(x, y);
+			} else if (obj.equals(this.enemy)) {
+				System.out.println("적을 넉백시켰다.");
+				this.enemy.move(-x, -y);
+			}
+		}
+
+//		System.out.println("getposx : " + player.getPosX());
+//		System.out.println("getposy : " + player.getPosY());
+
 	}
 }

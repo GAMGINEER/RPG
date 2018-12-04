@@ -28,7 +28,10 @@ public class GamePanel extends JPanel {
 	private int frameWidthSize;
 	private int frameHeightSize;
 
+	private EnemyAlgorithm ea;
+
 	private int playerHP;
+	private int enemyHP;
 
 	public GamePanel() {
 		this.frameWidthSize = GamePanel.DEFAULT_FRAME_WIDTH_SIZE;
@@ -77,7 +80,8 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
-		new EnemyAlgorithm(this).start();
+		ea = new EnemyAlgorithm(this);
+		ea.start();
 
 		tempHashMap = new HashMap<>();
 		defaultMapName = "map1";
@@ -89,6 +93,11 @@ public class GamePanel extends JPanel {
 		map.put(tempMap.getMapName(), tempMap);
 
 		this.playerHP = 100;
+		this.enemyHP = 100;
+	}
+
+	public EnemyAlgorithm getEA() {
+		return this.ea;
 	}
 
 	public int getFrameWidthSize() {
@@ -111,8 +120,16 @@ public class GamePanel extends JPanel {
 		return this.playerHP;
 	}
 
+	public int getEnemyHP() {
+		return this.enemyHP;
+	}
+
 	public void setPlayerHP(int health) {
 		this.playerHP = health;
+	}
+
+	public void setEnemyHP(int health) {
+		this.enemyHP = health;
 	}
 
 	public void setCurrentMap(String newMapName) {
@@ -126,7 +143,7 @@ public class GamePanel extends JPanel {
 		drawObject(g);
 	}
 
-	private void drawObject(Graphics g) {
+	public void drawObject(Graphics g) {
 		Iterator<String> it = this.getCurrentMap().getGameObject().keySet().iterator();
 		while (it.hasNext()) {
 			String key = (String) it.next();
