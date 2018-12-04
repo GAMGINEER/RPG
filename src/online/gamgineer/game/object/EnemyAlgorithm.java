@@ -18,6 +18,7 @@ public class EnemyAlgorithm extends Thread {
 		this.gamePanel = gamePanel;
 		this.player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
 		this.enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
+		
 	}
 
 	public void setEnemy(Enemy enemy) {

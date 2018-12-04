@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 
 import online.gamgineer.game.gui.GamePanel;
 import online.gamgineer.game.object.Enemy;
-import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.Item;
 import online.gamgineer.game.object.Player;
 
@@ -21,9 +20,6 @@ public class KeyMapping extends KeyAdapter {
 	// 변수
 	private GamePanel gamePanel;
 	private Player player;
-
-	// 적과 내 캐릭터가 대체 어디에 저장됐고 어디서 불러와야하는지 감이안잡혀서 일단 여기서 불러옴
-	private EnemyAlgorithm ea;
 
 	// 생성자
 	public KeyMapping(GamePanel gamePanel) {
@@ -79,7 +75,7 @@ public class KeyMapping extends KeyAdapter {
 			}
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) { //공격
 			System.out.println("공격을 시도한다!!");
 
 			Enemy enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
@@ -99,7 +95,7 @@ public class KeyMapping extends KeyAdapter {
 			}
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_Z) {
+		if(e.getKeyCode() == KeyEvent.VK_Z) { //아이템 줍기
 			System.out.println("아이템 줍기를 시도한다!!");
 			
 			Item item = (Item) this.gamePanel.getCurrentMap().getGameObject().get("item0");
@@ -126,7 +122,7 @@ public class KeyMapping extends KeyAdapter {
 		boolean dxBlocked = this.player.getPosX() + this.player.getWidth() + dx <= this.gamePanel.getFrameWidthSize()
 				&& this.player.getPosX() + dx >= 0;
 		boolean dyBlocked = this.player.getPosY() + this.player.getHeight() + dy <= this.gamePanel.getFrameHeightSize()
-				&& this.player.getPosY() + dy >=0.5;
+				&& this.player.getPosY() + dy >=0;
 
 		if (dxBlocked && dyBlocked) {
 			return false;

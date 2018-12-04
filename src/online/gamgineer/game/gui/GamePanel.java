@@ -86,7 +86,7 @@ public class GamePanel extends JPanel {
 		tempMap = new Map(defaultMapName);
 		tempHashMap = tempMap.getGameObject();
 		tempHashMap.put("enemy", new Enemy());
-		tempHashMap.put("player", new Player(500, 500));
+		tempHashMap.put("player", new Player(300, 300));
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
