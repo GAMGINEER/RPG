@@ -17,10 +17,19 @@ public class Client extends Thread {
 	public void run() {
 		try {
 			client = new Socket(HOST, PORT);
-			dos = new DataOutputStream(client.getOutputStream());
-			dis = new DataInputStream(client.getInputStream());
+			openStream(client);
 		}catch(IOException e) {
 			System.out.println("Error : "+e);
+			interrupt();
+		}
+	}
+	
+	public void openStream(Socket socket) {
+		try {
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+		}catch(IOException e) {
+			System.out.println("StreamError : "+e);
 			interrupt();
 		}
 	}

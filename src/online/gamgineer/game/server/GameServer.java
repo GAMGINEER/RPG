@@ -8,6 +8,8 @@ import java.net.Socket;
 
 public class GameServer extends Thread {
 	private final int PORT = 8080;
+	private DataOutputStream dos=null;
+	private DataInputStream dis=null;
 	private ServerSocket server=null;
 	private Socket client=null;
 
@@ -18,27 +20,21 @@ public class GameServer extends Thread {
 			while (true) {
 				server = new ServerSocket(PORT);
 				client = server.accept();
-				new joinClient(client);
+				openStream(client);
 			}
 		} catch (IOException e) {
 			System.out.println("Error : "+e);
 			interrupt();
 		}
 	}
-
-	// 클라이언트 접속 쓰레드
-	public class joinClient {
-		private DataOutputStream dos=null;
-		private DataInputStream dis=null;
-
-		public joinClient(Socket socket) {
-			try {
-				dos = new DataOutputStream(socket.getOutputStream());
-				dis = new DataInputStream(socket.getInputStream());
-			} catch (IOException e) {
-				System.out.println("Error : "+e);
-				interrupt();
-			}
+	
+	public void openStream(Socket socket) {
+		try {
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+		} catch (IOException e) {
+			System.out.println("StreamError : "+e);
+			interrupt();
 		}
 	}
 
