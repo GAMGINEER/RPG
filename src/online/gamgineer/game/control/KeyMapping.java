@@ -1,9 +1,11 @@
 package online.gamgineer.game.control;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import online.gamgineer.game.gui.GamePanel;
+import online.gamgineer.game.object.Enemy;
 import online.gamgineer.game.object.EnemyAlgorithm;
 import online.gamgineer.game.object.Player;
 
@@ -18,8 +20,8 @@ public class KeyMapping extends KeyAdapter {
 	// 변수
 	private GamePanel gamePanel;
 	private Player player;
-	
-	//적과 내 캐릭터가 대체 어디에 저장됐고 어디서 불러와야하는지 감이안잡혀서 일단 여기서 불러옴
+
+	// 적과 내 캐릭터가 대체 어디에 저장됐고 어디서 불러와야하는지 감이안잡혀서 일단 여기서 불러옴
 	private EnemyAlgorithm ea;
 
 	// 생성자
@@ -29,6 +31,7 @@ public class KeyMapping extends KeyAdapter {
 		// gamePanel.getMap().get("map0").getGameObject().get("player");
 		player = (Player) gamePanel.getCurrentMap().getGameObject().get("player");
 	}
+
 //
 //	// 키의 Char 값이 존재하는 키를 눌렀을 경우 실행되는 메소드
 //	@Override
@@ -74,16 +77,28 @@ public class KeyMapping extends KeyAdapter {
 				gamePanel.repaint();
 			}
 		}
-		
-		//TODO 스페이스바를 눌렀을 때 dx, dy를 계산하고 거리가 가까울 시 enemy의 HP가 50줄어들고 공격 메세지를 출력
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-//			System.out.println("공격을 시도한다!!");
-//			int dx = this.enemy.getPosX() - this.player.getPosX();
-//			int dy = this.enemy.getPosY() - this.player.getPosY();
-//			gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 50);
-//			if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {
-//				System.out.println("적을 공격했다! 적의 체력 : " + gamePanel.getEnemyHP());
+
+		// TODO 스페이스바를 눌렀을 때 dx, dy를 계산하고 거리가 가까울 시 enemy의 HP가 50줄어들고 공격 메세지를 출력
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			System.out.println("공격을 시도한다!!");
+
+			Player player = (Player) this.gamePanel.getCurrentMap().getGameObject().get("player");
+			Enemy enemy = (Enemy) this.gamePanel.getCurrentMap().getGameObject().get("enemy");
+
+			int dx = enemy.getPosX() - player.getPosX();
+			int dy = enemy.getPosY() - player.getPosY();
+			
+			if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) {
+				gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 34);
+				player.setColor(Color.CYAN);
+				player.setHeight(30);
+				player.setWidth(30);
+				gamePanel.repaint();
+				
+				this.gamePanel.getEA().knockBack(enemy, dx, dy);
+				System.out.println("적을 공격했다! 적의 체력 : " + gamePanel.getEnemyHP());
 			}
+		}
 	}
 
 	// 키가 떼어졌을 때 실행되는 메소드

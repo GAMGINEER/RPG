@@ -26,6 +26,7 @@ public class GamePanel extends JPanel {
 	private String currentMap;
 	private int frameWidthSize;
 	private int frameHeightSize;
+	private EnemyAlgorithm ea;
 	
 	private int playerHP;
 	private int enemyHP;
@@ -77,7 +78,8 @@ public class GamePanel extends JPanel {
 		tempMap.setGameObject(tempHashMap);
 		map.put(tempMap.getMapName(), tempMap);
 
-		new EnemyAlgorithm(this).start();
+		ea = new EnemyAlgorithm(this);
+		ea.start();
 
 		tempHashMap = new HashMap<>();
 		defaultMapName = "map1";
@@ -90,6 +92,10 @@ public class GamePanel extends JPanel {
 
 		this.playerHP = 100;
 		this.enemyHP = 100;
+	}
+	
+	public EnemyAlgorithm getEA() {
+		return this.ea;
 	}
 
 	public int getFrameWidthSize() {

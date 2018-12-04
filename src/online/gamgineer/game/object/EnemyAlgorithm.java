@@ -1,5 +1,7 @@
 package online.gamgineer.game.object;
 
+import java.awt.Color;
+
 import online.gamgineer.game.control.KeyMapping;
 import online.gamgineer.game.gui.GamePanel;
 
@@ -42,6 +44,9 @@ public class EnemyAlgorithm extends Thread {
 				this.follow();
 //				System.out.println("dx, dy : "+dx+", "+dy);
 //				System.out.println("real dy, dy : "+(this.enemy.getPosX() - this.player.getPosX())+", "+(this.enemy.getPosY() - this.player.getPosY()));
+ 				player.setColor(Color.RED);
+				player.setHeight(15);
+				player.setWidth(15);
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
 			} catch (InterruptedException e) {
@@ -57,17 +62,19 @@ public class EnemyAlgorithm extends Thread {
 
 			if (FLAG == 0) {// 부딪혔을 경우
 
-				if (this.gamePanel.getPlayerHP() != 10) {
+				if (this.gamePanel.getPlayerHP() > 10) { // 체력이 10보다 클 경우
 
 					System.out.println("부딪혔다!");
-					System.out.printf(this.gamePanel.getPlayerHP() + "-10 -> " + gamePanel.getPlayerHP() + "\n");
+					System.out.printf(this.gamePanel.getPlayerHP() + "-10 -> " + (gamePanel.getPlayerHP() - 10) + "\n");
 					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
 
-					knockBack(dx, dy);
+					knockBack(player, dx, dy);
 					FLAG = 1;
 
 				} else {
-					System.out.printf("부딪혔다!\nHP : 0!\n");
+					System.out.println("부딪혔다!");
+					System.out.printf(this.gamePanel.getPlayerHP() + "-10 -> " + (gamePanel.getPlayerHP() - 10) + "\n");
+					this.gamePanel.setPlayerHP(this.gamePanel.getPlayerHP() - 10);
 					System.out.println("YOU DIE");
 					System.exit(0);
 				}
@@ -97,7 +104,7 @@ public class EnemyAlgorithm extends Thread {
 		this.enemy.move(dx, dy);
 	}
 
-	private void knockBack(int dx, int dy) {
+	public void knockBack(Object obj, int dx, int dy) {
 //		System.out.println("dx, dy : " + dx + ", " + dy);
 		int x = 0;
 		int y = 0;
@@ -123,21 +130,20 @@ public class EnemyAlgorithm extends Thread {
 			y = +KeyMapping.SPEED * 2;
 		}
 
-		this.player.move(x, y);
+		if(dx==0 && dy==0) {
+			System.out.println("내가 넉백되었다.");
+			this.player.move(KeyMapping.SPEED*2, KeyMapping.SPEED*2);
+		}
+		else if (obj.equals(this.player)) {
+			System.out.println("내가 넉백되었다.");
+			this.player.move(x, y);
+		} else if (obj.equals(this.enemy)) {
+			System.out.println("적을 넉백시켰다.");
+			this.enemy.move(-x, -y);
+		}
 
 //		System.out.println("getposx : " + player.getPosX());
 //		System.out.println("getposy : " + player.getPosY());
 
-		System.out.println("넉백되었다.");
-	}
-
-	private void attack() {
-		System.out.println("공격한다아아ㅏ아아아");
-		int dx = this.enemy.getPosX() - this.player.getPosX();
-		int dy = this.enemy.getPosY() - this.player.getPosY();
-		gamePanel.setEnemyHP(gamePanel.getEnemyHP() - 50);
-		if (Math.abs(dx) <= 15 && Math.abs(dy) <= 15) {
-			System.out.println("적을 공격했다! 적의 체력 : " + gamePanel.getEnemyHP());
-		}
 	}
 }
