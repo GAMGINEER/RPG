@@ -106,7 +106,7 @@ public class KeyMapping extends KeyAdapter {
 			int dx = item.getPosX() - player.getPosX();
 			int dy = item.getPosY() - player.getPosY();
 			
-			if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) {
+			if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) {
 				item.move(1000,1000);//item을 맵에서 사라지게 한다
 				System.out.println("아이템을 먹었습니다.");
 				this.gamePanel.repaint();
@@ -126,7 +126,7 @@ public class KeyMapping extends KeyAdapter {
 		boolean dxBlocked = this.player.getPosX() + this.player.getWidth() + dx <= this.gamePanel.getFrameWidthSize()
 				&& this.player.getPosX() + dx >= 0;
 		boolean dyBlocked = this.player.getPosY() + this.player.getHeight() + dy <= this.gamePanel.getFrameHeightSize()
-				&& this.player.getPosY() + dy >= 0;
+				&& this.player.getPosY() + dy >=0.5;
 
 		if (dxBlocked && dyBlocked) {
 			return false;

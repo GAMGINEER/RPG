@@ -46,10 +46,10 @@ public class EnemyAlgorithm extends Thread {
 					System.out.println("적이 죽었습니다.");
 					this.gamePanel.getCurrentMap().addObject("item",
 							new Item(this.enemy.getPosX(), this.enemy.getPosY()));
-					
-					enemy.move(1000, 1000);//맵 밖으로 퇴출
-					this.gamePanel.getCurrentMap().getGameObject().remove("enemy0");//존재를 지운다
-					
+
+					enemy.move(1000, 1000);// 맵 밖으로 퇴출
+					this.gamePanel.getCurrentMap().getGameObject().remove("enemy0");// 존재를 지운다
+
 					player.setColor(Color.RED);
 					player.setHeight(15);
 					player.setWidth(15);
@@ -150,15 +150,20 @@ public class EnemyAlgorithm extends Thread {
 			y = +KeyMapping.SPEED * 2;
 		}
 
-		if (dx == 0 && dy == 0) {
-			System.out.println("내가 넉백되었다.");
-			this.player.move(KeyMapping.SPEED * 2, KeyMapping.SPEED * 2);
-		} else if (obj.equals(this.player)) {
-			System.out.println("내가 넉백되었다.");
-			this.player.move(x, y);
-		} else if (obj.equals(this.enemy)) {
-			System.out.println("적을 넉백시켰다.");
-			this.enemy.move(-x, -y);
+		if(player.getPosX() + x < 0 || player.getPosX()+x>600 || player.getPosY()+y<0.5 || player.getPosY()>600) {
+			System.out.println("벽쿵당함");
+			this.player.move(-x, -y);
+		} else {
+			if (dx == 0 && dy == 0) {
+				System.out.println("내가 넉백되었다.");
+				this.player.move(KeyMapping.SPEED * 2, KeyMapping.SPEED * 2);
+			} else if (obj.equals(this.player)) {
+				System.out.println("내가 넉백되었다.");
+				this.player.move(x, y);
+			} else if (obj.equals(this.enemy)) {
+				System.out.println("적을 넉백시켰다.");
+				this.enemy.move(-x, -y);
+			}
 		}
 
 //		System.out.println("getposx : " + player.getPosX());
