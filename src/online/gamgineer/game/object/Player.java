@@ -3,7 +3,7 @@ package online.gamgineer.game.object;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Player extends GameObject {
+public class Player extends MovableObject {
 	// 직렬화에 따른 시리얼 버전 적용
 	private static final long serialVersionUID = 1L;
 
@@ -57,8 +57,9 @@ public class Player extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.drawString("me", this.getPosX()-(this.getWidth()/2), this.getPosY()-((this.getHeight()/2))-2);
-		g.fillRect(this.getPosX()-(this.getWidth()/2), this.getPosY()-(this.getHeight()/2), this.getWidth(), this.getHeight());
+		g.drawString("me", this.getPosX() - (this.getWidth() / 2), this.getPosY() - ((this.getHeight() / 2)) - 2);
+		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
+				this.getHeight());
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package online.gamgineer.game.object;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Enemy extends GameObject {
+public class Enemy extends MovableObject {
 
 	// 직렬화에 따른 시리얼 버전 적용
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class Enemy extends GameObject {
 	public Enemy() {
 		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 	}
-	
+
 	/**
 	 * X, Y 좌표 지정 생성자
 	 * 
@@ -69,10 +69,11 @@ public class Enemy extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.drawString("enemy", this.getPosX()-(this.getWidth())-1, this.getPosY()-((this.getHeight()/2))-2);
-		g.fillRect(this.getPosX()-(this.getWidth()/2), this.getPosY()-(this.getHeight()/2), this.getWidth(), this.getHeight());
+		g.drawString("enemy", this.getPosX() - (this.getWidth()) - 1, this.getPosY() - ((this.getHeight() / 2)) - 2);
+		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
+				this.getHeight());
 	}
-	
+
 	@Override
 	public void move(int dx, int dy) {
 		this.setPosX(this.getPosX() + dx);
