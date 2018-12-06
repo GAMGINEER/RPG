@@ -18,7 +18,7 @@ public class Item extends GameObject implements Serializable {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.drawString("item", this.getPosX()-(this.getWidth()/2), this.getPosY()-((this.getHeight()/2))-2);
+		g.drawString("item", this.getPosX()-(this.getWidth()/2)-2, this.getPosY()-((this.getHeight()/2))-2);
 		g.fillOval(this.getPosX()-(this.getWidth()/2), this.getPosY()-(this.getHeight()/2), this.getWidth(), this.getHeight());
 	}
 
