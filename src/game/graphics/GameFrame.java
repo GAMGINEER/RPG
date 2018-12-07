@@ -34,6 +34,7 @@ public class GameFrame extends JFrame {
 		this.pack(); // 게임창 크기 조정
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
+		this.pack();
 	}
 
 	public GamePanel getPanel() {

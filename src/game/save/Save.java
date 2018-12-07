@@ -94,7 +94,7 @@ public class Save implements Serializable {
 	}
 
 	private void createPlayerData() {
-		this.player = new Player(300, 300);
+		this.player = new Player(0, 0);
 	}
 
 	public Player getPlayer() {
@@ -115,6 +115,11 @@ public class Save implements Serializable {
 
 	public String getCurrentMapName() {
 		return this.mapSet.getCurrentMapName();
+	}
+
+	public void setLocation() {
+		System.out.printf("%d\n", this.player.getPosX());
+		System.out.printf("%d\n", this.player.getPosY());
 	}
 
 }

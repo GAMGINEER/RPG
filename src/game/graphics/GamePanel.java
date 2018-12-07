@@ -48,6 +48,10 @@ public class GamePanel extends JPanel {
 	private void initial() {
 		this.save = new Save();
 //		this.save.getCurrentMap().startEnemy();
+		this.save.setLocation();
+		this.save.getCurrentMap().stopEnemy();
+		this.save.getCurrentMap().setEnemyAlgorithm(this);
+		this.save.getCurrentMap().startEnemy();
 		this.repaint();
 	}
 

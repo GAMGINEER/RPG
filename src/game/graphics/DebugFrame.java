@@ -49,11 +49,13 @@ public class DebugFrame extends JFrame {
 		b2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < 10; i++) {
-					gf.getPanel().getSave().getCurrentMap().stopEnemy();
-					gf.getPanel().getSave().getCurrentMap().addEnemy("enemy", new Enemy(i * 10, i * 10));
-					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
-					gf.getPanel().getSave().getCurrentMap().startEnemy();
+				for (int i2 = 0; i2 < 10; i2++) {
+					for (int i = 0; i < 10; i++) {
+						gf.getPanel().getSave().getCurrentMap().stopEnemy();
+						gf.getPanel().getSave().getCurrentMap().addEnemy("enemy", new Enemy(i * 10, i * 10));
+						gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+						gf.getPanel().getSave().getCurrentMap().startEnemy();
+					}
 				}
 			}
 		});

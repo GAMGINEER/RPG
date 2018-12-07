@@ -8,8 +8,8 @@ public class Player extends MovableObject {
 	private static final long serialVersionUID = 1L;
 
 	// 기본 상수 설정
-	private static final int DEFAULT_WIDTH = 15;
-	private static final int DEFAULT_HEIGHT = 15;
+	private static final int DEFAULT_WIDTH = 10;
+	private static final int DEFAULT_HEIGHT = 20;
 	private static final Color DEFAULT_COLOR = Color.RED;
 	private static final String CATEGORY = "player";
 
@@ -17,7 +17,7 @@ public class Player extends MovableObject {
 	 * 기본 생성자
 	 */
 	public Player() {
-		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
+		super(0 + DEFAULT_WIDTH / 2, 0 + DEFAULT_HEIGHT / 2, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 		this.setCategory(CATEGORY);
 	}
 
@@ -28,7 +28,7 @@ public class Player extends MovableObject {
 	 * @param posY
 	 */
 	public Player(int posX, int posY) {
-		super(posX, posY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
+		super(posX + DEFAULT_WIDTH / 2, posY + DEFAULT_HEIGHT / 2, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 		this.setCategory(CATEGORY);
 	}
 
@@ -41,7 +41,7 @@ public class Player extends MovableObject {
 	 * @param height
 	 */
 	public Player(int posX, int posY, int width, int height) {
-		super(posX, posY, width, height, DEFAULT_COLOR);
+		super(posX + DEFAULT_WIDTH / 2, posY + DEFAULT_HEIGHT / 2, width, height, DEFAULT_COLOR);
 		this.setCategory(CATEGORY);
 	}
 
@@ -55,7 +55,7 @@ public class Player extends MovableObject {
 	 * @param color
 	 */
 	public Player(int posX, int posY, int width, int height, Color color) {
-		super(posX, posY, width, height, color);
+		super(posX + DEFAULT_WIDTH / 2, posY + DEFAULT_HEIGHT / 2, width, height, color);
 		this.setCategory(CATEGORY);
 	}
 

@@ -1,6 +1,5 @@
 package game.control;
 
-import java.awt.Color;
 import java.io.Serializable;
 
 import game.graphics.GamePanel;
@@ -11,8 +10,8 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int DELAY = 100;
-	private static final int SPEED = 5;
+	private static final int DELAY = 20;
+	private static final int SPEED = 1;
 
 	private GamePanel gamePanel;
 	private Player player;
@@ -21,6 +20,7 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 	public EnemyAlgorithm(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 		this.player = this.gamePanel.getSave().getPlayer();
+		System.out.printf("%s\n", this.player);
 	}
 
 	public void setEnemy(Enemy enemy) {
@@ -46,16 +46,10 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 				if (this.enemy.getHealthPoint() < 0) {
 					System.out.println("적이 죽었습니다.");
 					this.gamePanel.getSave().getCurrentMap().removeEnemy(this.enemy);
-					player.setColor(Color.RED);
-					player.setHeight(15);
-					player.setWidth(15);
 					gamePanel.repaint();
 					return;
 				}
 				this.follow();
-				player.setColor(Color.RED);
-				player.setHeight(15);
-				player.setWidth(15);
 				gamePanel.repaint();
 				Thread.sleep(DELAY);
 			} catch (InterruptedException e) {
