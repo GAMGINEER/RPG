@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
-	private Save save;
+	public Save save;
 
 	private int frameWidthSize;
 	private int frameHeightSize;
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel {
 
 	private void initial() {
 		this.save = new Save();
-//		this.save.getCurrentMap().startEnemy();
+		this.save.getCurrentMap().startEnemy();
 		this.save.setLocation();
 		this.save.getCurrentMap().stopEnemy();
 		this.save.getCurrentMap().setEnemyAlgorithm(this);

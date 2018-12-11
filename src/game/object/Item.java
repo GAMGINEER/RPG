@@ -11,6 +11,7 @@ public class Item extends GameObject implements Serializable {
 	private static final int DEFAULT_HEIGHT = 10;
 	private static final Color DEFAULT_COLOR = Color.BLUE;
 	private static final String CATEGORY = "item";
+	
 
 	public Item() {
 		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);

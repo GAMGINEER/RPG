@@ -91,6 +91,14 @@ public class Map implements Serializable {
 		return this.mapName;
 	}
 
+	public HashMap<String, Enemy> getEnemySet() {
+		return this.enemySet;
+	}
+	
+	public HashMap<String, Item> getItemSet(){
+		return this.itemSet;
+	}
+	
 	public void setEnemyAlgorithm(GamePanel gamePanel) {
 		Iterator<String> enemyIterator = this.enemySet.keySet().iterator();
 		while (enemyIterator.hasNext()) {
@@ -125,6 +133,7 @@ public class Map implements Serializable {
 
 	@SuppressWarnings("unlikely-arg-type")
 	public void removeEnemy(Enemy enemy) {
+		this.addItem("item", new Item(enemy.getPosX(), enemy.getPosY()));
 		this.enemySet.remove(enemy);
 	}
 

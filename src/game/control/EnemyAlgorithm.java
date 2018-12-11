@@ -1,5 +1,6 @@
 package game.control;
 
+import java.awt.Color;
 import java.io.Serializable;
 
 import game.graphics.GamePanel;
@@ -44,8 +45,12 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 			int dy = this.enemy.getPosY() - this.player.getPosY(); // 적이 위에 있으면 양수, 내가 위에 있으면 음수
 			try {
 				if (this.enemy.getHealthPoint() < 0) {
-					System.out.println("적이 죽었습니다.");
+					System.out.println(this.enemy+"이 죽었습니다.");
 					this.gamePanel.getSave().getCurrentMap().removeEnemy(this.enemy);
+					player.setWidth(Player.DEFAULT_WIDTH);
+					player.setHeight(Player.DEFAULT_HEIGHT);
+					player.setColor(Player.DEFAULT_COLOR);
+					this.enemy.setColor(Color.GRAY);
 					gamePanel.repaint();
 					return;
 				}
@@ -105,28 +110,21 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 	}
 
 	public void knockBack(Object obj, int dx, int dy) {
-//		System.out.println("dx, dy : " + dx + ", " + dy);
 		int x = 0;
 		int y = 0;
 
 		if (dx < 0) {
-			// player이 enemy보다 오른쪽에 있을 때
-//			System.out.println("내가 적보다 오른쪽에 있음");
 			x = +KeyMapping.SPEED * 2;
 			x = +KeyMapping.SPEED * 2;
 		}
 		if (dx > 0) {
-			// player이 enemy보다 왼쪽에 있을 때
-//			System.out.println("내가 적보다 왼쪽에 있음");
 			x = -KeyMapping.SPEED * 2;
 		}
 
 		if (dy > 0) {
-			// player이 enemy보다 아래에 있을 때
 			y = -KeyMapping.SPEED * 2;
 		}
 		if (dy < 0) {
-			// player이 enemy보다 위에 있을 때
 			y = +KeyMapping.SPEED * 2;
 		}
 
@@ -147,8 +145,6 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 			}
 		}
 
-//		System.out.println("getposx : " + player.getPosX());
-//		System.out.println("getposy : " + player.getPosY());
 
 	}
 }

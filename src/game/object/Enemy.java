@@ -21,6 +21,7 @@ public class Enemy extends MovableObject {
 	/**
 	 * 기본 생성자
 	 */
+	
 	public Enemy() {
 		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 		initial();
@@ -101,6 +102,10 @@ public class Enemy extends MovableObject {
 	public void move(int dx, int dy) {
 		this.setPosX(this.getPosX() + dx);
 		this.setPosY(this.getPosY() + dy);
+	}
+	
+	public EnemyAlgorithm getEnemyAlgorithm() { //이 emeny객체에 사용되는 알고리즘을 리턴
+		return algorithm;
 	}
 
 }
