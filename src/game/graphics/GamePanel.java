@@ -12,8 +12,8 @@ public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int DEFAULT_FRAME_WIDTH_SIZE = 600;
-	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
+	public static final int DEFAULT_FRAME_WIDTH_SIZE = 600;
+	public static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
 	public Save save;
@@ -22,7 +22,6 @@ public class GamePanel extends JPanel {
 	private int frameHeightSize;
 
 	public GamePanel() {
-		
 		this.frameWidthSize = DEFAULT_FRAME_WIDTH_SIZE;
 		this.frameHeightSize = DEFAULT_FRAME_HEIGHT_SIZE;
 		this.setPreferredSize(new Dimension(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE));
@@ -80,4 +79,3 @@ public class GamePanel extends JPanel {
 	}
 
 }
-

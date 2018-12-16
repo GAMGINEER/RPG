@@ -20,7 +20,6 @@ public class StartFrame extends JFrame {
 	private static final int FRAME_HEIGHT_SIZE = 300;
 
 	private JPanel imagePanel;
-	private JPanel MessagePanel;
 	private Image image;
 	private JButton startGameButton;
 	private JButton exitGameButton;

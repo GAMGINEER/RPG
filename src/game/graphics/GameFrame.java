@@ -1,5 +1,6 @@
 package game.graphics;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import game.control.GameWindowAction;
@@ -15,11 +16,13 @@ public class GameFrame extends JFrame {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 
 	private GamePanel gamePanel;
+	private MessagePanel messagePanel;
 	public KeyMapping keyMap;
 
 	public GameFrame() {
 		// 게임창 제목
 		this.setTitle("DefaultField");
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		// 게임창 설정
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 창을 닫을 때 프로그램 종료가 아니라 창만 사라지게 함
@@ -30,10 +33,13 @@ public class GameFrame extends JFrame {
 		this.add(gamePanel); // 게임 창에 게임 패널 추가
 		this.setKeyListener();
 		this.addWindowListener(new GameWindowAction(this.gamePanel));
-		this.pack(); // 게임창 크기 조정
+		// 메세지 패널 설정
+		this.messagePanel = new MessagePanel(DEFAULT_FRAME_WIDTH_SIZE, 300);
+		this.add(messagePanel); //게임 창에 메세지 패널 추가
+		
+		this.setSize(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE);; // 게임창 크기 조정
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
-		this.pack();
 		
 		keyMap.setGameFrame(this);
 	}
