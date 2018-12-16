@@ -82,26 +82,40 @@ public class KeyMapping extends KeyAdapter {
 			gamePanel.getSave().outputData();
 		}
 
+		if (e.getKeyCode() == KeyEvent.VK_Q) { // Q : 체력 회복 아이템 사용
+			// if 물약 아이템이 하나 이상 있다면,
+			// 물약 아이템 수 --
+			if (this.player.getHealthPoint() < 100) {
+				if(this.player.getHealthPoint()<90)
+					this.player.setHealthPoint(this.player.getHealthPoint() + 10);
+				else
+					this.player.setHealthPoint(100);
+				System.out.println("체력을 회복했습니다.");
+			} else {
+				System.out.println("체력이 100보다 많습니다!");
+			}
+		}
+
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) { // 스페이스 바 : 공격
 			System.out.println("공격을 시도한다!!");
-
+ 
 			HashMap<String, Enemy> enemySet = this.gamePanel.getSave().getCurrentMap().getEnemySet();
-			
+
 			Iterator<String> iterator = enemySet.keySet().iterator();
-			
-			while (iterator.hasNext()) { //현재 맵에 있는 적 하나하나마다 이 알고리즘을 실행
+
+			while (iterator.hasNext()) { // 현재 맵에 있는 적 하나하나마다 이 알고리즘을 실행
 				String key = (String) iterator.next();
 				Enemy enemy = enemySet.get(key);
 				int dx = enemy.getPosX() - player.getPosX();
 				int dy = enemy.getPosY() - player.getPosY();
-				
-				if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) { //공격 가능 범위인지 검사
+
+				if (Math.abs(dx) <= 30 && Math.abs(dy) <= 30) { // 공격 가능 범위인지 검사
 					enemy.setHealthPoint(enemy.getHealthPoint() - 34);
 					player.setColor(Color.CYAN);
 					player.setHeight(30);
 					player.setWidth(30);
 					gamePanel.repaint();
-					
+
 					enemySet.get(key).getAlgorithm().knockBack(enemySet.get(key), dx, dy);
 					System.out.println("적을 공격했다! 적의 체력 : " + enemy.getHealthPoint());
 					player.setColor(player.getColor());
@@ -109,7 +123,7 @@ public class KeyMapping extends KeyAdapter {
 					player.setWidth(Player.DEFAULT_WIDTH);
 					player.setColor(Player.DEFAULT_COLOR);
 				}
-				
+
 			}
 			System.out.println("모든 적에 대한 공격을 완료했다.");
 
@@ -120,16 +134,17 @@ public class KeyMapping extends KeyAdapter {
 
 			HashMap<String, Item> itemSet = this.gamePanel.getSave().getCurrentMap().getItemSet();
 			Iterator<String> iterator = itemSet.keySet().iterator();
-			
-			while(iterator.hasNext()) { //현재 맵에 있는 아이템 하나하나마다 이 알고리즘을 실행
+
+			while (iterator.hasNext()) { // 현재 맵에 있는 아이템 하나하나마다 이 알고리즘을 실행
 				String key = iterator.next();
 				Item item = itemSet.get(key);
-				
+
 				int dx = item.getPosX() - player.getPosX();
 				int dy = item.getPosY() - player.getPosY();
-				
-				if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) { //아이템 줍기 가능한 거리인지 검사
-					this.gamePanel.getSave().getCurrentMap().removeItem(item);;
+
+				if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) { // 아이템 줍기 가능한 거리인지 검사
+					this.gamePanel.getSave().getCurrentMap().removeItem(item);
+					;
 					item.move(1000, 1000);// item을 맵에서 사라지게 한다
 					System.out.println("아이템을 먹었습니다.");
 					this.gamePanel.repaint();
@@ -137,7 +152,7 @@ public class KeyMapping extends KeyAdapter {
 			}
 			System.out.println("모든 아이템에 대해 줍기를 완료했다.");
 		}
-		
+
 	}
 
 	// 키가 떼어졌을 때 실행되는 메소드
