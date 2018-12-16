@@ -153,5 +153,14 @@ public class KeyMapping extends KeyAdapter {
 			return true;
 		}
 	}
+	
+	private void changeMap(String newMapName) {
+		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
+		this.gameFrame.getGamePanel().getSave().getMapSet().changeCurrentMap(newMapName);
+		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap()
+				.setEnemyAlgorithm(this.gameFrame.getGamePanel());
+		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
+		this.gameFrame.getGamePanel().repaint();
+	}
 
 }
