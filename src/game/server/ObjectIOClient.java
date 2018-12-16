@@ -41,7 +41,14 @@ public class ObjectIOClient {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
-				
+				Object obj = null;
+				try {
+					obj = (Object) input.readObject();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		Thread tDr = new Thread(rDr);
@@ -52,7 +59,12 @@ public class ObjectIOClient {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				
+				Object obj = null;
+				try {
+					output.writeObject(obj);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		Thread tDs = new Thread(rDs);
