@@ -63,30 +63,30 @@ public class KeyMapping extends KeyAdapter {
 			
 			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
 				String currentMapName = gf.getPanel().getSave().getCurrentMapName();
-				if (currentMapName.equals("defaultField")) {
-					System.out.println("enemyField로 이동합니다.");
-					gf.setTitle("enemyField");
-					gf.getPanel().getSave().getCurrentMap().stopEnemy();
-					gf.getPanel().getSave().getMapSet().changeCurrentMap("enemyField");
-					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
-					gf.getPanel().getSave().getCurrentMap().startEnemy();
-					gf.getPanel().repaint();
-				} else if (currentMapName.equals("enemyField")) {
-					System.out.println("someWhere로 이동합니다.");
-					gf.setTitle("someWhere");
-					gf.getPanel().getSave().getCurrentMap().stopEnemy();
-					gf.getPanel().getSave().getMapSet().changeCurrentMap("someWhere");
-					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
-					gf.getPanel().getSave().getCurrentMap().startEnemy();
-					gf.getPanel().repaint();
-				} else if (currentMapName.equals("someWhere")) {
-					System.out.println("defaultField로 이동합니다.");
-					gf.setTitle("defaultField");
-					gf.getPanel().getSave().getCurrentMap().stopEnemy();
-					gf.getPanel().getSave().getMapSet().changeCurrentMap("defaultField");
-					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
-					gf.getPanel().getSave().getCurrentMap().startEnemy();
-					gf.getPanel().repaint();
+					if (currentMapName.equals("defaultField")) {
+						System.out.println("enemyField로 이동합니다.");
+						gf.setTitle("enemyField");
+						gf.getPanel().getSave().getCurrentMap().stopEnemy();
+						gf.getPanel().getSave().getMapSet().changeCurrentMap("enemyField");
+						gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+						gf.getPanel().getSave().getCurrentMap().startEnemy();
+						gf.getPanel().repaint();
+					} else if (currentMapName.equals("enemyField")) {
+						System.out.println("someWhere로 이동합니다.");
+						gf.setTitle("someWhere");
+						gf.getPanel().getSave().getCurrentMap().stopEnemy();
+						gf.getPanel().getSave().getMapSet().changeCurrentMap("someWhere");
+						gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+						gf.getPanel().getSave().getCurrentMap().startEnemy();
+						gf.getPanel().repaint();
+					} else if (currentMapName.equals("someWhere")) {
+						System.out.println("defaultField로 이동합니다.");
+						gf.setTitle("defaultField");
+						gf.getPanel().getSave().getCurrentMap().stopEnemy();
+						gf.getPanel().getSave().getMapSet().changeCurrentMap("defaultField");
+						gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+						gf.getPanel().getSave().getCurrentMap().startEnemy();
+						gf.getPanel().repaint();
 				}
 			}
 			
