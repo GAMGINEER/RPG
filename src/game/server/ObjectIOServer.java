@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import game.save.Payload;
+import java.util.Scanner;
 
 public class ObjectIOServer {
 	private static final int SERVER_PORT = 8100;
@@ -12,16 +14,17 @@ public class ObjectIOServer {
 	private Socket client;
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
-	
+	private Scanner sc = new Scanner(System.in);
+
 	public ObjectIOServer() {
 		serverSetting();
 		setStream();
 		dataReceive();
 		dataSend();
 	}
-	
+
 	public void serverSetting() {
-		while(true) {
+		while (true) {
 			try {
 				server = new ServerSocket(SERVER_PORT);
 				client = server.accept();
@@ -30,7 +33,7 @@ public class ObjectIOServer {
 			}
 		}
 	}
-	
+
 	public void setStream() {
 		try {
 			output = new ObjectOutputStream(client.getOutputStream());
@@ -40,11 +43,12 @@ public class ObjectIOServer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void dataReceive() {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
+				@SuppressWarnings("unused")
 				Object obj = null;
 				try {
 					obj = (Object) input.readObject();
@@ -58,12 +62,12 @@ public class ObjectIOServer {
 		Thread tDr = new Thread(rDr);
 		tDr.start();
 	}
-	
+
 	public void dataSend() {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				Object obj = null;
+				Object obj = (Object) new Payload(sc.next());
 				try {
 					output.writeObject(obj);
 				} catch (IOException e) {
