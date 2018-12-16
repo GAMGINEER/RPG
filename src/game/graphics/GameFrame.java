@@ -15,12 +15,12 @@ public class GameFrame extends JFrame {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 
 	private GamePanel gamePanel;
-	private KeyMapping keyMap;
+	public KeyMapping keyMap;
 
 	public GameFrame() {
 
 		// 게임창 제목
-		this.setTitle("GameFrame");
+		this.setTitle("DefaultField");
 
 		// 게임창 설정
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 창을 닫을 때 프로그램 종료가 아니라 창만 사라지게 함
@@ -35,6 +35,8 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
 		this.pack();
+		
+		keyMap.setGameFrame(this);
 	}
 
 	public GamePanel getPanel() {
