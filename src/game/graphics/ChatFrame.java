@@ -32,11 +32,11 @@ public class ChatFrame extends JFrame implements ActionListener {
 	private GameFrame gameFrame;
 
 	public ChatFrame(GameFrame gameFrame) {
-//		this.setUndecorated(true); // 타이틀 바 삭제
-//		this.setBackground(new Color(0, 0, 0, 30)); // 반투명한 창
+		this.setAlwaysOnTop(true); //항상 다른 JFrame보다 위에 있도록 설정
+		this.setUndecorated(true); // 타이틀 바 삭제
 		this.gameFrame = gameFrame;
-		this.setLocationRelativeTo(this.gameFrame);
-		this.setSize(300, 400);
+		this.setLocationRelativeTo(this.gameFrame.getItemPanel());
+		this.setBounds(860, 428, 250, 400);
 		cl = new CardLayout();
 
 		JPanel connect = new JPanel();

@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import game.save.Save;
 
 public class GamePanel extends JPanel {
-
 	private static final long serialVersionUID = 1L;
 
 	public static final int DEFAULT_FRAME_WIDTH_SIZE = 600;

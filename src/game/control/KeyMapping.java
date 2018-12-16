@@ -55,7 +55,7 @@ public class KeyMapping extends KeyAdapter {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			String currentMapName = this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMapName();
-			if (currentMapName.equals("defaultField")) {
+			if (currentMapName.equals("Whimsyshire")) {
 				this.changeMap("enemyField");
 			} else if (currentMapName.equals("enemyField")) {
 				this.changeMap("someWhere");

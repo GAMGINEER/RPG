@@ -18,10 +18,12 @@ public class GameFrame extends JFrame {
 	private ItemPanel itemPanel;
 	private ChatFrame chatFrame;
 
+	public ItemPanel getItemPanel() {
+		return this.itemPanel;
+	}
+	
 	public GameFrame() {
-		chatFrame = new ChatFrame(this); //채팅창 열기
-		
-		this.setTitle("RPG 게임");
+		this.setTitle("Tutorial - 어느 알록달록한 산골");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
@@ -61,6 +63,8 @@ public class GameFrame extends JFrame {
 		
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
+		
+		chatFrame = new ChatFrame(this); //채팅창 열기
 
 	}
 

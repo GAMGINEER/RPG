@@ -8,7 +8,7 @@ public class MapSet implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String DEFAULT_MAP_NAME = "defaultField";
+	public static final String DEFAULT_MAP_NAME = "Whimsyshire";
 
 	private HashMap<String, Map> mapSet;
 	private String currentMapName;
@@ -20,7 +20,6 @@ public class MapSet implements Serializable {
 
 	private void createMap() {
 		Map tempMap = new Map(DEFAULT_MAP_NAME);
-		tempMap.addItem(new Item(150, 150));
 		this.mapSet.put(DEFAULT_MAP_NAME, tempMap);
 
 		String mapName = "enemyField";

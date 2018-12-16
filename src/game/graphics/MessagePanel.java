@@ -1,141 +1,43 @@
 package game.graphics;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-public class MessagePanel extends JPanel implements ActionListener {
-	private String ip;
-	private final static int SERVER_PORT = 8100;
-	private Socket client = null;
-	private ObjectOutputStream oos;
-	private ObjectInputStream ois;
-	private String id;
-	private ReceiveDataThread rt;
-	private JButton btnConnect, send, exit;
-	private JTextField txtIP, txtName, txtInput;
+public class MessagePanel extends JPanel {
 	private JTextArea txtList;
-	private CardLayout cl;
-	private JPanel p2;
-
+	private JLabel label;
+	private static int line = 0;
+	
 	public MessagePanel() {
 		this.setBackground(new Color(188, 143, 143));
 		this.setPreferredSize(new Dimension(600, 200));
-		cl = new CardLayout();
-
-		JPanel connect = new JPanel();
-		connect.setLayout(new BorderLayout());
-
-		connect.add("North", new JLabel("Chating layout", JLabel.CENTER));
-
-		JPanel connectSub = new JPanel();
-
-		connectSub.add(new JLabel("Server IP: "));
-		txtIP = new JTextField("127.0.0.1", 20);
-		connectSub.add(txtIP);
-
-		connectSub.add(new JLabel("이름: "));
-		txtName = new JTextField("korean", 17);
-		connectSub.add(txtName);
-
-		connect.add("Center", connectSub);
-
-		btnConnect = new JButton("Server Access");
-		connect.add("South", btnConnect);
-
-		btnConnect.addActionListener(this);
-
-		JPanel chat = new JPanel();
-		chat.setLayout(new BorderLayout());
-
-		chat.add("North", new JLabel("Chatting Program", JLabel.CENTER));
-
+		
+		this.setLayout(new BorderLayout());
+		label = new JLabel("System Message", JLabel.CENTER);
+		label.setFont(new Font("굴림", Font.BOLD, 14));
+		this.add("North", label);
 		txtList = new JTextArea(10, 35);
-		chat.add("Center", txtList);
-
-		JPanel chatSub = new JPanel();
-		txtInput = new JTextField("", 25);
-		send = new JButton("보내기");
-		exit = new JButton("나가기");
-
-		chatSub.add(txtInput);
-		chatSub.add(send);
-		chatSub.add(exit);
-
-		exit.addActionListener(this);
-		send.addActionListener(this);
-		txtInput.addActionListener(this);
-		chat.add("South", chatSub);
-
-		p2 = new JPanel();
-		p2.setLayout(cl);
-		p2.add(connect, "접속창");
-		p2.add(chat, "채팅창");
-
-		add(p2);
-
-		cl.show(p2, "접속창");
+		this.add("Center", txtList);
+		txtList.setFont(new Font("굴림", Font.PLAIN, 14));
+		txtList.setBackground(new Color(255, 255, 255, 50));
+		txtList.setEnabled(false);
+		
+		this.addSystemMessage("어떤 세계에 들어왔습니다.");
 	}
-
-	public void init() throws IOException {
-		ip = txtIP.getText();
-		client = new Socket(ip, SERVER_PORT);
-		oos = new ObjectOutputStream(client.getOutputStream());
-		ois = new ObjectInputStream(client.getInputStream());
-
-		id = txtName.getText();
-		oos.writeObject(id);
-		oos.flush();
-
-		rt = new ReceiveDataThread();
-		Thread t = new Thread(rt);
-		t.start();
-
-		cl.show(p2, "채팅창");
-		txtInput.requestFocus();
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		try {
-			if (e.getSource() == btnConnect)
-				init();
-			else if (e.getSource() == txtInput || e.getSource() == send) {
-				String sendData = txtInput.getText();
-				oos.writeObject(sendData);
-				oos.flush();
-			} else if (e.getSource() == exit)
-				System.exit(0);
-		} catch (IOException ie) {
-			txtList.append(ie.getMessage() + "\n");
+	
+	public void addSystemMessage(String str) {
+		txtList.setDisabledTextColor(new Color(51,0,253));
+		txtList.append("<System> "+str+"\n");
+		line++;
+		if(line==10) {
+			line=0;
+			txtList.setText("");
 		}
-	}
-
-	class ReceiveDataThread implements Runnable {
-		String receiveData;
-
-		public void run() {
-			try {
-				while (true) {
-					receiveData = (String) ois.readObject();
-					txtList.append(receiveData + "\n");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
 	}
 }
