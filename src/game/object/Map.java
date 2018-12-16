@@ -136,6 +136,10 @@ public class Map implements Serializable {
 		this.addItem("item", new Item(enemy.getPosX(), enemy.getPosY()));
 		this.enemySet.remove(enemy);
 	}
+	
+	public void removeItem(Item item) {
+		this.itemSet.remove(item);
+	}
 
 	@Override
 	public String toString() {

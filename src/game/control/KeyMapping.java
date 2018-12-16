@@ -125,6 +125,7 @@ public class KeyMapping extends KeyAdapter {
 				int dy = item.getPosY() - player.getPosY();
 				
 				if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) { //아이템 줍기 가능한 거리인지 검사
+					this.gamePanel.getSave().getCurrentMap().removeItem(item);;
 					item.move(1000, 1000);// item을 맵에서 사라지게 한다
 					System.out.println("아이템을 먹었습니다.");
 					this.gamePanel.repaint();
