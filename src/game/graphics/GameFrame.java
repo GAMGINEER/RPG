@@ -3,6 +3,7 @@ package game.graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import game.control.KeyMapping;
@@ -12,16 +13,28 @@ public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private GamePanel gamePanel;
+	private MessagePanel messagePanel;
+	private ItemPanel itemPanel;
 
 	public GameFrame() {
 		this.setTitle("RPG 게임");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+		//게임 패널 설정
 		this.gamePanel = new GamePanel();
 		this.add(gamePanel);
 		this.addKeyListener(new KeyMapping(this));
-
+		
+//		//메세지 패널 설정
+//		this.messagePanel = new MessagePanel();
+//		this.add(messagePanel);
+//		
+//		//아이템 패널 설정
+//		this.itemPanel = new ItemPanel();
+//		this.add(itemPanel);
+		
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
