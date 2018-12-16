@@ -1,9 +1,11 @@
 package game.graphics;
 
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 
-public class MessagePanel extends JPanel{
+public class MessagePanel extends JPanel {
 	public MessagePanel() {
-		this.setSize(300,300);
+		this.setPreferredSize(new Dimension(600, 200));
 	}
 }

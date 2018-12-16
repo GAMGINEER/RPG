@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import game.control.KeyMapping;
 
@@ -20,20 +21,26 @@ public class GameFrame extends JFrame {
 		this.setTitle("RPG 게임");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
+		
+		JPanel tmpPanel = new JPanel();
+		tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
 
 		//게임 패널 설정
 		this.gamePanel = new GamePanel();
-		this.add(gamePanel);
+		tmpPanel.add(gamePanel);
 		this.addKeyListener(new KeyMapping(this));
 		
-//		//메세지 패널 설정
-//		this.messagePanel = new MessagePanel();
-//		this.add(messagePanel);
-//		
-//		//아이템 패널 설정
-//		this.itemPanel = new ItemPanel();
-//		this.add(itemPanel);
+		//메세지 패널 설정
+		this.messagePanel = new MessagePanel();
+		tmpPanel.add(messagePanel);
+		
+		//아이템 패널 설정
+		this.itemPanel = new ItemPanel();
+		
+		this.add(tmpPanel);
+		this.add(itemPanel);
+		
 		
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -48,8 +55,10 @@ public class GameFrame extends JFrame {
 		});
 
 		this.pack();
+		
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
+
 	}
 
 	public GamePanel getGamePanel() {
