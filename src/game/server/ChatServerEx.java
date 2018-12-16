@@ -14,6 +14,7 @@ public class ChatServerEx {
 	private Socket clientSocket;
 
 	private HashMap<String, ObjectOutputStream> threadHashMap;
+	
 
 	public ChatServerEx() {
 		try {
