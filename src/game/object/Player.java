@@ -3,6 +3,7 @@ package game.object;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.HashMap;
 
 public class Player extends MovableObject {
 	// 직렬화에 따른 시리얼 버전 적용
@@ -12,6 +13,8 @@ public class Player extends MovableObject {
 	public static final int DEFAULT_WIDTH = 10;
 	public static final int DEFAULT_HEIGHT = 20;
 	public static final Color DEFAULT_COLOR = Color.RED;
+
+	private HashMap<String, Item> itemSet;
 
 	public Player(int posX, int posY) {
 		super(posX + DEFAULT_WIDTH / 2, posY + DEFAULT_HEIGHT / 2, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
@@ -27,6 +30,18 @@ public class Player extends MovableObject {
 		this.setWidth(30);
 		this.setHeight(30);
 		this.setColor(Color.CYAN);
+	}
+
+	public HashMap<String, Item> getItemSet() {
+		return this.itemSet;
+	}
+
+	public void addItem(Item itemObject) {
+		this.itemSet.put(itemObject.getObjectName(), itemObject);
+	}
+
+	public void removeItem(Item item) {
+		this.itemSet.values().remove(item);
 	}
 
 	@Override

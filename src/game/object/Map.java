@@ -84,10 +84,6 @@ public class Map implements Serializable {
 		this.enemySet.values().remove(enemy);
 	}
 
-	public void removeItem(Item item) {
-		this.itemSet.values().remove(item);
-	}
-
 	@Override
 	public String toString() {
 		return String.format("mapName: %s\n\nenemySet\n%s\n\nitemSet\n%s\n", this.mapName, this.enemySet, this.itemSet);
