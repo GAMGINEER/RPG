@@ -54,7 +54,6 @@ public class KeyMapping extends KeyAdapter {
 			this.gameFrame.getGamePanel().getSave().save();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
-			System.out.println(this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap());
 			String currentMapName = this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMapName();
 			if (currentMapName.equals("defaultField")) {
 				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
@@ -132,7 +131,6 @@ public class KeyMapping extends KeyAdapter {
 				int dx = value.getPosX() - player.getPosX();
 				int dy = value.getPosY() - player.getPosY();
 				if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) {
-					System.out.println(value);
 					this.player.addItem(value);
 					iterator.remove();
 					System.out.printf("SYSTEM >> ITEM GET\n");

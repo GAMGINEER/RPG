@@ -58,7 +58,6 @@ public class Map implements Serializable {
 		Iterator<String> enemyIterator = this.enemySet.keySet().iterator();
 		while (enemyIterator.hasNext()) {
 			String key = (String) enemyIterator.next();
-			System.out.println(key);
 			this.enemySet.get(key).setEnemyAlgorithm(gamePanel);
 		}
 	}
