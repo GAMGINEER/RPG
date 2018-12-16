@@ -1,6 +1,7 @@
 package game.object;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class Player extends MovableObject {
@@ -61,11 +62,26 @@ public class Player extends MovableObject {
 
 	@Override
 	public void draw(Graphics g) {
+		// 이름 표시
 		g.setColor(this.getColor());
-		//이름 표시
-		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()+4), this.getPosY() - this.getHeight()-5);
-		//체력 표시
-		g.drawString("HP : "+Integer.toString(this.getHealthPoint()), this.getPosX() - (this.getWidth()+10), this.getPosY() - ((this.getHeight() / 2)) - 2);
+		g.drawString(CATEGORY, this.getPosX() - (this.getWidth() + 4), this.getPosY() - this.getHeight() - 5);
+
+		// 체력 표시
+		// 체력바
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(this.getPosX() - (this.getWidth() + 13), this.getPosY() - (this.getHeight() / 2) - 10, 100 / 2, 8);
+		g.setColor(Color.PINK);
+		g.fillRect(this.getPosX() - (this.getWidth() + 13), this.getPosY() - (this.getHeight() / 2) - 10,
+				this.getHealthPoint() / 2, 8);
+		// 체력 수치
+		g.setColor(Color.DARK_GRAY);
+		g.setFont(new Font("Serif", Font.BOLD, 10));
+		g.drawString("HP : " + Integer.toString(this.getHealthPoint()), this.getPosX() - (this.getWidth() + 8),
+				this.getPosY() - (this.getHeight() / 2) - 2);
+		g.setFont(new Font("굴림", Font.PLAIN, 12));
+		g.setColor(this.getColor());
+
+		// 본인 표시
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 	}

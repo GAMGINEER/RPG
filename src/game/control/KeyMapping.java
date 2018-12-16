@@ -104,6 +104,10 @@ public class KeyMapping extends KeyAdapter {
 					
 					enemySet.get(key).getAlgorithm().knockBack(enemySet.get(key), dx, dy);
 					System.out.println("적을 공격했다! 적의 체력 : " + enemy.getHealthPoint());
+					player.setColor(player.getColor());
+					player.setHeight(Player.DEFAULT_HEIGHT);
+					player.setWidth(Player.DEFAULT_WIDTH);
+					player.setColor(Player.DEFAULT_COLOR);
 				}
 				
 			}

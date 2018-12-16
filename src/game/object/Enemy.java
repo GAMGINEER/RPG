@@ -1,6 +1,7 @@
 package game.object;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import game.control.EnemyAlgorithm;
@@ -21,7 +22,7 @@ public class Enemy extends MovableObject {
 	/**
 	 * 기본 생성자
 	 */
-	
+
 	public Enemy() {
 		super(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 		initial();
@@ -92,10 +93,27 @@ public class Enemy extends MovableObject {
 
 	@Override
 	public void draw(Graphics g) {
+		// 이름 표시
 		g.setColor(this.getColor());
-		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()) - 1, this.getPosY() - this.getHeight()-5);
-		//이름 표시
-		g.drawString("HP : "+Integer.toString(this.getHealthPoint()), this.getPosX()- this.getWidth() - 5, this.getPosY()- ((this.getHeight() / 2)) - 2);
+		g.drawString(this.getObjectNumber(), this.getPosX() - (this.getWidth()) - 1, this.getPosY() - this.getHeight() - 5);
+		
+		// 체력 표시
+		//체력바
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(this.getPosX() - (this.getWidth() + 10), this.getPosY() - (this.getHeight() / 2) - 10, 100 / 2, 8);
+		g.setColor(new Color(144,238,144));
+		g.fillRect(this.getPosX() - (this.getWidth() + 10), this.getPosY() - (this.getHeight() / 2) - 10,
+				this.getHealthPoint() / 2, 8);
+		//체력 수치
+		g.setColor(Color.DARK_GRAY);
+		g.setFont(new Font("Serif", Font.BOLD, 10));
+		g.drawString("HP : " + Integer.toString(this.getHealthPoint()), this.getPosX() - this.getWidth() - 5,
+				this.getPosY() - (this.getHeight() / 2) - 3); //체력 숫자로 표시
+		
+		g.setFont(new Font("굴림", Font.PLAIN, 12));
+		g.setColor(this.getColor());
+		
+		//본인 표시
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 	}
