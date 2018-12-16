@@ -58,7 +58,7 @@ public class StartGame extends JFrame {
 			}
 		});
 
-		this.image = Toolkit.getDefaultToolkit().createImage("res/img/loadingCat.gif");
+		this.image = Toolkit.getDefaultToolkit().createImage("res/img/newtitle.gif");
 		imagePanel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
