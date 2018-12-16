@@ -139,13 +139,16 @@ public class Map implements Serializable {
 	@SuppressWarnings("unlikely-arg-type")
 	public void removeEnemy(Enemy enemy) {
 		this.addItem("item", new Item(enemy.getPosX(), enemy.getPosY()));
+		//itemSet에 null이 추가됨
+		//물론, enemySet에도 enemy를 추가할 때마다 null이 추가됨.
 		this.enemySet.remove(enemy);
+		//=>실행이 안 됨 : null이 계속해서 증가 (적을 추가할때마다 null이 계속 늘지만, 적을 죽이면 null의 숫자가 줄어들지 않음)
 		System.out.println("현재 적은 얼마나 있을까? : ");
 		for(int i=0; i<this.enemySet.size(); i++)
 			System.out.println(this.enemySet.get(i));
 	}
 	
-	public void removeItem(Item item) {
+	public void removeItem(Item item) { //removeItem을 만들다가 위의 오류를 발견함
 		this.itemSet.remove(item);
 		System.out.println("현재 아이템은 얼마나 있을까? : ");
 		for(int i=0; i<this.itemSet.size(); i++)
