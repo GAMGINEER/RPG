@@ -103,18 +103,25 @@ public class KeyMapping extends KeyAdapter {
 			System.out.printf("SYSTEM >> RESET PLAYER\n");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_Q) {
-			System.out.println(this.player.getItemSet());
-			if (this.player.getHealthPoint() < 100) {
-				if (this.player.getHealthPoint() < 90) {
-					this.player.setHealthPoint(this.player.getHealthPoint() + 10);
-				} else {
+			if (!this.player.getItemSet().isEmpty()) {
+				Iterator<Item> iterator = this.player.getItemSet().values().iterator();
+				iterator.next();
+				int healthPoint = this.player.getHealthPoint();
+				if (healthPoint <= 90) {
+					this.player.setHealthPoint(healthPoint + 10);
+					iterator.remove();
+					System.out.printf("SYSTEM >> HEAL\n");
+				} else if (healthPoint < 100) {
 					this.player.setHealthPoint(100);
+					iterator.remove();
+					System.out.printf("SYSTEM >> HEAL\n");
+				} else {
+					System.out.printf("SYSTEM >> HP MAXIMUM\n");
 				}
-				System.out.println("SYSTEM >> HEAL");
+				this.gameFrame.getGamePanel().repaint();
 			} else {
-				System.out.println("SYSTEM >> HP MAXIMUM");
+				System.out.printf("SYSTEM >> NO ITEM\n");
 			}
-			this.gameFrame.getGamePanel().repaint();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
 			System.out.printf("SYSTEM >> TRYING PICK UP ITEM\n");
