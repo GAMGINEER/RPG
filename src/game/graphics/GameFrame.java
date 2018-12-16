@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
 	public GameFrame() {
 
 		// 게임창 제목
-		this.setTitle("GameFrame");
+		this.setTitle("DefaultField");
 
 		// 게임창 설정
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 창을 닫을 때 프로그램 종료가 아니라 창만 사라지게 함

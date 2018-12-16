@@ -65,6 +65,7 @@ public class KeyMapping extends KeyAdapter {
 				String currentMapName = gf.getPanel().getSave().getCurrentMapName();
 				if (currentMapName.equals("defaultField")) {
 					System.out.println("enemyField로 이동합니다.");
+					gf.setTitle("enemyField");
 					gf.getPanel().getSave().getCurrentMap().stopEnemy();
 					gf.getPanel().getSave().getMapSet().changeCurrentMap("enemyField");
 					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
@@ -72,6 +73,7 @@ public class KeyMapping extends KeyAdapter {
 					gf.getPanel().repaint();
 				} else if (currentMapName.equals("enemyField")) {
 					System.out.println("someWhere로 이동합니다.");
+					gf.setTitle("someWhere");
 					gf.getPanel().getSave().getCurrentMap().stopEnemy();
 					gf.getPanel().getSave().getMapSet().changeCurrentMap("someWhere");
 					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
@@ -79,6 +81,7 @@ public class KeyMapping extends KeyAdapter {
 					gf.getPanel().repaint();
 				} else if (currentMapName.equals("someWhere")) {
 					System.out.println("defaultField로 이동합니다.");
+					gf.setTitle("defaultField");
 					gf.getPanel().getSave().getCurrentMap().stopEnemy();
 					gf.getPanel().getSave().getMapSet().changeCurrentMap("defaultField");
 					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
