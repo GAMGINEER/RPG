@@ -15,16 +15,16 @@ public class ObjectIOServer {
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private Scanner sc = new Scanner(System.in);
-	
+
 	public ObjectIOServer() {
 		serverSetting();
 		setStream();
 		dataReceive();
 		dataSend();
 	}
-	
+
 	public void serverSetting() {
-		while(true) {
+		while (true) {
 			try {
 				server = new ServerSocket(SERVER_PORT);
 				client = server.accept();
@@ -33,7 +33,7 @@ public class ObjectIOServer {
 			}
 		}
 	}
-	
+
 	public void setStream() {
 		try {
 			output = new ObjectOutputStream(client.getOutputStream());
@@ -43,11 +43,12 @@ public class ObjectIOServer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void dataReceive() {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
+				@SuppressWarnings("unused")
 				Object obj = null;
 				try {
 					obj = (Object) input.readObject();
@@ -61,7 +62,7 @@ public class ObjectIOServer {
 		Thread tDr = new Thread(rDr);
 		tDr.start();
 	}
-	
+
 	public void dataSend() {
 		Runnable rDs = new Runnable() {
 			@Override

@@ -14,22 +14,22 @@ public class ObjectIOClient {
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private Scanner sc = new Scanner(System.in);
-	
+
 	public ObjectIOClient() {
 		connect();
 		setStream();
 		dataSend();
 		dataReceive();
 	}
-	
+
 	public void connect() {
 		try {
 			client = new Socket(SERVER_IP, SERVER_PORT);
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setStream() {
 		try {
 			output = new ObjectOutputStream(client.getOutputStream());
@@ -39,11 +39,12 @@ public class ObjectIOClient {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void dataReceive() {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
+				@SuppressWarnings("unused")
 				Object obj = null;
 				try {
 					obj = (Object) input.readObject();
@@ -57,7 +58,7 @@ public class ObjectIOClient {
 		Thread tDr = new Thread(rDr);
 		tDr.start();
 	}
-	
+
 	public void dataSend() {
 		Runnable rDs = new Runnable() {
 			@Override

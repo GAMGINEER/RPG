@@ -18,7 +18,6 @@ public class ChatClientEx {
 	private ObjectOutputStream objectOutputStream;
 	private ObjectInputStream objectInputStream;
 	private String sendData;
-	private String receiveData;
 
 	private String userID;
 	private ReceiveDataThread receiveDataThread;
