@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import game.debug.KeyMapping;
+import game.control.KeyMapping;
 
 public class GameFrame extends JFrame {
 

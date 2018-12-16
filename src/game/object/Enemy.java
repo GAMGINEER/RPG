@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.io.Serializable;
 
-import game.debug.KeyMapping;
+import game.control.KeyMapping;
 import game.graphics.GamePanel;
 
 public class Enemy extends MovableObject {
