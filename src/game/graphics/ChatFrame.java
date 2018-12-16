@@ -2,6 +2,8 @@ package game.graphics;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -36,7 +38,8 @@ public class ChatFrame extends JFrame implements ActionListener {
 		this.setUndecorated(true); // 타이틀 바 삭제
 		this.gameFrame = gameFrame;
 		this.setLocationRelativeTo(this.gameFrame.getItemPanel());
-		this.setBounds(860, 428, 250, 400);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setBounds((dim.width/2)+(gameFrame.getWidth()/5), (dim.height/2)-(gameFrame.getHeight()/30), 250, 400);
 		cl = new CardLayout();
 
 		JPanel connect = new JPanel();
@@ -121,6 +124,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 				String sendData = txtInput.getText();
 				oos.writeObject(sendData);
 				oos.flush();
+				txtInput.setText("");
 			} else if (e.getSource() == exit)
 				System.exit(0);
 		} catch (IOException ie) {
