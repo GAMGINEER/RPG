@@ -37,6 +37,7 @@ public class Item extends GameObject implements Serializable {
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
 		g.drawString(CATEGORY, this.getPosX() - (this.getWidth() / 2), this.getPosY() - ((this.getHeight() / 2)) - 2);
+		//이름 표시
 		g.fillOval(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 	}

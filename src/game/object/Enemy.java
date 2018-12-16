@@ -93,7 +93,9 @@ public class Enemy extends MovableObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()) - 1, this.getPosY() - ((this.getHeight() / 2)) - 2);
+		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()) - 1, this.getPosY() - this.getHeight()-5);
+		//이름 표시
+		g.drawString("HP : "+Integer.toString(this.getHealthPoint()), this.getPosX()- this.getWidth() - 5, this.getPosY()- ((this.getHeight() / 2)) - 2);
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 	}
@@ -102,10 +104,6 @@ public class Enemy extends MovableObject {
 	public void move(int dx, int dy) {
 		this.setPosX(this.getPosX() + dx);
 		this.setPosY(this.getPosY() + dy);
-	}
-	
-	public EnemyAlgorithm getEnemyAlgorithm() { //이 emeny객체에 사용되는 알고리즘을 리턴
-		return algorithm;
 	}
 
 }

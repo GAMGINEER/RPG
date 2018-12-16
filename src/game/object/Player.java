@@ -62,7 +62,10 @@ public class Player extends MovableObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(this.getColor());
-		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()), this.getPosY() - ((this.getHeight() / 2)) - 2);
+		//이름 표시
+		g.drawString(CATEGORY, this.getPosX() - (this.getWidth()+4), this.getPosY() - this.getHeight()-5);
+		//체력 표시
+		g.drawString("HP : "+Integer.toString(this.getHealthPoint()), this.getPosX() - (this.getWidth()+10), this.getPosY() - ((this.getHeight() / 2)) - 2);
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 	}

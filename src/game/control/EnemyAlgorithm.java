@@ -49,8 +49,11 @@ public class EnemyAlgorithm extends Thread implements Serializable {
 					this.gamePanel.getSave().getCurrentMap().removeEnemy(this.enemy);
 					player.setWidth(Player.DEFAULT_WIDTH);
 					player.setHeight(Player.DEFAULT_HEIGHT);
-					player.setColor(Player.DEFAULT_COLOR);
-					this.enemy.setColor(Color.GRAY);
+ 					player.setColor(Player.DEFAULT_COLOR);
+ 					this.enemy.setColor(Color.GRAY); //시체는 회색
+					this.enemy.setPosX(1000);
+					this.enemy.setPosY(1000);
+					//임시로 적의 시체를 치운다. => removeEnemy메소드가 제대로 작동된다면 repaint시 시체도 더이상 그려지지 않을 것.
 					gamePanel.repaint();
 					return;
 				}
