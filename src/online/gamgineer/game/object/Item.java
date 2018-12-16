@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 
+import game.object.GameObject;
+
 public class Item extends GameObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
