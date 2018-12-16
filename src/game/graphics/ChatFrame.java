@@ -32,6 +32,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 	private CardLayout cl;
 	private JPanel p2;
 	private GameFrame gameFrame;
+	private static int line = 0;
 
 	public ChatFrame(GameFrame gameFrame) {
 		this.setAlwaysOnTop(true); //항상 다른 JFrame보다 위에 있도록 설정
@@ -80,6 +81,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 		chatSub.add(txtInput);
 		chatSub.add(send);
 		chatSub.add(exit);
+		chatSub.setPreferredSize(new Dimension(250, 60));
 
 		exit.addActionListener(this);
 		send.addActionListener(this);
@@ -125,6 +127,11 @@ public class ChatFrame extends JFrame implements ActionListener {
 				oos.writeObject(sendData);
 				oos.flush();
 				txtInput.setText("");
+				this.line++;
+				if(line>=20) {
+					txtList.setText("");
+					line=0;
+				}
 			} else if (e.getSource() == exit)
 				System.exit(0);
 		} catch (IOException ie) {
