@@ -1,5 +1,6 @@
 package game.server;
 
+import game.io.ObjectSave;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -48,10 +49,10 @@ public class ObjectIOServer {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
-				@SuppressWarnings("unused")
-				Object obj = null;
+				Payload inputObj = null;
 				try {
-					obj = (Object) input.readObject();
+					inputObj = (Payload) input.readObject();
+					ObjectSave.Output(inputObj, inputObj.getUserID());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -67,7 +68,7 @@ public class ObjectIOServer {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				Object obj = (Object) new Payload(sc.next());
+				Payload obj = new Payload(sc.next());
 				try {
 					output.writeObject(obj);
 				} catch (IOException e) {

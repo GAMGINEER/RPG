@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import game.io.ObjectSave;
+import game.object.Player;
 import game.save.Payload;
+import game.save.Save;
+
 import java.util.Scanner;
 
 public class ObjectIOClient {
@@ -44,12 +49,19 @@ public class ObjectIOClient {
 		Runnable rDr = new Runnable() {
 			@Override
 			public void run() {
-				@SuppressWarnings("unused")
-				Object obj = null;
+				Payload inputObj = null;
 				try {
-					obj = (Object) input.readObject();
+					inputObj = (Payload) input.readObject();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Save save = inputObj.getSave();
+				Player player = inputObj.getPlayer();
+				try {
+					ObjectSave.Output(save, "save");
+					ObjectSave.Output(player, "player");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -63,7 +75,7 @@ public class ObjectIOClient {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				Object obj = (Object) new Payload(sc.next());
+				Payload obj = new Payload(sc.next());
 				try {
 					output.writeObject(obj);
 				} catch (IOException e) {
