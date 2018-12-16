@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import game.save.Payload;
+import java.util.Scanner;
 
 public class ObjectIOServer {
 	private static final int SERVER_PORT = 8100;
@@ -12,6 +14,7 @@ public class ObjectIOServer {
 	private Socket client;
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
+	private Scanner sc = new Scanner(System.in);
 	
 	public ObjectIOServer() {
 		serverSetting();
@@ -63,7 +66,7 @@ public class ObjectIOServer {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				Object obj = null;
+				Object obj = (Object) new Payload(sc.next());
 				try {
 					output.writeObject(obj);
 				} catch (IOException e) {
