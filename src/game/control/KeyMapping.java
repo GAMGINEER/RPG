@@ -17,6 +17,7 @@ public class KeyMapping extends KeyAdapter {
 
 	private GameFrame gameFrame;
 	private Player player;
+	public static int youCanGo = 0; //가능할 때만 1이 된다.
 
 	public KeyMapping(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
@@ -139,8 +140,14 @@ public class KeyMapping extends KeyAdapter {
 		}
 	}
 	
-	private boolean canGoNextMap(int dx, int dy) {
-		return true;
+	private boolean canGoNextMap(int x, int y) {
+		//if 포탈 범위안, and if
+		if(player.getPosX()>500 && this.youCanGo==1) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	private void changeMap(String newMapName) {

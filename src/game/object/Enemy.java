@@ -107,10 +107,12 @@ public class Enemy extends MovableObject {
 				int dx = this.enemy.getPosX() - this.player.getPosX();
 				int dy = this.enemy.getPosY() - this.player.getPosY();
 				try {
-					if (this.enemy.getHealthPoint() < 0) {
+					if (this.enemy.getHealthPoint() < 0) { //적이 죽은 경우
 						System.out.printf("SYSTEM >> ENEMY %s DIED\n", this.enemy.getObjectName());
 						this.enemy.setColor(Color.GRAY);
 						this.player.resetPlayer();
+						this.gamePanel.killedEnemy++;
+						System.out.println("현재까지 죽인 적의 수 : "+this.gamePanel.killedEnemy);
 						this.gamePanel.getSave().getMapSet().getCurrentMap().removeEnemy(this.enemy);
 						gamePanel.repaint();
 						return;

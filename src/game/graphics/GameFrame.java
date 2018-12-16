@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import game.control.KeyMapping;
-import game.object.Enemy;
 
 public class GameFrame extends JFrame {
 
@@ -18,6 +17,7 @@ public class GameFrame extends JFrame {
 	private MessagePanel messagePanel;
 	private ItemPanel itemPanel;
 	private ChatFrame chatFrame;
+	private KeyMapping keyMapping;
 
 	public ItemPanel getItemPanel() {
 		return this.itemPanel;
@@ -36,7 +36,8 @@ public class GameFrame extends JFrame {
 		// 게임 패널 설정
 		this.gamePanel = new GamePanel();
 		tmpPanel.add(gamePanel);
-		this.addKeyListener(new KeyMapping(this));
+		keyMapping = new KeyMapping(this);
+		this.addKeyListener(keyMapping);
 
 		// 메세지 패널 설정
 		this.messagePanel = new MessagePanel();
@@ -90,15 +91,23 @@ public class GameFrame extends JFrame {
 					e1.printStackTrace();
 				}
 				messagePanel.addNormalMessage("주민3", "으아아아아아아악!!!");
+				//여기서 주민들이 잔뜩 지나가면 좋겠지만 아직 무리
+				
 				try {
 					Thread.sleep(1000);
+					//적들(한 5마리)가 분산되어 사방에서 주인공을 둘러싸게 해야 함
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				gamePanel.save.getMapSet().getCurrentMap().addEnemy(new Enemy(500, 500));
-				gamePanel.save.getMapSet().getCurrentMap().addEnemy(new Enemy(500, 500));
-				gamePanel.save.getMapSet().getCurrentMap().addEnemy(new Enemy(500, 500));
-				gamePanel.save.getMapSet().getCurrentMap().setEnemyAlgorithm(gamePanel);
+				
+				while(true) {
+					if(gamePanel.killedEnemy==5) {
+						System.out.println("모든 적을 다 죽였다!");
+						//이제 포탈이 열린다.
+						keyMapping.youCanGo = 1;
+					}
+				}
+				
 			}
 		}
 
