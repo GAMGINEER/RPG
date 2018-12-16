@@ -56,26 +56,11 @@ public class KeyMapping extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			String currentMapName = this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMapName();
 			if (currentMapName.equals("defaultField")) {
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
-				this.gameFrame.getGamePanel().getSave().getMapSet().changeCurrentMap("enemyField");
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap()
-						.setEnemyAlgorithm(this.gameFrame.getGamePanel());
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
-				this.gameFrame.getGamePanel().repaint();
+				this.changeMap("enemyField");
 			} else if (currentMapName.equals("enemyField")) {
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
-				this.gameFrame.getGamePanel().getSave().getMapSet().changeCurrentMap("someWhere");
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap()
-						.setEnemyAlgorithm(this.gameFrame.getGamePanel());
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
-				this.gameFrame.getGamePanel().repaint();
+				this.changeMap("someWhere");
 			} else if (currentMapName.equals("someWhere")) {
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
-				this.gameFrame.getGamePanel().getSave().getMapSet().changeCurrentMap("defaultField");
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap()
-						.setEnemyAlgorithm(this.gameFrame.getGamePanel());
-				this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
-				this.gameFrame.getGamePanel().repaint();
+				this.changeMap("defaultField");
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -155,6 +140,7 @@ public class KeyMapping extends KeyAdapter {
 	}
 	
 	private void changeMap(String newMapName) {
+		this.gameFrame.setTitle(newMapName);
 		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
 		this.gameFrame.getGamePanel().getSave().getMapSet().changeCurrentMap(newMapName);
 		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap()
