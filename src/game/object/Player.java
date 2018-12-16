@@ -97,6 +97,8 @@ public class Player extends MovableObject {
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
 		
+		g.fillOval(500, 500, 30, 30);
+		
 	}
 
 	@Override

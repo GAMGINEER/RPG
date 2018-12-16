@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import game.graphics.GameFrame;
 import game.graphics.GamePanel;
 import game.object.Enemy;
 import game.object.Item;
@@ -22,6 +23,11 @@ public class KeyMapping extends KeyAdapter {
 	// 변수
 	private GamePanel gamePanel;
 	private Player player;
+	private GameFrame gf;
+	
+	public void setGameFrame(GameFrame gf) {
+		this.gf = gf;
+	}
 	
 	// 생성자
 	public KeyMapping(GamePanel gamePanel) {
@@ -40,6 +46,7 @@ public class KeyMapping extends KeyAdapter {
 	// }
 
 	// 키가 눌렸을 경우 실행되는 메소드
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// System.out.printf("DEBUGGING\tPRESSED\t\tID: %s\tKeyText: %s\tKeyChar: %s\n",
@@ -53,6 +60,33 @@ public class KeyMapping extends KeyAdapter {
 				player.move(0, -(SPEED));
 				gamePanel.repaint();
 			}
+			
+			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
+				String currentMapName = gf.getPanel().getSave().getCurrentMapName();
+				if (currentMapName.equals("defaultField")) {
+					System.out.println("enemyField로 이동합니다.");
+					gf.getPanel().getSave().getCurrentMap().stopEnemy();
+					gf.getPanel().getSave().getMapSet().changeCurrentMap("enemyField");
+					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+					gf.getPanel().getSave().getCurrentMap().startEnemy();
+					gf.getPanel().repaint();
+				} else if (currentMapName.equals("enemyField")) {
+					System.out.println("someWhere로 이동합니다.");
+					gf.getPanel().getSave().getCurrentMap().stopEnemy();
+					gf.getPanel().getSave().getMapSet().changeCurrentMap("someWhere");
+					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+					gf.getPanel().getSave().getCurrentMap().startEnemy();
+					gf.getPanel().repaint();
+				} else if (currentMapName.equals("someWhere")) {
+					System.out.println("defaultField로 이동합니다.");
+					gf.getPanel().getSave().getCurrentMap().stopEnemy();
+					gf.getPanel().getSave().getMapSet().changeCurrentMap("defaultField");
+					gf.getPanel().getSave().getCurrentMap().setEnemyAlgorithm(gf.getPanel());
+					gf.getPanel().getSave().getCurrentMap().startEnemy();
+					gf.getPanel().repaint();
+				}
+			}
+			
 		}
 
 		// 방향키 (↓) 이벤트
@@ -176,6 +210,16 @@ public class KeyMapping extends KeyAdapter {
 			return false;
 		} else {
 			return true;
+		}
+	}
+	
+	private boolean canGoNextMap(int dx, int dy) {
+		boolean x = this.player.getPosX()<530 && this.player.getPosX()>470;
+		boolean y = this.player.getPosY()<530 && this.player.getPosY()>470;
+		if (x && y) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

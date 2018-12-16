@@ -15,7 +15,7 @@ public class GameFrame extends JFrame {
 	private static final int DEFAULT_FRAME_HEIGHT_SIZE = 600;
 
 	private GamePanel gamePanel;
-	private KeyMapping keyMap;
+	public KeyMapping keyMap;
 
 	public GameFrame() {
 
@@ -35,6 +35,8 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
 		this.pack();
+		
+		keyMap.setGameFrame(this);
 	}
 
 	public GamePanel getPanel() {
