@@ -34,9 +34,9 @@ public class GameFrame extends JFrame {
 			}
 		});
 
+		this.pack();
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
-		this.pack();
 	}
 
 	public GamePanel getGamePanel() {
