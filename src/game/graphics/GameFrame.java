@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
 		this.setTitle("RPG 게임");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
 		//게임 패널 설정
 		this.gamePanel = new GamePanel();
