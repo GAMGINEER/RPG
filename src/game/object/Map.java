@@ -14,6 +14,7 @@ public class Map implements Serializable {
 
 	private HashMap<String, Enemy> enemySet;
 	private HashMap<String, Item> itemSet;
+	private HashMap<String, NPC> NPCSet;
 
 	public Map(String name) {
 		mapName = name;
@@ -27,6 +28,10 @@ public class Map implements Serializable {
 
 	public void addItem(Item itemObject) {
 		this.itemSet.put(itemObject.getObjectName(), itemObject);
+	}
+	
+	public void addNPC(NPC NPCObject) {
+		this.NPCSet.put(NPCObject.getObjectName(), NPCObject);
 	}
 
 	public void draw(Graphics g) {

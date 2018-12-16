@@ -139,6 +139,10 @@ public class KeyMapping extends KeyAdapter {
 		}
 	}
 	
+	private boolean canGoNextMap(int dx, int dy) {
+		return true;
+	}
+	
 	private void changeMap(String newMapName) {
 		this.gameFrame.setTitle(newMapName);
 		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();

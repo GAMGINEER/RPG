@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
 
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
-	private Save save;
+	public Save save;
 
 	public GamePanel() {
 		this.save = new Save();
