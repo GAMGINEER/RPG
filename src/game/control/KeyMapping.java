@@ -103,6 +103,7 @@ public class KeyMapping extends KeyAdapter {
 			System.out.printf("SYSTEM >> RESET PLAYER\n");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_Q) {
+			System.out.println(this.player.getItemSet());
 			if (this.player.getHealthPoint() < 100) {
 				if (this.player.getHealthPoint() < 90) {
 					this.player.setHealthPoint(this.player.getHealthPoint() + 10);
@@ -124,6 +125,8 @@ public class KeyMapping extends KeyAdapter {
 				int dx = value.getPosX() - player.getPosX();
 				int dy = value.getPosY() - player.getPosY();
 				if (Math.abs(dx) <= 20 && Math.abs(dy) <= 20) {
+					System.out.println(value);
+					this.player.addItem(value);
 					iterator.remove();
 					System.out.printf("SYSTEM >> ITEM GET\n");
 					this.gameFrame.getGamePanel().repaint();

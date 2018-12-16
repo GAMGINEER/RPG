@@ -18,6 +18,7 @@ public class Player extends MovableObject {
 
 	public Player(int posX, int posY) {
 		super(posX + DEFAULT_WIDTH / 2, posY + DEFAULT_HEIGHT / 2, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
+		this.itemSet = new HashMap<>();
 	}
 
 	public void resetPlayer() {
