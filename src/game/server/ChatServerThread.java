@@ -39,8 +39,8 @@ public class ChatServerThread implements Runnable {
 	@Override
 	public void run() {
 		String payloadString;
-		while (true) {
-			try {
+		try {
+			while (true) {
 				payloadString = (String) this.objectInputStream.readObject();
 				if (payloadString.equals("!quit")) {
 					break;
@@ -49,23 +49,23 @@ public class ChatServerThread implements Runnable {
 				} else {
 					this.broadcast("USER " + this.userID + " >> " + payloadString);
 				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			synchronized (this.threadHashMap) {
+				this.threadHashMap.remove(this.userID);
+			}
+			this.broadcast("SERVER >> " + this.userID + " DISCONNECTED");
+			System.out.printf("SYSTEM >> CLIENT ID: %s DISCONNECTED\n", this.userID);
+			try {
+				if (this.clientSocket != null) {
+					this.clientSocket.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			} finally {
-				synchronized (this.threadHashMap) {
-					this.threadHashMap.remove(this.userID);
-				}
-				this.broadcast("SERVER >> " + this.userID + " DISCONNECTED");
-				System.out.printf("SYSTEM >> CLIENT ID: %s DISCONNECTED\n", this.userID);
-				try {
-					if (this.clientSocket != null) {
-						this.clientSocket.close();
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 			}
 		}
 
