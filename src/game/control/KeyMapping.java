@@ -22,7 +22,7 @@ public class KeyMapping extends KeyAdapter {
 	// 변수
 	private GamePanel gamePanel;
 	private Player player;
-
+	
 	// 생성자
 	public KeyMapping(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -49,6 +49,7 @@ public class KeyMapping extends KeyAdapter {
 		// 방향키 (↑) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (isBlocked(0, -(SPEED)) == false) {
+				player.moveStatus = 1;
 				player.move(0, -(SPEED));
 				gamePanel.repaint();
 			}
@@ -57,6 +58,7 @@ public class KeyMapping extends KeyAdapter {
 		// 방향키 (↓) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (isBlocked(0, SPEED) == false) {
+				player.moveStatus = 1;
 				player.move(0, SPEED);
 				gamePanel.repaint();
 			}
@@ -65,6 +67,7 @@ public class KeyMapping extends KeyAdapter {
 		// 방향키 (←) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (isBlocked(-(SPEED), 0) == false) {
+				player.moveStatus = 1;
 				player.move(-(SPEED), 0);
 				gamePanel.repaint();
 			}
@@ -73,6 +76,7 @@ public class KeyMapping extends KeyAdapter {
 		// 방향키 (→) 이벤트
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (isBlocked(SPEED, 0) == false) {
+				player.moveStatus = 1;
 				player.move(SPEED, 0);
 				gamePanel.repaint();
 			}

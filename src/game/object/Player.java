@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import game.graphics.GamePanel;
+
 public class Player extends MovableObject {
 	// 직렬화에 따른 시리얼 버전 적용
 	private static final long serialVersionUID = 1L;
@@ -13,10 +15,20 @@ public class Player extends MovableObject {
 	public static final int DEFAULT_HEIGHT = 20;
 	public static final Color DEFAULT_COLOR = Color.RED;
 	private static final String CATEGORY = "player";
+	private GamePanel gamePanel; //현재 캐릭터의 이미지를 표시하기 위한 gamePanel
 
+	
+	public static int moveStatus; //0 : 서있기, 1 : 움직이기, 2 : 공격
+	
+	
 	/**
 	 * 기본 생성자
 	 */
+	
+	public void setGamePanel(GamePanel gp) { //GamePanel을 받아온다.
+		this.gamePanel = gp;
+	}
+	
 	public Player() {
 		super(0 + DEFAULT_WIDTH / 2, 0 + DEFAULT_HEIGHT / 2, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_COLOR);
 		this.setCategory(CATEGORY);
@@ -84,6 +96,7 @@ public class Player extends MovableObject {
 		// 본인 표시
 		g.fillRect(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
 				this.getHeight());
+		
 	}
 
 	@Override

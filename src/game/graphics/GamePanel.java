@@ -22,6 +22,7 @@ public class GamePanel extends JPanel {
 	private int frameHeightSize;
 
 	public GamePanel() {
+		
 		this.frameWidthSize = DEFAULT_FRAME_WIDTH_SIZE;
 		this.frameHeightSize = DEFAULT_FRAME_HEIGHT_SIZE;
 		this.setPreferredSize(new Dimension(DEFAULT_FRAME_WIDTH_SIZE, DEFAULT_FRAME_HEIGHT_SIZE));
@@ -79,3 +80,4 @@ public class GamePanel extends JPanel {
 	}
 
 }
+
