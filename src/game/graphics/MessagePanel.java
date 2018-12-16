@@ -9,7 +9,7 @@ public class MessagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public MessagePanel() {
+	public MessagePanel(GameFrame gameFrame) {
 		this.setSize(450, 120);
 
 		BoxLayout layout = new BoxLayout(this.getRootPane(), BoxLayout.Y_AXIS);

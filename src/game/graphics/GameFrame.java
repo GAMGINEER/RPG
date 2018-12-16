@@ -18,7 +18,6 @@ public class GameFrame extends JFrame {
 	public KeyMapping keyMap;
 
 	public GameFrame() {
-
 		// 게임창 제목
 		this.setTitle("DefaultField");
 

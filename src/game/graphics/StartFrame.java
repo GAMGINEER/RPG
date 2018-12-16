@@ -84,6 +84,7 @@ public class StartFrame extends JFrame {
 	protected void ChangeFrame() {
 		GameFrame gameFrame = new GameFrame();
 		new DebugFrame(gameFrame);
+		new MessagePanel(gameFrame);
 		this.dispose();
 	}
 
