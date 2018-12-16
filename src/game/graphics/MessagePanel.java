@@ -33,7 +33,7 @@ public class MessagePanel extends JPanel implements ActionListener {
 
 	public MessagePanel() {
 		this.setBackground(new Color(188, 143, 143));
-		this.setPreferredSize(new Dimension(600, 220));
+		this.setPreferredSize(new Dimension(600, 200));
 		cl = new CardLayout();
 
 		JPanel connect = new JPanel();

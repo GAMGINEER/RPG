@@ -16,8 +16,11 @@ public class GameFrame extends JFrame {
 	private GamePanel gamePanel;
 	private MessagePanel messagePanel;
 	private ItemPanel itemPanel;
+	private ChatFrame chatFrame;
 
 	public GameFrame() {
+		chatFrame = new ChatFrame(this); //채팅창 열기
+		
 		this.setTitle("RPG 게임");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
