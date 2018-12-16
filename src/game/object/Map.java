@@ -23,6 +23,7 @@ public class Map implements Serializable {
 		this.itemSet = new HashMap<>();
 		this.npcSet = new HashMap<>();
 	}
+	
 
 	public void addEnemy(String category, Enemy enemyObject) {
 		Iterator<String> it = this.enemySet.keySet().iterator();
@@ -37,6 +38,10 @@ public class Map implements Serializable {
 		category += count;
 
 		this.enemySet.put(category, enemyObject);
+		
+		System.out.println("현재 적은 얼마나 있을까? : ");
+		for(int i=0; i<this.enemySet.size(); i++)
+			System.out.println(this.enemySet.get(i));
 	}
 
 	public void addItem(String category, Item itemObject) {
@@ -135,10 +140,16 @@ public class Map implements Serializable {
 	public void removeEnemy(Enemy enemy) {
 		this.addItem("item", new Item(enemy.getPosX(), enemy.getPosY()));
 		this.enemySet.remove(enemy);
+		System.out.println("현재 적은 얼마나 있을까? : ");
+		for(int i=0; i<this.enemySet.size(); i++)
+			System.out.println(this.enemySet.get(i));
 	}
 	
 	public void removeItem(Item item) {
 		this.itemSet.remove(item);
+		System.out.println("현재 아이템은 얼마나 있을까? : ");
+		for(int i=0; i<this.itemSet.size(); i++)
+			System.out.println(this.itemSet.get(i));
 	}
 
 	@Override
