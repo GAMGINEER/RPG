@@ -58,8 +58,7 @@ public class StartGame extends JFrame {
 				System.exit(0);
 			}
 		});
-
-		this.image = Toolkit.getDefaultToolkit().createImage("res/img/newtitle.gif");
+		this.image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/game/main/newtitle.jpg"));
 		imagePanel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
@@ -80,7 +79,7 @@ public class StartGame extends JFrame {
 
 	private void startGame() {
 		new GameFrame();
-		new MenuFrame(); 
+		new MenuFrame();
 		this.dispose();
 	}
 
