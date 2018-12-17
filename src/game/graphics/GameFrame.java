@@ -82,6 +82,7 @@ public class GameFrame extends JFrame {
 				messagePanel.addNormalMessage("주민3", "으아아아아아아악!!!");
 				this.sleep();
 				// 여기서 주민들이 잔뜩 지나가면 좋겠지만 아직 무리
+				messagePanel.addNormalMessage("주민1", "살려줘!!!");
 
 				messagePanel.addSystemMessage("적들이 몰려옵니다.");
 				this.sleep();
@@ -98,7 +99,6 @@ public class GameFrame extends JFrame {
 					if (gamePanel.killedEnemy >= 10) {
 						messagePanel.addSystemMessage("모든 적을 처치했습니다.");
 						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
-						// 이제 포탈이 열린다.
 
 						keyMapping.youCanGo = 1;
 						System.out.println("youcango==1");
@@ -106,6 +106,7 @@ public class GameFrame extends JFrame {
 						break;
 					}
 				}
+				messagePanel.addNormalMessage("주민1", "감사합니다!!");
 			}
 
 			private void sleep() {
