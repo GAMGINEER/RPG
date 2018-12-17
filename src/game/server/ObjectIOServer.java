@@ -20,8 +20,6 @@ public class ObjectIOServer {
 	public ObjectIOServer() {
 		serverSetting();
 		setStream();
-		dataReceive();
-		dataSend();
 	}
 
 	public void serverSetting() {

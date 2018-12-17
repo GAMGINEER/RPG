@@ -23,8 +23,6 @@ public class ObjectIOClient {
 	public ObjectIOClient() {
 		connect();
 		setStream();
-		dataSend();
-		dataReceive();
 	}
 
 	public void connect() {
