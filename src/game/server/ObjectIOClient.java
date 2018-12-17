@@ -13,7 +13,7 @@ import game.save.Save;
 import java.util.Scanner;
 
 public class ObjectIOClient {
-	private static final int SERVER_PORT = 8100;
+	private static final int SERVER_PORT = 8099;
 	private static final String SERVER_IP = "edu.gamgineer.online";
 	private Socket client;
 	private ObjectOutputStream output;

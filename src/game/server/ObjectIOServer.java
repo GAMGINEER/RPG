@@ -10,7 +10,7 @@ import game.save.Payload;
 import java.util.Scanner;
 
 public class ObjectIOServer {
-	private static final int SERVER_PORT = 8100;
+	private static final int SERVER_PORT = 8099;
 	private ServerSocket server;
 	private Socket client;
 	private ObjectOutputStream output;
