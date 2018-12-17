@@ -27,7 +27,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private String id;
-	private ReceiveDataThread rt;
+	private ReceiveThread rt;
 	private JButton btnConnect, send, exit;
 	private JTextField txtIP, txtName, txtInput;
 	private JTextArea txtList;
@@ -52,7 +52,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 		JPanel connectSub = new JPanel();
 
 		connectSub.add(new JLabel("Server IP: "));
-		txtIP = new JTextField("127.0.0.1", 20);
+		txtIP = new JTextField("edu.gamgineer.online", 20);
 		connectSub.add(txtIP);
 
 		connectSub.add(new JLabel("이름: "));
@@ -75,7 +75,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 		chat.add("Center", txtList);
 
 		JPanel chatSub = new JPanel();
-		txtInput = new JTextField("", 25);
+		txtInput = new JTextField("", 20);
 		send = new JButton("보내기");
 		exit = new JButton("나가기");
 
@@ -111,7 +111,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 		oos.writeObject(id);
 		oos.flush();
 
-		rt = new ReceiveDataThread();
+		rt = new ReceiveThread();
 		Thread t = new Thread(rt);
 		t.start();
 
@@ -140,17 +140,17 @@ public class ChatFrame extends JFrame implements ActionListener {
 		}
 	}
 
-	class ReceiveDataThread implements Runnable {
+	class ReceiveThread implements Runnable {
 		String receiveData;
 
 		public void run() {
-			try {
-				while (true) {
+			while (true) {
+				try {
 					receiveData = (String) ois.readObject();
 					txtList.append(receiveData + "\n");
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 	}
