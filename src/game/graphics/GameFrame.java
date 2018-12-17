@@ -17,7 +17,6 @@ public class GameFrame extends JFrame {
 	private GamePanel gamePanel;
 	private MessagePanel messagePanel;
 	private ItemPanel itemPanel;
-	private ChatFrame chatFrame;
 	private KeyMapping keyMapping;
 
 	public ItemPanel getItemPanel() {
@@ -68,7 +67,7 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // 창 위치 초기화
 		this.setVisible(true); // 창 보이기
 
-		chatFrame = new ChatFrame(this); // 채팅창 열기
+		new ChatFrame(this); // 채팅창 열기
 
 		class tutorialThread extends Thread {
 
@@ -99,6 +98,11 @@ public class GameFrame extends JFrame {
 					if (gamePanel.killedEnemy >= 10) {
 						messagePanel.addSystemMessage("모든 적을 처치했습니다.");
 						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
+<<<<<<< HEAD
+=======
+						// 이제 포탈이 열린다.
+
+>>>>>>> branch 'master' of https://github.com/GAMGINEER/RPG.git
 						keyMapping.youCanGo = 1;
 						System.out.println("youcango==1");
 						// 이제 포탈이 열린다.
