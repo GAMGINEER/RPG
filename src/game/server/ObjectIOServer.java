@@ -68,7 +68,7 @@ public class ObjectIOServer {
 		Runnable rDs = new Runnable() {
 			@Override
 			public void run() {
-				Payload obj = new Payload(sc.next());
+				Payload obj = new Payload("201802058");
 				try {
 					output.writeObject(obj);
 				} catch (IOException e) {
