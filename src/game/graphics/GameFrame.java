@@ -46,7 +46,7 @@ public class GameFrame extends JFrame {
 		messagePanel.addSystemMessage("어느 알록달록한 산골에 도착했습니다.");
 
 		// 아이템 패널 설정
-		this.itemPanel = new ItemPanel();
+		this.itemPanel = new ItemPanel(this);
 
 		this.add(tmpPanel);
 		this.add(itemPanel);
