@@ -11,7 +11,10 @@ public class Portal extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawOval(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
+		System.out.println("포탈을 그려요!");
+		g.setColor(this.getColor());
+		g.fillOval(this.getPosX() - (this.getWidth() / 2), this.getPosY() - (this.getHeight() / 2), this.getWidth(),
+				this.getHeight());
 	}
 
 	@Override

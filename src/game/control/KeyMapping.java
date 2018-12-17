@@ -142,7 +142,9 @@ public class KeyMapping extends KeyAdapter {
 	
 	private boolean canGoNextMap(int x, int y) {
 		//if 포탈 범위안, and if
-		if(player.getPosX()>500 && this.youCanGo==1) {
+		int dx = this.player.getPosX()-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosX();
+		int dy = this.player.getPosY()-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosY();
+		if(Math.abs(dx)<15 && Math.abs(dy)<15 && this.youCanGo==1) {
 			return true;
 		}
 		else{

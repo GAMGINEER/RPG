@@ -99,13 +99,12 @@ public class GameFrame extends JFrame {
 					if (gamePanel.killedEnemy >= 10) {
 						messagePanel.addSystemMessage("모든 적을 처치했습니다.");
 						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
-						// 이제 포탈이 열린다.
-						
 						keyMapping.youCanGo = 1;
+						System.out.println("youcango==1");
+						// 이제 포탈이 열린다.
 						break;
 					}
 				}
-
 			}
 
 			private void sleep() {
