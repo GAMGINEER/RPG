@@ -49,7 +49,6 @@ public class Map implements Serializable {
 			this.itemSet.get(key).draw(g);
 		}
 		if(keyMapping.youCanGo==1) {
-			System.out.println("포탈이 열린다.");
 			this.portal.draw(g);
 		}
 		

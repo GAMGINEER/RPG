@@ -97,6 +97,8 @@ public class GameFrame extends JFrame {
 				while (true) {
 					this.sleep();
 					if (gamePanel.killedEnemy >= 10) {
+						getGamePanel().getSave().getMapSet().setStoryFlag(1); //튜토리얼 완료, 스토리1로 간다.
+						
 						messagePanel.addSystemMessage("모든 적을 처치했습니다.");
 						this.sleep();
 						messagePanel.addNormalMessage("주민1", "....!!!!");
@@ -107,7 +109,7 @@ public class GameFrame extends JFrame {
 						this.sleep();
 						messagePanel.addNormalMessage("주민1", "마을 사람들이 모두 당신을 환영할 겁니다. 따라와 주십시오!");
 						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
-
+						
 						keyMapping.youCanGo = 1;
 						System.out.println("youcango==1");
 						// 이제 포탈이 열린다.
@@ -124,8 +126,8 @@ public class GameFrame extends JFrame {
 				}
 			}
 		}
-
-		new tutorialThread().start();
+		if(getGamePanel().getSave().getMapSet().getStoryFlag() == 0) //튜토리얼 진행 가능 상황일 때
+			new tutorialThread().start();
 
 	}
 

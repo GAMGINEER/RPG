@@ -10,11 +10,16 @@ public class MapSet implements Serializable {
 
 	public static final String DEFAULT_MAP_NAME = "Whimsyshire";
 
+	private int storyFlag;
+	private int youCanGo;
+
 	private HashMap<String, Map> mapSet;
 	private String currentMapName;
 
 	public MapSet() {
 		this.mapSet = new HashMap<>();
+		this.storyFlag = 0;
+		this.youCanGo = 0;
 		this.createMap();
 	}
 
@@ -53,6 +58,14 @@ public class MapSet implements Serializable {
 
 	public Map getMap(String mapName) {
 		return this.mapSet.get(mapName);
+	}
+
+	public int getStoryFlag() {
+		return this.storyFlag;
+	}
+
+	public void setStoryFlag(int flag) {
+		this.storyFlag = flag;
 	}
 
 	public String toString() {

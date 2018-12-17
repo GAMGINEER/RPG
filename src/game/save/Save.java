@@ -15,6 +15,7 @@ public class Save implements Serializable {
 	private MapSet mapSet;
 	private Player player;
 
+
 	public Save() {
 		this.load();
 	}
