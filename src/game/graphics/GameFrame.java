@@ -69,6 +69,7 @@ public class GameFrame extends JFrame {
 		this.setVisible(true); // 창 보이기
 
 		new ChatFrame(this); // 채팅창 열기
+		new MenuFrame(this);
 
 		class tutorialThread extends Thread {
 

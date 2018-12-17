@@ -79,7 +79,6 @@ public class StartGame extends JFrame {
 
 	private void startGame() {
 		new GameFrame();
-		new MenuFrame();
 		this.dispose();
 	}
 
