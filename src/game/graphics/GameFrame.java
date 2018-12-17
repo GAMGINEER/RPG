@@ -51,6 +51,7 @@ public class GameFrame extends JFrame {
 
 		// 아이템 패널 설정
 		this.itemPanel = new ItemPanel(this);
+		this.getItemPanel().drawList();
 
 		this.add(tmpPanel);
 		this.add(itemPanel);
