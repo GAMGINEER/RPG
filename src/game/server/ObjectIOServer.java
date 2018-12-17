@@ -79,4 +79,8 @@ public class ObjectIOServer {
 		Thread tDs = new Thread(rDs);
 		tDs.start();
 	}
+	
+	public static void main(String[] args) {
+		new ObjectIOServer();
+	}
 }

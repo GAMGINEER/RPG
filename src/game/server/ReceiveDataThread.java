@@ -1,5 +1,6 @@
 package game.server;
 
+import game.graphics.ChatFrame;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -19,7 +20,7 @@ public class ReceiveDataThread implements Runnable {
 	public void run() {
 		try {
 			while ((this.receiveData = (String) this.objectInputStream.readObject()) != null) {
-				System.out.printf("%s\n", this.receiveData);
+				ChatFrame.txtList.append(receiveData+"\n");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
