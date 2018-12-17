@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
 	}
 
 	public GameFrame() {
+		
 		this.setTitle("Tutorial - 어느 알록달록한 산골");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,9 +111,9 @@ public class GameFrame extends JFrame {
 						messagePanel.addNormalMessage("주민1", "마을 사람들이 모두 당신을 환영할 겁니다. 따라와 주십시오!");
 						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
 						
-						keyMapping.youCanGo = 1;
+						getGamePanel().getSave().getMapSet().getCurrentMap().setIsPortal(1); //포탈이 열린다.
+						getGamePanel().repaint();
 						System.out.println("youcango==1");
-						// 이제 포탈이 열린다.
 						break;
 					}
 				}

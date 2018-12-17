@@ -17,7 +17,6 @@ public class KeyMapping extends KeyAdapter {
 
 	private GameFrame gameFrame;
 	private Player player;
-	public static int youCanGo = 0; //가능할 때만 1이 된다.
 
 	public KeyMapping(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
@@ -153,10 +152,10 @@ public class KeyMapping extends KeyAdapter {
 	}
 	
 	private boolean canGoNextMap(int x, int y) {
-		//if 포탈 범위안, and if
 		int dx = x-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosX();
 		int dy = y-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosY();
-		if(Math.abs(dx)<15 && Math.abs(dy)<15 && this.youCanGo==1) {
+		if(Math.abs(dx)<15 && Math.abs(dy)<15 && this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getIsPortal()==1) {
+			//포탈 범위 안이고, youCanGo가 1일 때
 			return true;
 		}
 		else{
@@ -185,7 +184,6 @@ public class KeyMapping extends KeyAdapter {
 		}
 		this.player.setPosX(10);
 		this.player.setPosY(10);
-		this.youCanGo = 0;//포탈 닫음
 	}
 
 }

@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import game.control.KeyMapping;
 import game.graphics.GamePanel;
 
 public class Map implements Serializable {
@@ -17,12 +16,21 @@ public class Map implements Serializable {
 	private HashMap<String, Enemy> enemySet;
 	private HashMap<String, Item> itemSet;
 	private Portal portal = new Portal(500, 500, 100, 100, Color.CYAN);
-	private KeyMapping keyMapping;
+	private int isPortal;
 
 	public Map(String name) {
 		mapName = name;
 		this.enemySet = new HashMap<>();
 		this.itemSet = new HashMap<>();
+		this.isPortal = 0;
+	}
+
+	public int getIsPortal() {
+		return this.isPortal;
+	}
+	
+	public void setIsPortal(int isPortal) {
+		this.isPortal = isPortal;
 	}
 	
 	public Portal getPortal() {
@@ -48,10 +56,9 @@ public class Map implements Serializable {
 			String key = (String) itemIterator.next();
 			this.itemSet.get(key).draw(g);
 		}
-		if(keyMapping.youCanGo==1) {
-			this.portal.draw(g);
+		if(this.isPortal==1) {
+			portal.draw(g);
 		}
-		
 	}
 
 	public String getMapName() {
