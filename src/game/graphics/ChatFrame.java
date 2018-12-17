@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ChatFrame extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
 	private String ip;
 	private final static int SERVER_PORT = 8100;
 	private Socket client = null;

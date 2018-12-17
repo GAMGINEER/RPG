@@ -1,6 +1,6 @@
 package game.main;
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import game.graphics.GameFrame;
+import game.graphics.MenuFrame;
 
 public class StartGame extends JFrame {
 
@@ -79,6 +80,7 @@ public class StartGame extends JFrame {
 
 	private void startGame() {
 		new GameFrame();
+		new MenuFrame(); 
 		this.dispose();
 	}
 
