@@ -20,7 +20,7 @@ public class Save implements Serializable {
 		this.load();
 	}
 
-	private void load() {
+	public void load() {
 		int FLAG = 0;
 		do {
 			try {

@@ -2,6 +2,12 @@ package game.graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -9,11 +15,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.main.StartGame;
+
 public class MenuFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public MenuFrame() {
+	private GameFrame gameFrame;
+
+	public MenuFrame(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
 		this.setResizable(false);
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.setBackground(new Color(0, 0, 0));
@@ -31,6 +42,21 @@ public class MenuFrame extends JFrame {
 		JLabel loadLabel = new JLabel("Load Save");
 		JButton loadButton = new JButton("Load");
 
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				gameFrame.getGamePanel().getSave().save();
+			}
+		});
+		loadButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				gameFrame.getGamePanel().getSave().load();
+				gameFrame.getGamePanel().getSave().save();
+				System.exit(0);
+			}
+		});
+
 		localPanel.add(saveLabel);
 		localPanel.add(saveButton);
 		localPanel.add(loadLabel);
@@ -44,6 +70,21 @@ public class MenuFrame extends JFrame {
 		JButton cloudSaveButton = new JButton("Save (Cloud)");
 		JLabel cloudLoadLabel = new JLabel("Load Save from Cloud");
 		JButton cloudLoadButton = new JButton("Load (Cloud)");
+
+		cloudSaveButton.setEnabled(false);
+		cloudLoadButton.setEnabled(false);
+		cloudSaveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		cloudLoadButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
 
 		cloudPanel.add(cloudSaveLabel);
 		cloudPanel.add(cloudSaveButton);
@@ -60,10 +101,6 @@ public class MenuFrame extends JFrame {
 			this.setPreferredSize(new Dimension(200, 200));
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		}
-	}
-
-	public static void main(String[] args) {
-		new MenuFrame();
 	}
 
 }
