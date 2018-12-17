@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 public class ChatFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private String ip;
-	private final static int SERVER_PORT = 8100;
+	private static final String SERVER_IP = "edu.gamgineer.online";
+	private static final int SERVER_PORT = 8100;
 	private Socket client = null;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -39,11 +39,12 @@ public class ChatFrame extends JFrame implements ActionListener {
 	private static int line = 0;
 
 	public ChatFrame(GameFrame gameFrame) {
-		this.setAlwaysOnTop(true); //항상 다른 JFrame보다 위에 있도록 설정
+		this.setAlwaysOnTop(true); // 항상 다른 JFrame보다 위에 있도록 설정
 		this.gameFrame = gameFrame;
 		this.setLocationRelativeTo(this.gameFrame.getItemPanel());
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setBounds((dim.width/2)+(gameFrame.getWidth()/5), (dim.height/2)-(gameFrame.getHeight()/30), 250, 400);
+		this.setBounds((dim.width / 2) + (gameFrame.getWidth() / 5), (dim.height / 2) - (gameFrame.getHeight() / 30),
+				250, 400);
 		cl = new CardLayout();
 
 		JPanel connect = new JPanel();
@@ -53,12 +54,8 @@ public class ChatFrame extends JFrame implements ActionListener {
 
 		JPanel connectSub = new JPanel();
 
-		connectSub.add(new JLabel("Server IP: "));
-		txtIP = new JTextField("edu.gamgineer.online", 20);
-		connectSub.add(txtIP);
-
-		connectSub.add(new JLabel("이름: "));
-		txtName = new JTextField("korean", 17);
+		connectSub.add(new JLabel("학번 : "));
+		txtName = new JTextField("", 17);
 		connectSub.add(txtName);
 
 		connect.add("Center", connectSub);
@@ -100,7 +97,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 
 		cl.show(p2, "접속창");
 		setVisible(true);
-		
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				dispose();
@@ -110,8 +107,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 	}
 
 	public void init() throws IOException {
-		ip = txtIP.getText();
-		client = new Socket(ip, SERVER_PORT);
+		client = new Socket(SERVER_IP, SERVER_PORT);
 		oos = new ObjectOutputStream(client.getOutputStream());
 		ois = new ObjectInputStream(client.getInputStream());
 
@@ -137,9 +133,9 @@ public class ChatFrame extends JFrame implements ActionListener {
 				oos.flush();
 				txtInput.setText("");
 				this.line++;
-				if(line>=20) {
+				if (line >= 20) {
 					txtList.setText("");
-					line=0;
+					line = 0;
 				}
 			} else if (e.getSource() == exit)
 				System.exit(0);

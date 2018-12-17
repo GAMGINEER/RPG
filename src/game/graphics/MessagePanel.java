@@ -40,7 +40,6 @@ public class MessagePanel extends JPanel {
 	}
 
 	public void addNormalMessage(String who, String str) {
-		
 		txtList.append(who + " : " + str + "\n");
 		line++;
 		if (line == 10) {
