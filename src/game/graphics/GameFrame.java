@@ -22,6 +22,10 @@ public class GameFrame extends JFrame {
 	public ItemPanel getItemPanel() {
 		return this.itemPanel;
 	}
+	
+	public MessagePanel getMessagePanel() {
+		return this.messagePanel;
+	}
 
 	public GameFrame() {
 		

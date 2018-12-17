@@ -179,6 +179,23 @@ public class KeyMapping extends KeyAdapter {
 	private void goNextMap() {
 		String currentMapName = this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMapName();
 		if (currentMapName.equals("Whimsyshire")) {//알록달록한 산골에서
+			class tutorialThread extends Thread {
+
+				public void run() {
+					this.sleep();
+					gameFrame.getMessagePanel().addSystemMessage("왜인지 적들이 잔뜩 있는 필드에 왔다!");
+				}
+
+				private void sleep() {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+			if(gameFrame.getGamePanel().getSave().getMapSet().getStoryFlag() == 1) //튜토리얼 진행 가능 상황일 때
+				new tutorialThread().start();
 			this.changeMap("enemyField");//지금은 enemyField로 가는데, 나중에 마을로 바꿔줘야함
 		} else if (currentMapName.equals("enemyField")) {
 			this.changeMap("someWhere");
