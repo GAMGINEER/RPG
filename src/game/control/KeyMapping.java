@@ -32,11 +32,17 @@ public class KeyMapping extends KeyAdapter {
 				this.player.move(0, -(SPEED));
 				this.gameFrame.getGamePanel().repaint();
 			}
+			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
+				this.goNextMap();
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (this.isBlocked(0, SPEED) == false) {
 				this.player.move(0, SPEED);
 				this.gameFrame.getGamePanel().repaint();
+			}
+			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
+				this.goNextMap();
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -44,11 +50,17 @@ public class KeyMapping extends KeyAdapter {
 				this.player.move(-(SPEED), 0);
 				this.gameFrame.getGamePanel().repaint();
 			}
+			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
+				this.goNextMap();
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (this.isBlocked(SPEED, 0) == false) {
 				this.player.move(SPEED, 0);
 				this.gameFrame.getGamePanel().repaint();
+			}
+			if(this.canGoNextMap(this.player.getPosX(), this.player.getPosY())) {
+				this.goNextMap();
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F4) {
@@ -142,8 +154,8 @@ public class KeyMapping extends KeyAdapter {
 	
 	private boolean canGoNextMap(int x, int y) {
 		//if 포탈 범위안, and if
-		int dx = this.player.getPosX()-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosX();
-		int dy = this.player.getPosY()-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosY();
+		int dx = x-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosX();
+		int dy = y-this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().getPortal().getPosY();
 		if(Math.abs(dx)<15 && Math.abs(dy)<15 && this.youCanGo==1) {
 			return true;
 		}
@@ -160,6 +172,20 @@ public class KeyMapping extends KeyAdapter {
 				.setEnemyAlgorithm(this.gameFrame.getGamePanel());
 		this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
 		this.gameFrame.getGamePanel().repaint();
+	}
+	
+	private void goNextMap() {
+		String currentMapName = this.gameFrame.getGamePanel().getSave().getMapSet().getCurrentMapName();
+		if (currentMapName.equals("Whimsyshire")) {//알록달록한 산골에서
+			this.changeMap("enemyField");//지금은 enemyField로 가는데, 나중에 마을로 바꿔줘야함
+		} else if (currentMapName.equals("enemyField")) {
+			this.changeMap("someWhere");
+		} else if (currentMapName.equals("someWhere")) {
+			this.changeMap("defaultField");
+		}
+		this.player.setPosX(10);
+		this.player.setPosY(10);
+		this.youCanGo = 0;//포탈 닫음
 	}
 
 }
