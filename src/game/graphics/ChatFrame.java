@@ -36,7 +36,6 @@ public class ChatFrame extends JFrame implements ActionListener {
 
 	public ChatFrame(GameFrame gameFrame) {
 		this.setAlwaysOnTop(true); //항상 다른 JFrame보다 위에 있도록 설정
-		this.setUndecorated(true); // 타이틀 바 삭제
 		this.gameFrame = gameFrame;
 		this.setLocationRelativeTo(this.gameFrame.getItemPanel());
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

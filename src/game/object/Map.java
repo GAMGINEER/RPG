@@ -14,6 +14,8 @@ public class Map implements Serializable {
 
 	private HashMap<String, Enemy> enemySet;
 	private HashMap<String, Item> itemSet;
+	
+	
 
 	public Map(String name) {
 		mapName = name;
@@ -40,6 +42,9 @@ public class Map implements Serializable {
 			String key = (String) itemIterator.next();
 			this.itemSet.get(key).draw(g);
 		}
+		
+		
+		
 	}
 
 	public String getMapName() {

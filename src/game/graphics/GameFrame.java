@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import game.control.KeyMapping;
+import game.object.Enemy;
 
 public class GameFrame extends JFrame {
 
@@ -72,42 +73,47 @@ public class GameFrame extends JFrame {
 		class tutorialThread extends Thread {
 
 			public void run() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
+				this.sleep();
 				messagePanel.addSystemMessage("[시끄러운 소리]");
+				this.sleep();
 				messagePanel.addNormalMessage("주민1", "적들이 쳐들어 온다!");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
+				this.sleep();
 				messagePanel.addNormalMessage("주민2", "도망쳐!");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
+				this.sleep();
 				messagePanel.addNormalMessage("주민3", "으아아아아아아악!!!");
-				//여기서 주민들이 잔뜩 지나가면 좋겠지만 아직 무리
-				
-				try {
-					Thread.sleep(1000);
-					//적들(한 5마리)가 분산되어 사방에서 주인공을 둘러싸게 해야 함
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
+				this.sleep();
+				// 여기서 주민들이 잔뜩 지나가면 좋겠지만 아직 무리
+
+				messagePanel.addSystemMessage("적들이 몰려옵니다.");
+				this.sleep();
+				gamePanel.killedEnemy = 0;
+				for (int i = 0; i < 10; i++) {
+					getGamePanel().getSave().getMapSet().getCurrentMap().stopEnemy();
+					getGamePanel().getSave().getMapSet().getCurrentMap().addEnemy(new Enemy(i * 20, i * 20));
+					getGamePanel().getSave().getMapSet().getCurrentMap().setEnemyAlgorithm(getGamePanel());
+					getGamePanel().getSave().getMapSet().getCurrentMap().startEnemy();
 				}
-				
-				while(true) {
-					if(gamePanel.killedEnemy==5) {
-						System.out.println("모든 적을 다 죽였다!");
-						//이제 포탈이 열린다.
+
+				while (true) {
+					this.sleep();
+					if (gamePanel.killedEnemy >= 10) {
+						messagePanel.addSystemMessage("모든 적을 처치했습니다.");
+						messagePanel.addSystemMessage("마을로 가는 포탈이 열립니다.");
+						// 이제 포탈이 열린다.
+						
 						keyMapping.youCanGo = 1;
+						break;
 					}
 				}
-				
+
+			}
+
+			private void sleep() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 
