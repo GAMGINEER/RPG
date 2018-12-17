@@ -19,25 +19,40 @@ public class ObjectIOServer {
 
 	public ObjectIOServer() {
 		serverSetting();
-		setStream();
 	}
 
 	public void serverSetting() {
-		while (true) {
-			try {
-				server = new ServerSocket(SERVER_PORT);
-				client = server.accept();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			System.out.println("서버생성중");
+			server = new ServerSocket(SERVER_PORT);
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
+		Runnable serR = new Runnable() {
+			public void run() {
+				while (true) {
+					try {
+						System.out.println("생성완료! 클라이언트 접속 대기중");
+						client = server.accept();
+						System.out.println("접속 완료");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					setStream();
+				}
+			}
+		};
+		Thread serT = new Thread(serR);
+		serT.start();
 	}
 
 	public void setStream() {
 		try {
 			output = new ObjectOutputStream(client.getOutputStream());
 			output.flush();
+			System.out.println("아웃풋 열림");
 			input = new ObjectInputStream(client.getInputStream());
+			System.out.println("인풋 열림");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

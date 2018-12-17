@@ -18,7 +18,7 @@ public class Payload implements Serializable {
 	public Payload(String userID) {
 		this.userID = userID;
 		try {
-			this.save = (Save) ObjectSave.Input("save");
+			this.save = (Save) ObjectSave.Input("map");
 			this.player = (Player) ObjectSave.Input("player");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
