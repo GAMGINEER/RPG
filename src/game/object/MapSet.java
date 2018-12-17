@@ -29,6 +29,12 @@ public class MapSet implements Serializable {
 		tempMap = null;
 		tempMap = new Map(mapName);
 		tempMap.addEnemy(new Enemy(500, 500));
+		tempMap.addEnemy(new Enemy(100, 100));
+		tempMap.addEnemy(new Enemy(200, 200));
+		tempMap.addEnemy(new Enemy(300, 100));
+		tempMap.addEnemy(new Enemy(200, 100));
+		tempMap.addEnemy(new Enemy(500, 200));
+		tempMap.addEnemy(new Enemy(400, 100));
 		this.mapSet.put(mapName, tempMap);
 
 		mapName = "someWhere";
