@@ -118,6 +118,8 @@ public class KeyMapping extends KeyAdapter {
 			} else {
 				System.out.printf("SYSTEM >> NO ITEM\n");
 			}
+			gameFrame.getItemPanel().drawList();
+			this.gameFrame.getGamePanel().repaint();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
 			System.out.printf("SYSTEM >> TRYING PICK UP ITEM\n");
@@ -135,6 +137,7 @@ public class KeyMapping extends KeyAdapter {
 				}
 			}
 			System.out.printf("SYSTEM >> PICK UP FINISHED\n");
+			gameFrame.getItemPanel().drawList();
 			this.gameFrame.getGamePanel().repaint();
 		}
 	}
